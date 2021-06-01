@@ -1,6 +1,8 @@
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { RouterConfig } from './core';
 import { MainLayout } from './layout';
+import routers from './routers'
 import NotFound from './page/404';
 import About from './page/about';
 import Account from './page/account';
@@ -20,7 +22,7 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <MainLayout >
+        {/* <MainLayout >
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/about' component={About} />
@@ -36,11 +38,9 @@ function App() {
             <Route path='/shopping-cart' component={ShoppingCart} />
             <Route path='/store' component={Store} />
             <Route path='/account' component={Account} />
-
-
-
           </Switch>
-        </MainLayout>
+        </MainLayout> */}
+        {RouterConfig(routers)}
       </BrowserRouter>
     </Provider>
   );

@@ -1,4 +1,4 @@
-export default function () {
+export default function ShipAndReturn() {
     return (
         <section className="pt-7 pb-12">
             <div className="container">

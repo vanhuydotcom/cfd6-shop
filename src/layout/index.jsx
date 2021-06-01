@@ -10,7 +10,7 @@ import { SizeChart } from "./MainLayout/SizeChart"
 import { WaitList } from "./MainLayout/WaitList"
 export const MainLayout = ({ children }) => {
     return (
-        <>
+        <div className="App">
             <NewsletterHorizontal />
             <NewsletterVertical />
             <PasswordReset />
@@ -22,6 +22,6 @@ export const MainLayout = ({ children }) => {
             <Header />
             {children}
             <Footer />
-        </>
+        </div>
     )
 }
