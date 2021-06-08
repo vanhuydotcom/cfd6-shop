@@ -1,6 +1,6 @@
 import { endpoint } from './config'
 const ProductApi = {
-    ProductItem() {
+    productItem(data) {
         return fetch(`${endpoint}/product`, {
             method: 'GET',
 

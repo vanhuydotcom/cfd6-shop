@@ -17,7 +17,7 @@ export function RouterConfig(routers, parentPath = '') {
                     return <PrivateRoute exact={exact} path={path} component={(prop) => <Component {...prop}>{child}</Component>} />
                 }
 
-                return <Route key={index} exact={exact} path={path} component={(...prop) => <Component {...prop}>{child}</Component>} />
+                return <Route key={index} exact={exact} path={path} component={(prop) => <Component {...prop}>{child}</Component>} />
             })
         }
     </Switch>

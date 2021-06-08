@@ -15,7 +15,6 @@ const UserApi = {
             localStorage.setItem('token', JSON.stringify(res.data))
         }
         return true;
-        console.log(res.data);
     },
     async updateProfile(data) {
         let token = JSON.parse(localStorage.getItem('token'))?.accessToken

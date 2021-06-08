@@ -1,4 +1,4 @@
-export function ProductSummary({ badges, image }) {
+export function ProductSummary({ badges, thumbnail_url }) {
     return (
         <>
             <section>
@@ -17,7 +17,7 @@ export function ProductSummary({ badges, image }) {
                                         <div className="mb-4" data-flickity="{&quot;draggable&quot;: false, &quot;fade&quot;: true}" id="productSlider">
                                             {/* Item */}
                                             <a href="/img/products/product-7.jpg" data-fancybox>
-                                                <img src="/img/products/product-7.jpg" alt="..." className="card-img-top" />
+                                                <img src={thumbnail_url} alt="..." className="card-img-top" />
                                             </a>
                                             {/* Item */}
                                             <a href="/img/products/product-122.jpg" data-fancybox>

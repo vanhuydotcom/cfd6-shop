@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import useTranslate from "../../../core/useTranslate"
+import useTranslate from "../../../../core/useTranslate"
 
 export default function TopNav() {
     let { t } = useTranslate()

@@ -1,7 +1,5 @@
 import { Footer } from "./MainLayout/Footer"
-import BottomNav from "./MainLayout/Header/BottomNav"
-import MainNav from "./MainLayout/Header/MainNav"
-import TopNav from "./MainLayout/Header/TopNav"
+import { Header } from "./MainLayout/Header"
 import { NewsletterHorizontal } from "./MainLayout/NewsletterHorizontal"
 import { NewsletterVertical } from "./MainLayout/NewsletterVertical"
 import { PasswordReset } from "./MainLayout/PasswordReset"
@@ -21,9 +19,7 @@ export const MainLayout = ({ children }) => {
             <Sidebar />
             <SizeChart />
             <WaitList />
-            <TopNav />
-            <MainNav />
-            <BottomNav />
+            <Header />
             {children}
             <Footer />
         </div>

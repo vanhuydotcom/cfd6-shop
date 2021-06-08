@@ -13,7 +13,6 @@ import ShoppingCart from './page/shoppingCart';
 import Store from './page/store';
 import Shop from './page/shop';
 
-
 import Account from './page/account';
 import OrderDetail from './page/account/component/OrderDetail';
 import Payment from './page/account/component/Payment';
@@ -32,13 +31,14 @@ let routers = [
                 exact: true
             },
             {
-                conponent: Shop,
+                component: Shop,
                 path: '/shop'
             },
             {
                 component: Product,
                 path: '/product',
             },
+
             {
                 component: About,
                 path: '/about',

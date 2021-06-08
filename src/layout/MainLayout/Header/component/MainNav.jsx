@@ -1,7 +1,6 @@
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import useTranslate from "../../../core/useTranslate";
-
+import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
+import useTranslate from '../../../../core/useTranslate'
 export default function MainNav() {
     let { t } = useTranslate()
     let { path } = useDispatch()

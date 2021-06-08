@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { PayNation } from "./component/PagrNation";
 import ShopBreadcumb from "./component/ShopBreadcrumb";
 import ShopProduct from "./component/ShopProduct";
 import ShopSidebar from "./component/ShopSidebar";
 import Slider from "./component/Slider";
+import ProductApi from '../../service/productApi'
 export default function Shop({ chidren }) {
+    let [productItem, setProDuctItem] = useState({
+        data: []
+    })
+    useEffect(() => {
+        ProductApi.productItem()
+            .then(res => {
+                setProDuctItem(res)
+
+            })
+    }, [])
     return (
         <section className="py-11">
             <div className="container">
@@ -19,10 +30,10 @@ export default function Shop({ chidren }) {
                         {/* Breadcrumb */}
                         <ShopBreadcumb />
                         {/* Products */}
-                        <ShopProduct />
+                        <ShopProduct {...productItem.data} />
                         {/* Pagination */}
                         <PayNation />
-                    </div>s
+                    </div>
                 </div>
             </div>
         </section>

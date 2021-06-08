@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ProductApi from "../../service/productApi";
+import productApi from "../../service/productApi";
 import { Description } from "./component/Description";
 import { ProductReplace } from "./component/ProductReplace";
 import { ProductSummary } from "./component/ProductSummary";
@@ -10,7 +10,7 @@ export default function Product() {
         data: []
     })
     useEffect(() => {
-        ProductApi.ProductItem()
+        productApi.productItem()
             .then(res => {
                 setProductItem(res)
             })

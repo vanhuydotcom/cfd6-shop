@@ -1,18 +1,21 @@
-export function ProductItem() {
+import React from 'react'
+import { useSelector } from 'react-redux'
+
+export function ProductItem({ badges, thumbnail_url, name, price, discount, rating_average }) {
     return (
         <div className="col-6 col-md-4 col-lg-3">
             {/* Card */}
             <div className="card mb-7">
                 {/* Badge */}
                 <div className="badge badge-white card-badge card-badge-left text-uppercase">
-                    New
-                      </div>
+                    {badges}
+                </div>
                 {/* Image */}
                 <div className="card-img">
                     {/* Image */}
                     <a className="card-img-hover" href="product.html">
-                        <img className="card-img-top card-img-back" src="/img/products/product-120.jpg" alt="..." />
-                        <img className="card-img-top card-img-front" src="/img/products/product-5.jpg" alt="..." />
+                        <img className="card-img-top card-img-back" src={thumbnail_url} alt="..." />
+                        <img className="card-img-top card-img-front" src={thumbnail_url} alt="..." />
                     </a>
                     {/* Actions */}
                     <div className="card-actions">
@@ -36,19 +39,37 @@ export function ProductItem() {
                 {/* Body */}
                 <div className="card-body px-0">
                     {/* Category */}
-                    <div className="font-size-xs">
+                    {/* <div className="font-size-xs">
                         <a className="text-muted" href="shop.html">Shoes</a>
-                    </div>
+                    </div> */}
                     {/* Title */}
                     <div className="font-weight-bold">
                         <a className="text-body" href="product.html">
-                            Leather mid-heel Sandals
-                          </a>
+                            {name}
+                        </a>
+                    </div>
+                    <div class="rating font-size-sm text-dark" data-value={rating_average} >
+                        <div class="rating-item">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="rating-item">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="rating-item">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="rating-item">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="rating-item">
+                            <i class="fas fa-star"></i>
+                        </div>
                     </div>
                     {/* Price */}
-                    <div className="font-weight-bold text-muted">
-                        $129.00
-                        </div>
+                    <div className="font-weight-bold">
+                        <span className="font-size-xs text-gray-350 text-decoration-line-through">{price}</span>
+                        <span className="text-primary">{discount}</span>
+                    </div>
                 </div>
             </div>
         </div>
