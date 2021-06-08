@@ -1,4 +1,4 @@
-export function PayNation() {
+export function PaygiNation() {
     return (
         <nav className="d-flex justify-content-center justify-content-md-end">
             <ul className="pagination pagination-sm text-gray-400">

@@ -1,9 +1,16 @@
 import { ProductItem } from "../../../component/ProductItem";
 
-export default function ShopProduct({ data }) {
+export default function ShopProduct(product) {
+
     return (
         <div className="row">
-            <ProductItem />
+            {
+                product?.data.map((e) => <ProductItem
+                    {...e}
+                    key={e._id}
+                />)
+
+            }
         </div>
 
     )

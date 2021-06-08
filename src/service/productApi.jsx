@@ -1,10 +1,11 @@
 import { endpoint } from './config'
 const ProductApi = {
-    productItem(data) {
-        return fetch(`${endpoint}/product`, {
-            method: 'GET',
+    productItem() {
+        return fetch(`${endpoint}/product`).then(res => res.json())
+    },
+    category() {
+        return fetch(`${endpoint}/categories`).then(res => res.json())
+    },
 
-        }).then(res => res.json())
-    }
 }
 export default ProductApi

@@ -1,7 +1,17 @@
+import { useEffect, useState } from "react"
 import useTranslate from "../../../core/useTranslate"
+import ProductApi from "../../../service/productApi"
 
 export default function ShopSidebar() {
     let { t } = useTranslate()
+    let [categories, setCategories] = useState({})
+    useEffect(() => {
+        ProductApi.category()
+            .then(res => {
+                setCategories(res)
+            })
+    }, [])
+    console.log(categories);
     return (
         <>
             {/* Filters */}
@@ -17,44 +27,23 @@ export default function ShopSidebar() {
                             <div className="form-group">
                                 <ul className="list-styled mb-0" id="productsNav">
                                     <li className="list-styled-item">
-                                        <a className="list-styled-link" href="#">
-                                            All Products
-                            </a>
+                                        <a className="list-styled-link" href="#"> All Products    </a>
                                     </li>
+                                    {/* {
+                                        categories?.map((item) => (
+                                            <li className="list-styled-item">
+                                                <a className="list-styled-link" data-toggle="collapse" href="#blousesCollapse">
+                                                    {item.title}
+                                                </a>
+                                            </li>
+                                        ))} */}
                                     <li className="list-styled-item">
                                         {/* Toggle */}
                                         <a className="list-styled-link" data-toggle="collapse" href="#blousesCollapse">
                                             Blouses and Shirts
                             </a>
                                         {/* Collapse */}
-                                        <div className="collapse" id="blousesCollapse" data-parent="#productsNav">
-                                            <div className="py-4 pl-5">
-                                                <div className="custom-control custom-checkbox mb-3">
-                                                    <input className="custom-control-input" id="blousesOne" type="checkbox" />
-                                                    <label className="custom-control-label" htmlFor="blousesOne">
-                                                        Women Tops, Tees &amp; Blouses
-                                  </label>
-                                                </div>
-                                                <div className="custom-control custom-checkbox mb-3">
-                                                    <input className="custom-control-input" id="blousesTwo" type="checkbox" />
-                                                    <label className="custom-control-label" htmlFor="blousesTwo">
-                                                        Petite
-                                  </label>
-                                                </div>
-                                                <div className="custom-control custom-checkbox mb-3">
-                                                    <input className="custom-control-input" id="blousesThree" type="checkbox" />
-                                                    <label className="custom-control-label" htmlFor="blousesThree">
-                                                        Petite-Size Blouses &amp; Button-Down Shirts
-                                  </label>
-                                                </div>
-                                                <div className="custom-control custom-checkbox">
-                                                    <input className="custom-control-input" id="blousesFour" type="checkbox" />
-                                                    <label className="custom-control-label" htmlFor="blousesFour">
-                                                        Women Plus Tops &amp; Tees
-                                  </label>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </li>
                                     <li className="list-styled-item">
                                         {/* Toggle */}

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { PayNation } from "./component/PagrNation";
+import { PaygiNation } from "./component/PagiNation";
 import ShopBreadcumb from "./component/ShopBreadcrumb";
 import ShopProduct from "./component/ShopProduct";
 import ShopSidebar from "./component/ShopSidebar";
 import Slider from "./component/Slider";
 import ProductApi from '../../service/productApi'
-export default function Shop({ chidren }) {
-    let [productItem, setProDuctItem] = useState({
+export default function Shop() {
+    let [product, setProDuct] = useState({
         data: []
     })
     useEffect(() => {
         ProductApi.productItem()
             .then(res => {
-                setProDuctItem(res)
+                setProDuct(res)
 
             })
     }, [])
@@ -30,9 +30,9 @@ export default function Shop({ chidren }) {
                         {/* Breadcrumb */}
                         <ShopBreadcumb />
                         {/* Products */}
-                        <ShopProduct {...productItem.data} />
+                        <ShopProduct {...product} />
                         {/* Pagination */}
-                        <PayNation />
+                        <PaygiNation />
                     </div>
                 </div>
             </div>

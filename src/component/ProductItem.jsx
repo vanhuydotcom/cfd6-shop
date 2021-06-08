@@ -1,21 +1,22 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-export function ProductItem({ badges, thumbnail_url, name, price, discount, rating_average }) {
+export function ProductItem({ discount_rate, thumbnail_url, name, price, discount, rating_average, images }) {
+
     return (
         <div className="col-6 col-md-4 col-lg-3">
             {/* Card */}
             <div className="card mb-7">
                 {/* Badge */}
                 <div className="badge badge-white card-badge card-badge-left text-uppercase">
-                    {badges}
+                    {discount_rate}%
                 </div>
                 {/* Image */}
                 <div className="card-img">
                     {/* Image */}
                     <a className="card-img-hover" href="product.html">
-                        <img className="card-img-top card-img-back" src={thumbnail_url} alt="..." />
-                        <img className="card-img-top card-img-front" src={thumbnail_url} alt="..." />
+                        <img className="card-img-top card-img-back" src={images[0].base_url} alt="..." />
+                        <img className="card-img-top card-img-front" src={images[0].base_url} alt="..." />
                     </a>
                     {/* Actions */}
                     <div className="card-actions">
