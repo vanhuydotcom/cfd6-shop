@@ -1,4 +1,4 @@
-export function ProductSummary() {
+export function ProductSummary({ badges, image }) {
     return (
         <>
             <section>
@@ -11,8 +11,8 @@ export function ProductSummary() {
                                     <div className="card">
                                         {/* Badge */}
                                         <div className="badge badge-primary card-badge text-uppercase">
-                                            Sale
-                      </div>
+                                            {badges}
+                                        </div>
                                         {/* Slider */}
                                         <div className="mb-4" data-flickity="{&quot;draggable&quot;: false, &quot;fade&quot;: true}" id="productSlider">
                                             {/* Item */}

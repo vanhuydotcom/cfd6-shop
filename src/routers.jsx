@@ -9,17 +9,17 @@ import Home from './page/home';
 import OrderCompleted from './page/oroderCompeled';
 import Product from './page/product';
 import shipAndReturn from './page/shipAndReturn';
-import Shop from './page/shop';
 import ShoppingCart from './page/shoppingCart';
 import Store from './page/store';
+import Shop from './page/shop';
 
 
 import Account from './page/account';
-import Address from './page/account/component/Address';
 import OrderDetail from './page/account/component/OrderDetail';
 import Payment from './page/account/component/Payment';
 import Orders from './page/account/component/Orders';
 import PersonalInfo from './page/account/component/PersonalInfo';
+import Address from './page/account/component/Address';
 
 let routers = [
     {
@@ -32,29 +32,28 @@ let routers = [
                 exact: true
             },
             {
+                conponent: Shop,
+                path: '/shop'
+            },
+            {
+                component: Product,
+                path: '/product',
+            },
+            {
                 component: About,
                 path: '/about',
-                exact: true
+
+            },
+            {
+                component: Auth,
+                path: '/auth'
 
             },
             {
                 component: Account,
                 path: '/account',
-                exact: true,
                 routers: [
 
-                    {
-                        component: PersonalInfo,
-                        path: '/personal-info'
-                    },
-                    {
-                        component: OrderDetail,
-                        path: '/order-detail',
-                    },
-                    {
-                        component: Orders,
-                        path: '/',
-                    },
                     {
                         component: Address,
                         path: '/address'
@@ -63,9 +62,23 @@ let routers = [
                         component: Payment,
                         path: '/payment'
                     },
+                    {
+                        component: Orders,
+                        path: '/orders',
+                    },
+                    {
+                        component: PersonalInfo,
+                        path: '/'
+                    },
 
                 ]
 
+
+            },
+            {
+                component: FAQ,
+                path: '/faq',
+                exact: true
 
             },
             {

@@ -7,7 +7,7 @@ export default function Store() {
             {/* HEADER */}
             <StoreLocator />
             {/* MAP */}
-            <Map />
-        </>
+            <Map/>
+       </>
     )
 }

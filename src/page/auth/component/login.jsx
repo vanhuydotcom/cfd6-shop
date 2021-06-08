@@ -1,8 +1,66 @@
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router'
 import useTranslate from '../../../core/useTranslate'
+import useFormValidate from '../../../hook/useFormValidate'
+import { loginAction } from '../../../redux/action/authAction'
+import Auth from '../../../service/auth'
 
-export const ReturningCustomerForm = () => {
+export const Login = () => {
     let { t } = useTranslate()
+    let auth = useSelector(state => state.auth)
 
+    let { error, form, inputChange, check } = useFormValidate({
+        username: '',
+        password: ''
+    }, {
+        rule: {
+            username: {
+                required: true,
+                pattern: 'email'
+            },
+            password: {
+                required: true,
+                min: 6,
+                max: 32
+            }
+        },
+        mes: {
+            username: {
+                required: 'Please enter your user name',
+                pattern: 'User name is not valid'
+            },
+            password: {
+                required: 'Please enter your user name',
+                pattern: 'Password is not valid'
+
+            }
+        }
+    })
+    let dispatch = useDispatch()
+    let [loginError, setLoginError] = useState({
+        login: {},
+        error: ''
+    })
+    async function LoginHandle(e) {
+        let error = check();
+        e.preventDefault()
+        if (Object.keys(error).length === 0) {
+            let res = await Auth.login({
+                username: form.username,
+                password: form.password
+            })
+            if (res.data) {
+                dispatch(loginAction(res.data))
+            }
+            if (res.error) {
+                setLoginError({
+                    ...loginError,
+                    error: res.error
+                })
+            }
+        }
+    }
     return (
         <>
             <div className="col-12 col-md-6">
@@ -20,7 +78,10 @@ export const ReturningCustomerForm = () => {
                                         <label className="sr-only" htmlFor="loginEmail">
                                             Email Address *
                     </label>
-                                        <input className="form-control form-control-sm" id="loginEmail" type="email" placeholder="Email Address *" required />
+                                        <input value={form.username} name="username" onChange={inputChange} className="form-control form-control-sm" id="loginEmail" placeholder="Email Address *" />
+                                        {
+                                            error.username && <p className="error_text">{error.username}</p>
+                                        }
                                     </div>
                                 </div>
                                 <div className="col-12">
@@ -29,7 +90,11 @@ export const ReturningCustomerForm = () => {
                                         <label className="sr-only" htmlFor="loginPassword">
                                             Password *
                     </label>
-                                        <input className="form-control form-control-sm" id="loginPassword" type="password" placeholder="Password *" required />
+                                        <input value={form.password} name='password' onChange={inputChange} className="form-control form-control-sm" id="loginPassword" type="password" placeholder="Password *" />
+                                        {
+                                            error.password && <p className="error_text">{error.password}</p>
+                                        }
+
                                     </div>
                                 </div>
                                 <div className="col-12 col-md">
@@ -52,10 +117,15 @@ export const ReturningCustomerForm = () => {
                                 </div>
                                 <div className="col-12">
                                     {/* Button */}
-                                    <button className="btn btn-sm btn-dark" type="submit">
+                                    <button className="btn btn-sm btn-dark" type="submit" onClick={LoginHandle}>
                                         Sign In
                   </button>
                                 </div>
+                                {
+                                    loginError.error && (
+                                        <p className="error_text">{loginError.error}</p>
+                                    )
+                                }
                             </div>
                         </form>
                     </div>

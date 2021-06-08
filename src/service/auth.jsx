@@ -1,23 +1,7 @@
 import { endpoint } from './config'
 const Auth = {
-    async refreshToken() {
-        let refreshToken = JSON.parse(localStorage.getItem("login"))?.token?.refreshToken
-        let res = await fetch(`${endpoint}/elearning/v4/refresh-token`, {
-            method: 'POST',
-            body: JSON.stringify({
-                refreshToken: refreshToken
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => res.json())
-        if (res?.data?.accessToken) {
-            localStorage.setItem('token', JSON.stringify(res.data))
-        }
-        return true;
-    },
     login(data) {
-        return fetch(`${endpoint}/elearning/v4/login`, {
+        return fetch(`${endpoint}/login`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -25,33 +9,14 @@ const Auth = {
             }
         }).then(res => res.json())
     },
-    async saveInfo(data) {
-        let token = JSON.parse(localStorage.getItem("token"))?.accessToken
-        let res = await fetch(`${endpoint}/elearning/v4/profile/update`, {
+    register(data) {
+        return fetch(`${endpoint}/register`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
+                'Content-Type': 'application/json'
             }
-        })
-        if (res.status === 200) {
-            return res.json()
-        };
-        if (res.status === 403) {
-            await Auth.refreshToken()
-            let token = JSON.parse(localStorage.getItem("token"))?.accessToken
-
-            return fetch(`${endpoint}/elearning/v4/profile/update`, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                }
-            }).then(res => res.json())
-        }
-        console.log(token.accessToken);
-    }
+        }).then(res => res.json())
+    },
 }
 export default Auth

@@ -1,3 +1,4 @@
+import './assets/css/custom.css'
 import { Provider } from 'react-redux'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import { RouterConfig } from './core';

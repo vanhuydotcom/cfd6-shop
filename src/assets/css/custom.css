@@ -1,0 +1,6 @@
+.error_text {
+    color: red;
+    width: 100% !important;
+    text-align: right;
+    font-style: italic;
+}

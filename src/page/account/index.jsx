@@ -1,5 +1,7 @@
-import { NavLink, Route, Switch, useRouteMatch } from "react-router-dom";
-import { RouterConfig } from "../../core";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
+import { logoutAction } from "../../redux/action/authAction";
+// import { RouterConfig } from "../../core";
 import Address from "./component/Address";
 import OrderDetail from "./component/OrderDetail";
 import Orders from "./component/Orders";
@@ -8,6 +10,13 @@ import PersonalInfo from "./component/PersonalInfo";
 import WidhList from "./component/WidhList";
 export default function Account({ children }) {
     let { path } = useRouteMatch()
+    let dispatch = useDispatch()
+    let auth = useSelector(state => state.auth)
+    if (!auth.login) return <Redirect to='/auth' />
+    function LogoutHandle(e) {
+        e.preventDefault()
+        dispatch(logoutAction())
+    }
     return (
         <section className="pt-7 pb-12">
             <div className="container">
@@ -22,13 +31,13 @@ export default function Account({ children }) {
                         {/* Nav */}
                         <nav className="mb-10 mb-md-0">
                             <div className="list-group list-group-sm list-group-strong list-group-flush-x">
-                                <NavLink className="list-group-item list-group-item-action dropright-toggle active" exact to={`${path}/order`}>
+                                <NavLink className="list-group-item list-group-item-action dropright-toggle " to={`${path}/order`}>
                                     Orders
   </NavLink>
                                 <NavLink className="list-group-item list-group-item-action dropright-toggle " to={`${path}/widhlist`}>
                                     Widhlist
   </NavLink>
-                                <NavLink className="list-group-item list-group-item-action dropright-toggle " to={`${path}/personal-info`}>
+                                <NavLink className="list-group-item list-group-item-action dropright-toggle " exact to={`${path}`}>
                                     Personal Info
   </NavLink>
                                 <NavLink className="list-group-item list-group-item-action dropright-toggle " to={`${path}/address`}>
@@ -37,7 +46,7 @@ export default function Account({ children }) {
                                 <NavLink className="list-group-item list-group-item-action dropright-toggle " to={`${path}/payment`}>
                                     Payment Methods
   </NavLink>
-                                <NavLink className="list-group-item list-group-item-action dropright-toggle" to="#">
+                                <NavLink className="list-group-item list-group-item-action dropright-toggle" onClick={LogoutHandle} to="#">
                                     Logout
   </NavLink>
                             </div>

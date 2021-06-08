@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 
 let namePattern = /[a-zA-Z][a-zA-Z ]{2,}/i
@@ -6,17 +7,19 @@ let emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@
 let urlPattern = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i
 let phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/i
 let fbPattern = /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/i
-export default function useFormValidate(initialForm, validate) {
+export function useForm(initialForm, validate) {
     let [form, setForm] = useState(initialForm)
     let [error, setError] = useState({})
     function inputChange(e) {
         let name = e.target.name
         let value = e.target.value
-        setForm({
-            ...form,
-            [name]: value
+        form[name] = value
 
-        })
+        // setForm({
+        //     ...form,
+        //     [name]: value
+
+        // })
     }
     function check() {
         let errorObject = {}
@@ -56,19 +59,37 @@ export default function useFormValidate(initialForm, validate) {
                     errorObject[i] = m?.[i]?.match || `Type your ${r.match} again`
                 }
             }
-
-
-            console.log(r.match);
         }
-
         setError(errorObject)
         return errorObject
     }
+    function register(name, rule) {
+        if (rule) {
+            if (!validate.rule) validate = {}
+            validate.rule[name] = rule
+        }
+        return {
+            name,
+            onChange: inputChange,
+            defaultValue: form[name]
+        }
+    }
+    function handleSubmit(callback) {
+        return ((e) => {
+            e.preventDefault();
+            let error = check()
+            if (Object.keys(error).length === 0) {
+                callback(form)
+            }
+        })
+    }
     return {
-        form,
+        register,
+        handleSubmit,
         error,
-        inputChange,
-        check
+        check,
+        form,
+        inputChange
     }
 
 }

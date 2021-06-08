@@ -1,10 +1,10 @@
+import React from 'react'
 import { PayNation } from "./component/PagrNation";
 import ShopBreadcumb from "./component/ShopBreadcrumb";
 import ShopProduct from "./component/ShopProduct";
 import ShopSidebar from "./component/ShopSidebar";
 import Slider from "./component/Slider";
-
-export default function Shop() {
+export default function Shop({ chidren }) {
     return (
         <section className="py-11">
             <div className="container">
@@ -22,7 +22,7 @@ export default function Shop() {
                         <ShopProduct />
                         {/* Pagination */}
                         <PayNation />
-                    </div>
+                    </div>s
                 </div>
             </div>
         </section>

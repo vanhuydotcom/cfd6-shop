@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, SAVE } from '../type'
+import { LOGIN, LOGOUT, REGISTER, UPDATE_PROFILE } from '../type'
 export function loginAction(data) {
     return {
         type: LOGIN,
@@ -10,9 +10,15 @@ export function logoutAction() {
         type: LOGOUT,
     }
 }
-export function saveInfoAction(data) {
+export function registerAction(data) {
     return {
-        type: SAVE,
+        type: REGISTER,
+        payload: data
+    }
+}
+export function updateProfileAction(data) {
+    return {
+        type: UPDATE_PROFILE,
         payload: data
     }
 }

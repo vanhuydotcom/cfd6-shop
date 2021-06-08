@@ -1,4 +1,7 @@
+import { Link, useRouteMatch } from "react-router-dom";
+
 export default function Orders() {
+    let { path } = useRouteMatch()
     return (
         <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
             {/* Order */}
@@ -152,9 +155,9 @@ export default function Orders() {
                             <div className="form-row">
                                 <div className="col-6">
                                     {/* Button */}
-                                    <a className="btn btn-sm btn-block btn-outline-dark" href="account-order.html">
+                                    <Link className="btn btn-sm btn-block btn-outline-dark" to={``}>
                                         Order Details
-                    </a>
+                    </Link>
                                 </div>
                                 <div className="col-6">
                                     {/* Button */}
@@ -246,38 +249,8 @@ export default function Orders() {
                 </div>
             </div>
             {/* Pagination */}
-            <nav className="d-flex justify-content-center justify-content-md-end mt-10">
-                <ul className="pagination pagination-sm text-gray-400">
-                    <li className="page-item">
-                        <a className="page-link page-link-arrow" href="#">
-                            <i className="fa fa-caret-left" />
-                        </a>
-                    </li>
-                    <li className="page-item active">
-                        <a className="page-link" href="#">1</a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link" href="#">2</a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link" href="#">3</a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link" href="#">4</a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link" href="#">5</a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link" href="#">6</a>
-                    </li>
-                    <li className="page-item">
-                        <a className="page-link page-link-arrow" href="#">
-                            <i className="fa fa-caret-right" />
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+
+
         </div>
     )
 }

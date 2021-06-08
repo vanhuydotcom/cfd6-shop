@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import ProductApi from "../../service/productApi";
 import BestPick from "./component/BestPick";
 import Brands from "./component/Brands";
 import Categrories from "./component/Categories";
@@ -7,6 +9,7 @@ import Reviews from "./component/Reviews";
 import TopSeller from "./component/TopSeller";
 
 export default function Home() {
+
     return (
         <>
             <Categrories />

@@ -1,5 +1,4 @@
-import { LOGIN, LOGOUT, SAVE } from '../type'
-
+import { LOGIN, LOGOUT, REGISTER, UPDATE_PROFILE } from '../type'
 
 let initState = {
     login: JSON.parse(localStorage.getItem('login')) || false,
@@ -18,7 +17,14 @@ export default function authReducer(state = initState, action) {
                 ...state,
                 login: false
             }
-        case SAVE:
+        case REGISTER:
+            localStorage.setItem('login', JSON.stringify(action.payload))
+            return {
+                ...state,
+                login: action.payload
+                // rule: tự động login khi đăng ký thành công
+            }
+        case UPDATE_PROFILE:
             localStorage.setItem('login', JSON.stringify(action.payload))
             return {
                 ...state,

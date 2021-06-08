@@ -1,52 +1,114 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux"
+import { ErrorMes, useForm } from "../../../hook/useForm";
+import { updateProfileAction } from "../../../redux/action/authAction";
+import UserApi from "../../../service/userApi";
 export default function PersonalInfo() {
+    let auth = useSelector(state => state.auth)
+    let data = useSelector(state => state.auth)
+    let dispatch = useDispatch()
+    let { register, handleSubmit, error, form, check } = useForm({
+        firstname: auth.login.firstname,
+        lastname: auth.login.lastname,
+        email: auth.login.email,
+        password: '',
+        confirm_password: ''
+    }, {
+        rule: {
+            firstname: {
+                required: true,
+            },
+            lastname: {
+                required: true,
+            },
+
+            password: {
+                required: true,
+            },
+            confirm_password: {
+                required: true,
+                match: 'password'
+
+            }
+        },
+
+        mes: {
+            firstname: {
+                required: 'Please enter your first name',
+            },
+            lastname: {
+                required: 'Please enter your last name',
+            },
+            email: {
+                required: 'Please enter your email',
+                pattern: 'Your mail is not valid',
+            },
+            password: {
+                required: 'Please enter your password',
+            },
+            confirm_password: {
+                required: 'Please enter your password again',
+                match: 'Password incorrect'
+
+            }
+        }
+    })
+
+    function formSubmitValidateSuccess(form) {
+        let res = UserApi.updateProfile(form)
+        if (res.data) {
+            dispatch(updateProfileAction(res.data))
+            alert('successful update')
+        }
+
+    }
     return (
         <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
             {/* Form */}
-            <form>
+            <form onSubmit={handleSubmit(formSubmitValidateSuccess)}>
                 <div className="row">
                     <div className="col-12 col-md-6">
                         {/* Email */}
                         <div className="form-group">
-                            <label htmlFor="accountFirstName">
-                                First Name *
-                </label>
-                            <input className="form-control form-control-sm" id="accountFirstName" type="text" placeholder="First Name *" defaultValue="Daniel" required />
+                            <label htmlFor="accountFirstName">First Name * </label>
+                            <input className="form-control form-control-sm" id="accountFirstName" type="text" placeholder="First Name *" {...register("firstname", { required: true })} />
+                            <ErrorMes error={error.firstname} />
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
-                        {/* Email */}
                         <div className="form-group">
-                            <label htmlFor="accountLastName">
-                                Last Name *
-                </label>
-                            <input className="form-control form-control-sm" id="accountLastName" type="text" placeholder="Last Name *" defaultValue="Robinson" required />
+                            <label htmlFor="accountLastName">Last Name *  </label>
+                            <input className="form-control form-control-sm" id="accountLastName" type="text" placeholder="Last Name *" {...register('lastname', { required: true })} />
+                            <ErrorMes error={error.lastname} />
+
                         </div>
                     </div>
                     <div className="col-12">
                         {/* Email */}
                         <div className="form-group">
-                            <label htmlFor="accountEmail">
-                                Email Address *
-                </label>
-                            <input className="form-control form-control-sm" id="accountEmail" type="email" placeholder="Email Address *" defaultValue="user@email.com" required />
+                            <label htmlFor="accountEmail">Email Address *</label>
+                            <input className="form-control form-control-sm" id="accountEmail" type="email" placeholder="Email Address *" disabled value={auth.login.email} />
+                            <ErrorMes error={error.email} />
+
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
                         {/* Password */}
                         <div className="form-group">
-                            <label htmlFor="accountPassword">
-                                Current Password *
-                </label>
-                            <input className="form-control form-control-sm" id="accountPassword" type="password" placeholder="Current Password *" required />
+                            <label htmlFor="accountPassword">Password * </label>
+                            <input className="form-control form-control-sm" id="accountPassword" type="password" placeholder="Current Password *" {...register('password', { required: true },)} />
+                            <ErrorMes error={error.password} />
+
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
                         {/* Password */}
                         <div className="form-group">
-                            <label htmlFor="AccountNewPassword">
-                                New Password *
-                </label>
-                            <input className="form-control form-control-sm" id="AccountNewPassword" type="password" placeholder="New Password *" required />
+                            <label htmlFor="AccountNewPassword">Confirm Password * </label>
+                            <input className="form-control form-control-sm" id="AccountNewPassword" type="password" placeholder="New Password *" {...register('confirm_password', { required: true, match: "password" })} />
+
+                            <ErrorMes error={error.confirm_password} />
+
                         </div>
                     </div>
                     <div className="col-12 col-lg-6">
