@@ -9,17 +9,17 @@ export const Register = () => {
     let auth = useSelector(state => state.auth)
     let { t } = useTranslate()
     let { error, form, inputChange, check } = useFormValidate({
-        firstname: '',
-        lastname: '',
+        first_name: '',
+        last_name: '',
         email: '',
         password: '',
         confirm_password: ''
     }, {
         rule: {
-            firstname: {
+            first_name: {
                 required: true,
             },
-            lastname: {
+            last_name: {
                 required: true,
             },
             email: {
@@ -37,10 +37,10 @@ export const Register = () => {
             }
         },
         mes: {
-            firstname: {
+            first_name: {
                 required: 'Please enter your first name',
             },
-            lastname: {
+            last_name: {
                 required: 'Please enter your last name',
             },
             email: {
@@ -68,8 +68,8 @@ export const Register = () => {
         e.preventDefault()
         if (Object.keys(error).length === 0) {
             let res = await Auth.register({
-                firstname: form.firstname,
-                lastname: form.lastname,
+                first_name: form.first_name,
+                last_name: form.last_name,
                 email: form.email,
                 password: form.password,
                 confirm_password: form.confirm_password
@@ -99,24 +99,24 @@ export const Register = () => {
                                 <div className="col-12">
                                     {/* Email */}
                                     <div className="form-group">
-                                        <label className="sr-only" htmlFor="registerFirstName">
+                                        <label className="sr-only" htmlFor="registerfirst_name">
                                             First Name *
                           </label>
-                                        <input name='firstname' value={form.firstname} onChange={inputChange} className="form-control form-control-sm" id="registerFirstName" type="text" placeholder="First Name *" />
+                                        <input name='first_name' value={form.first_name} onChange={inputChange} className="form-control form-control-sm" id="registerfirst_name" type="text" placeholder="First Name *" />
                                         {
-                                            error.firstname && <p className="error_text">{error.firstname}</p>
+                                            error.first_name && <p className="error_text">{error.first_name}</p>
                                         }
                                     </div>
                                 </div>
                                 <div className="col-12">
                                     {/* Email */}
                                     <div className="form-group">
-                                        <label className="sr-only" htmlFor="registerLastName">
+                                        <label className="sr-only" htmlFor="registerlast_name">
                                             Last Name *
                           </label>
-                                        <input name='lastname' value={form.lastname} onChange={inputChange} className="form-control form-control-sm" id="registerLastName" type="text" placeholder="Last Name *" />
+                                        <input name='last_name' value={form.last_name} onChange={inputChange} className="form-control form-control-sm" id="registerlast_name" type="text" placeholder="Last Name *" />
                                         {
-                                            error.lastname && <p className="error_text">{error.lastname}</p>
+                                            error.last_name && <p className="error_text">{error.last_name}</p>
                                         }
                                     </div>
                                 </div>

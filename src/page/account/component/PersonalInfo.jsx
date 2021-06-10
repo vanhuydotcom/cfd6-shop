@@ -8,17 +8,17 @@ export default function PersonalInfo() {
     let data = useSelector(state => state.auth)
     let dispatch = useDispatch()
     let { register, handleSubmit, error, form, check } = useForm({
-        firstname: auth.login.firstname,
-        lastname: auth.login.lastname,
+        first_name: auth.login.first_name,
+        last_name: auth.login.last_name,
         email: auth.login.email,
         password: '',
         confirm_password: ''
     }, {
         rule: {
-            firstname: {
+            first_name: {
                 required: true,
             },
-            lastname: {
+            last_name: {
                 required: true,
             },
 
@@ -33,10 +33,10 @@ export default function PersonalInfo() {
         },
 
         mes: {
-            firstname: {
+            first_name: {
                 required: 'Please enter your first name',
             },
-            lastname: {
+            last_name: {
                 required: 'Please enter your last name',
             },
             email: {
@@ -70,16 +70,16 @@ export default function PersonalInfo() {
                     <div className="col-12 col-md-6">
                         {/* Email */}
                         <div className="form-group">
-                            <label htmlFor="accountFirstName">First Name * </label>
-                            <input className="form-control form-control-sm" id="accountFirstName" type="text" placeholder="First Name *" {...register("firstname", { required: true })} />
-                            <ErrorMes error={error.firstname} />
+                            <label htmlFor="accountfirst_name">First Name * </label>
+                            <input className="form-control form-control-sm" id="accountfirst_name" type="text" placeholder="First Name *" {...register("first_name", { required: true })} />
+                            <ErrorMes error={error.first_name} />
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="accountLastName">Last Name *  </label>
-                            <input className="form-control form-control-sm" id="accountLastName" type="text" placeholder="Last Name *" {...register('lastname', { required: true })} />
-                            <ErrorMes error={error.lastname} />
+                            <label htmlFor="accountlast_name">Last Name *  </label>
+                            <input className="form-control form-control-sm" id="accountlast_name" type="text" placeholder="Last Name *" {...register('last_name', { required: true })} />
+                            <ErrorMes error={error.last_name} />
 
                         </div>
                     </div>
