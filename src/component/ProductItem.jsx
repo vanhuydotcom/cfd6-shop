@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 export function ProductItem({ discount_rate, thumbnail_url, name, price, discount, rating_average, images }) {
 
     return (
-        <div className="col-6 col-md-4 col-lg-3">
+        <div className="col-6 col-md-4 col-lg-4">
             {/* Card */}
             <div className="card mb-7">
                 {/* Badge */}
@@ -15,8 +15,8 @@ export function ProductItem({ discount_rate, thumbnail_url, name, price, discoun
                 <div className="card-img">
                     {/* Image */}
                     <a className="card-img-hover" href="product.html">
-                        <img className="card-img-top card-img-back" src={images[0].base_url} alt="..." />
-                        <img className="card-img-top card-img-front" src={images[0].base_url} alt="..." />
+                        <img className="card-img-top card-img-back" src={thumbnail_url} alt="..." />
+                        <img className="card-img-top card-img-front" src={thumbnail_url} alt="..." />
                     </a>
                     {/* Actions */}
                     <div className="card-actions">

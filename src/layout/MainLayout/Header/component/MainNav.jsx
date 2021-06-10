@@ -21,7 +21,7 @@ export default function MainNav() {
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item ">
                                 {/* Toggle */}
-                                <Link className="nav-link" data-toggle="dropdown" to="#">{t('Home')}</Link>
+                                <Link className="nav-link" data-toggle="dropdown" to="/">{t('Home')}</Link>
                             </li>
                             <li className="nav-item  position-static">
                                 {/* Toggle */}
@@ -30,7 +30,7 @@ export default function MainNav() {
                             </li>
                             <li className="nav-item ">
                                 {/* Toggle */}
-                                <Link className="nav-link" data-toggle="dropdown" to="#">{t('Shop')}</Link>
+                                <Link className="nav-link" data-toggle="dropdown" to="/shop">{t('Shop')}</Link>
                                 {/* Menu */}
                             </li>
                             <li className="nav-item ">

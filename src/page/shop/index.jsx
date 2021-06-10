@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { PaygiNation } from "./component/PagiNation";
-import ShopBreadcumb from "./component/ShopBreadcrumb";
+import { Pagination } from "../../component/Pagination";
+import ShopBreadcrumb from "./component/ShopBreadcrumb";
 import ShopProduct from "./component/ShopProduct";
 import ShopSidebar from "./component/ShopSidebar";
 import Slider from "./component/Slider";
 import ProductApi from '../../service/productApi'
+import { convertObjToQuery, convertQueryToObj } from '../../util';
+import { useDispatch, useSelector } from 'react-redux';
 export default function Shop() {
-    let [product, setProDuct] = useState({
-        data: []
-    })
-    useEffect(() => {
-        ProductApi.productItem()
-            .then(res => {
-                setProDuct(res)
+    let product = useSelector(state => state.product)
 
-            })
-    }, [])
+    // let objUrl = convertQueryToObj()
+    // let queryString = convertObjToQuery(objUrl)
     return (
         <section className="py-11">
             <div className="container">
@@ -28,11 +24,11 @@ export default function Shop() {
                         {/* Slider */}
                         <Slider />
                         {/* Breadcrumb */}
-                        <ShopBreadcumb />
+                        <ShopBreadcrumb />
                         {/* Products */}
-                        <ShopProduct {...product} />
+                        <ShopProduct />
                         {/* Pagination */}
-                        <PaygiNation />
+                        <Pagination />
                     </div>
                 </div>
             </div>

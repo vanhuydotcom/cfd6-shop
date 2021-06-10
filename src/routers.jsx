@@ -83,7 +83,7 @@ let routers = [
             },
             {
                 component: NotFound,
-                path: '/404',
+                path: '/',
 
             }
         ]

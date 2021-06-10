@@ -4,3 +4,9 @@
     text-align: right;
     font-style: italic;
 }
+.fa-star:before {
+    color: yellow;
+}
+.card-badge-left {
+    font-size: 14px;
+}

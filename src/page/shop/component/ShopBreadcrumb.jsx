@@ -1,4 +1,4 @@
-export default function ShopBreadcumb() {
+export default function ShopBreadcrumb() {
     return (
         <>
             <div className="row align-items-center mb-7">
