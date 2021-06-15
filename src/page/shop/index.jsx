@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Pagination } from "../../component/Pagination";
 import ShopBreadcrumb from "./component/ShopBreadcrumb";
 import ShopProduct from "./component/ShopProduct";
 import ShopSidebar from "./component/ShopSidebar";
 import Slider from "./component/Slider";
-import ProductApi from '../../service/productApi'
 import { convertObjToQuery, convertQueryToObj } from '../../util';
 import { useDispatch, useSelector } from 'react-redux';
+import { categoriesAction, productAction } from '../../redux/action/productAction';
 export default function Shop() {
-    let product = useSelector(state => state.product)
+    let { paginate } = useSelector(state => state.product)
+    let dispatch = useDispatch()
+    let objUrl = convertQueryToObj()
+    let queryString = convertObjToQuery(objUrl)
+    useEffect(() => {
+        dispatch(productAction(queryString))
+        dispatch(categoriesAction())
+    }, [queryString])
 
-    // let objUrl = convertQueryToObj()
-    // let queryString = convertObjToQuery(objUrl)
     return (
         <section className="py-11">
             <div className="container">
@@ -28,7 +33,7 @@ export default function Shop() {
                         {/* Products */}
                         <ShopProduct />
                         {/* Pagination */}
-                        <Pagination />
+                        <Pagination {...paginate} />
                     </div>
                 </div>
             </div>

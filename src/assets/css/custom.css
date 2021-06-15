@@ -1,5 +1,5 @@
 .error_text {
-    color: red;
+    color: #ff6f61;
     width: 100% !important;
     text-align: right;
     font-style: italic;
@@ -9,4 +9,18 @@
 }
 .card-badge-left {
     font-size: 14px;
+    background: #ff6f61;
+    color: white;
+}
+.link-underline,
+.link-underline:hover,
+.list-styled-link.active,
+.list-styled-link:focus,
+.list-styled-link:hover {
+    color: #ff6f61 !important;
+    font-weight: 500 !important;
+}
+.btn-price {
+    margin-top: 10px;
+    width: 50% !important;
 }

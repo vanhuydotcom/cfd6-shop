@@ -1,31 +1,31 @@
 import { useSelector } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
 import { convertObjToQuery, convertQueryToObj } from '../util'
-export function Pagination() {
+export function Pagination({ totalPage, currentPage }) {
     let match = useRouteMatch()
     let { paginate } = useSelector(state => state.product)
-    let totalPage = paginate?.totalPage,
-        currentPage = paginate?.currentPage
-
-
     function renderPage() {
         if (totalPage === 1) return []
-        let start = currentPage - 3
+        let start = currentPage - 2
         if (start < 1) start = 1
-        let end = currentPage + 3
+        let end = currentPage + 2
         let list = []
         if (end > totalPage) {
-            end = totalPage
+            end = totalPage;
+            // start = end - 4
+            // if (start < 1) start = 1
         }
         for (let i = start; i <= end; i++) {
+            let objUrl = convertQueryToObj()
+            objUrl.page = i
+            let queryString = convertObjToQuery(objUrl)
             list.push(
                 <li className={`page-item ${currentPage === i ? 'active' : ''}`}>
-                    <Link className="page-link" to={`${match.url}`}>{i}</Link>
+                    <Link className="page-link" to={`${match.url}?${queryString}`}>{i}</Link>
                 </li>
             )
         }
         return list
-
     }
     return (
         <nav className="d-flex justify-content-center justify-content-md-end">
@@ -34,8 +34,9 @@ export function Pagination() {
                     currentPage > 1 && (
                         <li className="page-item">
                             <Link className="page-link page-link-arrow"
-                                to={
-                                    `${match.url}?`}
+                                to={`${match.url}?${convertObjToQuery(
+                                    { ...convertQueryToObj(), page: currentPage - 1 }
+                                )}`}
                             >
                                 <i className="fa fa-caret-left" />
                             </Link>
@@ -49,8 +50,9 @@ export function Pagination() {
                     currentPage < totalPage && (
                         <li className="page-item">
                             <Link className="page-link page-link-arrow"
-                                to={
-                                    `${match.url}`}
+                                to={`${match.url}?${convertObjToQuery(
+                                    { ...convertQueryToObj(), page: currentPage + 1 }
+                                )}`}
                             >
                                 <i className="fa fa-caret-right" />
                             </Link>

@@ -1,7 +1,11 @@
-import { PRODUCT } from './../type'
+import { CATEGORIES, CATEGORIES_TITLE, LOADING, PRODUCT } from './../type'
 const inititalState = {
     product: [],
-    paginate: null
+    paginate: null,
+    categories: JSON.parse(localStorage.getItem('categories')) || [],
+    categories_title: '',
+    loading: true
+
 }
 export function productReducer(state = inititalState, action) {
     switch (action.type) {
@@ -11,7 +15,25 @@ export function productReducer(state = inititalState, action) {
                 product: action.payload.data,
                 paginate: action.payload.paginate
             }
+        case CATEGORIES:
+            localStorage.setItem('categories', JSON.stringify(action.payload))
+            return {
+                ...state,
+                categories: action.payload
+            }
+        case CATEGORIES_TITLE:
+            return {
+                ...state,
+                categories_title: action.payload.title
+            }
+        case LOADING:
+            return {
+                ...state,
+                loading: false,
+            }
         default:
             return state
     }
+
+
 }

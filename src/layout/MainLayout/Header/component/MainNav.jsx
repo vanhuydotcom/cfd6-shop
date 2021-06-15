@@ -50,9 +50,9 @@ export default function MainNav() {
                         {/* Nav */}
                         <ul className="navbar-nav flex-row">
                             <li className="nav-item">
-                                <Link className="nav-link" data-toggle="modal" to="#modalSearch">
+                                <a className="nav-link" data-toggle="modal" href="#modalSearch">
                                     <i className="fe fe-search" />
-                                </Link>
+                                </a>
                             </li>
                             <li className="nav-item ml-lg-n4">
                                 <Link className="nav-link" to="/account">
@@ -65,11 +65,11 @@ export default function MainNav() {
                                 </Link>
                             </li>
                             <li className="nav-item ml-lg-n4">
-                                <Link className="nav-link" data-toggle="modal" to="#modalShoppingCart">
+                                <a className="nav-link" data-toggle="modal" href="#modalShoppingCart">
                                     <span data-cart-items={2}>
                                         <i className="fe fe-shopping-cart" />
                                     </span>
-                                </Link>
+                                </a>
                             </li>
                         </ul>
                     </div>

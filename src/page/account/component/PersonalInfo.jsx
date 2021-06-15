@@ -58,7 +58,6 @@ export default function PersonalInfo() {
         let res = UserApi.updateProfile(form)
         if (res.data) {
             dispatch(updateProfileAction(res.data))
-            alert('successful update')
         }
 
     }
