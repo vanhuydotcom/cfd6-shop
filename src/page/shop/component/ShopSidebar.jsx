@@ -1,14 +1,15 @@
 import { useDispatch, useSelector } from "react-redux"
+import { useRef, useState } from "react"
+
 import { Link, useHistory, useRouteMatch } from "react-router-dom"
 import { Skeleton } from '@material-ui/lab'
 import useTranslate from "../../../core/useTranslate"
 import { CATEGORIES_TITLE } from "../../../redux/type"
 import { convertObjToQuery, convertQueryToObj } from "../../../util"
-import { useLayoutEffect, useRef } from "react"
 export default function ShopSidebar() {
     let { t } = useTranslate()
     let dispatch = useDispatch()
-    let match = useRouteMatch()
+    let { url } = useRouteMatch()
     let history = useHistory()
     let { categories, loading } = useSelector(state => state.product)
     const handleClickCategory = (e) => {
@@ -23,9 +24,30 @@ export default function ShopSidebar() {
     }
     let minRef = useRef()
     let maxRef = useRef()
-
+    let radioRef = useRef()
+    let [value, setValue] = useState(
+        {
+            a: {
+                min: 100000,
+                max: 1000000000
+            },
+            b: {
+                min: 1000000000,
+                max: 5000000000
+            },
+            c: {
+                min: 5000000000,
+                max: 10000000000
+            },
+            d: {
+                min: 10000000000,
+                max: 999999999999
+            }
+        }
+    )
     function _apply(e) {
         e.preventDefault()
+
         if (minRef.current.value || maxRef.current.value) {
             if (minRef.current.value) {
                 objUrl.min = minRef.current.value.trim()
@@ -37,11 +59,10 @@ export default function ShopSidebar() {
             } else {
                 delete objUrl.max
             }
-            objUrl.page = 1
+            delete objUrl.page
         }
         let queryString = convertObjToQuery(objUrl)
-        history.push(match.url + "?" + queryString)
-        console.log(queryString);
+        history.push(url + "?" + queryString)
     }
     return (
         <>
@@ -65,7 +86,7 @@ export default function ShopSidebar() {
 
                                             <li key={e._id} className="list-styled-item">
                                                 {
-                                                    !loading ? <Skeleton variant='rect' width='100%' height={16} /> :
+                                                    loading ? <Skeleton variant='rect' width='100%' height={16} /> :
                                                         (
                                                             <Link className={"list-styled-link "}
                                                                 data-toggle="collapse"
@@ -94,32 +115,32 @@ export default function ShopSidebar() {
                         {/* Collapse */}
                         <div className="collapse show" id="priceCollapse" data-toggle="simplebar" data-target="#priceGroup">
                             {/* Form group*/}
-                            <div className="form-group form-group-overflow mb-6" id="priceGroup">
+                            {/* <div className="form-group form-group-overflow mb-6" id="priceGroup">
                                 <div className="custom-control custom-checkbox mb-3">
-                                    <input className="custom-control-input" id="priceOne" type="checkbox" defaultChecked />
+                                    <input ref={radioRef} className="custom-control-input" id="priceOne" type="radio" name='choice_price' value={value.a} />
                                     <label className="custom-control-label" htmlFor="priceOne">
                                         $10.00 - $49.00
                           </label>
                                 </div>
-                                <div className="custom-control custom-checkbox mb-3">
-                                    <input className="custom-control-input" id="priceTwo" type="checkbox" defaultChecked />
+                                <div ref={radioRef} className="custom-control custom-checkbox mb-3">
+                                    <input className="custom-control-input" id="priceTwo" type="radio" name='choice_price' value={value.b} />
                                     <label className="custom-control-label" htmlFor="priceTwo">
                                         $50.00 - $99.00
                           </label>
                                 </div>
-                                <div className="custom-control custom-checkbox mb-3">
-                                    <input className="custom-control-input" id="priceThree" type="checkbox" />
+                                <div ref={radioRef} className="custom-control custom-checkbox mb-3">
+                                    <input className="custom-control-input" id="priceThree" type="radio" name='choice_price' value={value.c} />
                                     <label className="custom-control-label" htmlFor="priceThree">
                                         $100.00 - $199.00
                           </label>
                                 </div>
-                                <div className="custom-control custom-checkbox">
-                                    <input className="custom-control-input" id="priceFour" type="checkbox" />
+                                <div ref={radioRef} className="custom-control custom-checkbox">
+                                    <input className="custom-control-input" id="priceFour" type="radio" name='choice_price' value={value.d} />
                                     <label className="custom-control-label" htmlFor="priceFour">
                                         $200.00 and Up
                           </label>
                                 </div>
-                            </div>
+                            </div> */}
                             {/* Range */}
                             <div className="d-flex align-items-center">
                                 {/* Input */}

@@ -4,7 +4,7 @@ const inititalState = {
     paginate: null,
     categories: JSON.parse(localStorage.getItem('categories')) || [],
     categories_title: '',
-    loading: true
+    loading: false,
 
 }
 export function productReducer(state = inititalState, action) {
@@ -13,13 +13,15 @@ export function productReducer(state = inititalState, action) {
             return {
                 ...state,
                 product: action.payload.data,
-                paginate: action.payload.paginate
+                paginate: action.payload.paginate,
+                loading: false
             }
         case CATEGORIES:
             localStorage.setItem('categories', JSON.stringify(action.payload))
             return {
                 ...state,
-                categories: action.payload
+                categories: action.payload,
+
             }
         case CATEGORIES_TITLE:
             return {
@@ -29,7 +31,7 @@ export function productReducer(state = inititalState, action) {
         case LOADING:
             return {
                 ...state,
-                loading: false,
+                loading: true,
             }
         default:
             return state

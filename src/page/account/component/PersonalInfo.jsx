@@ -1,11 +1,11 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { ErrorMes, useForm } from "../../../hook/useForm";
 import { updateProfileAction } from "../../../redux/action/authAction";
-import UserApi from "../../../service/userApi";
+import userApi from "../../../service/userApi";
 export default function PersonalInfo() {
     let auth = useSelector(state => state.auth)
     let data = useSelector(state => state.auth)
+    console.log(auth);
     let dispatch = useDispatch()
     let { register, handleSubmit, error, form, check } = useForm({
         first_name: auth.login.first_name,
@@ -13,49 +13,48 @@ export default function PersonalInfo() {
         email: auth.login.email,
         password: '',
         confirm_password: ''
-    }, {
-        rule: {
-            first_name: {
-                required: true,
-            },
-            last_name: {
-                required: true,
-            },
+    },
+        {
+            rule: {
+                first_name: {
+                    required: true,
+                },
+                last_name: {
+                    required: true,
+                },
 
-            password: {
-                required: true,
-            },
-            confirm_password: {
-                required: true,
-                match: 'password'
+                password: {
+                    required: true,
+                },
+                confirm_password: {
+                    required: true,
+                    match: 'password'
 
+                }
+            },
+            mes: {
+                first_name: {
+                    required: 'Please enter your first name',
+                },
+                last_name: {
+                    required: 'Please enter your last name',
+                },
+                email: {
+                    required: 'Please enter your email',
+                    pattern: 'Your mail is not valid',
+                },
+                password: {
+                    required: 'Please enter your password',
+                },
+                confirm_password: {
+                    required: 'Please enter your password again',
+                    match: 'Password incorrect'
+
+                }
             }
-        },
-
-        mes: {
-            first_name: {
-                required: 'Please enter your first name',
-            },
-            last_name: {
-                required: 'Please enter your last name',
-            },
-            email: {
-                required: 'Please enter your email',
-                pattern: 'Your mail is not valid',
-            },
-            password: {
-                required: 'Please enter your password',
-            },
-            confirm_password: {
-                required: 'Please enter your password again',
-                match: 'Password incorrect'
-
-            }
-        }
-    })
-
-    function formSubmitValidateSuccess(form) {
-        let res = UserApi.updateProfile(form)
+        })
+    async function formSubmitValidateSuccess(form) {
+        let res = await userApi.update(form)
         if (res.data) {
             dispatch(updateProfileAction(res.data))
         }
@@ -121,7 +120,7 @@ export default function PersonalInfo() {
                                     {/* Date */}
                                     <label className="sr-only" htmlFor="accountDate">
                                         Date
-                    </label>
+                                    </label>
                                     <select className="custom-select custom-select-sm" id="accountDate">
                                         <option>10</option>
                                         <option>11</option>
@@ -132,7 +131,7 @@ export default function PersonalInfo() {
                                     {/* Date */}
                                     <label className="sr-only" htmlFor="accountMonth">
                                         Month
-                    </label>
+                                    </label>
                                     <select className="custom-select custom-select-sm" id="accountMonth">
                                         <option>January</option>
                                         <option selected>February</option>
@@ -143,7 +142,7 @@ export default function PersonalInfo() {
                                     {/* Date */}
                                     <label className="sr-only" htmlFor="accountYear">
                                         Year
-                    </label>
+                                    </label>
                                     <select className="custom-select custom-select-sm" id="accountYear">
                                         <option>1990</option>
                                         <option selected>1991</option>
@@ -160,10 +159,10 @@ export default function PersonalInfo() {
                             <div className="btn-group-toggle" data-toggle="buttons">
                                 <label className="btn btn-sm btn-outline-border active">
                                     <input type="radio" name="gender" defaultChecked /> Male
-                  </label>
+                                </label>
                                 <label className="btn btn-sm btn-outline-border">
                                     <input type="radio" name="gender" /> Female
-                  </label>
+                                </label>
                             </div>
                         </div>
                     </div>

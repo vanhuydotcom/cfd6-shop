@@ -1,5 +1,4 @@
 import { Route, Switch } from "react-router-dom"
-import routers from '../routers'
 import PrivateRoute from "./PrivateRoute"
 export function RouterConfig(routers, parentPath = '') {
     return <Switch>

@@ -18,7 +18,7 @@ export default function ShopBreadcrumb() {
     function sortChange(e) {
         let objUrl = convertQueryToObj()
         objUrl.sort = e.target.value // sort sap xep cac phan tu trong mang va tra ve mang moi
-        objUrl.page = 1
+        delete objUrl.page
         let queryString = convertObjToQuery(objUrl)
         history.push(`${path}?${queryString}`)
     }
@@ -56,7 +56,7 @@ export default function ShopBreadcrumb() {
                 </div>
             </div>
             {/* Tags */}
-            <div className="row mb-7">
+            {/* <div className="row mb-7">
                 <div className="col-12">
                     <span className="btn btn-xs btn-light font-weight-normal text-muted mr-3 mb-3">
                         Shift dresses <a className="text-reset ml-2" href="#!" role="button">
@@ -99,7 +99,7 @@ export default function ShopBreadcrumb() {
                         </a>
                     </span>
                 </div>
-            </div>
+            </div> */}
 
         </>
     )

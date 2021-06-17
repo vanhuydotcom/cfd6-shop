@@ -101,7 +101,7 @@ export const Register = () => {
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="registerfirst_name">
                                             First Name *
-                          </label>
+                                        </label>
                                         <input name='first_name' value={form.first_name} onChange={inputChange} className="form-control form-control-sm" id="registerfirst_name" type="text" placeholder="First Name *" />
                                         {
                                             error.first_name && <p className="error_text">{error.first_name}</p>
@@ -113,7 +113,7 @@ export const Register = () => {
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="registerlast_name">
                                             Last Name *
-                          </label>
+                                        </label>
                                         <input name='last_name' value={form.last_name} onChange={inputChange} className="form-control form-control-sm" id="registerlast_name" type="text" placeholder="Last Name *" />
                                         {
                                             error.last_name && <p className="error_text">{error.last_name}</p>
@@ -125,7 +125,7 @@ export const Register = () => {
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="registerEmail">
                                             Email Address *
-                          </label>
+                                        </label>
                                         <input name='email' value={form.email} onChange={inputChange} className="form-control form-control-sm" id="registerEmail" type="email" placeholder="Email Address *" />
                                         {
                                             error.email && <p className="error_text">{error.email}</p>
@@ -137,7 +137,7 @@ export const Register = () => {
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="registerPassword">
                                             Password *
-                          </label>
+                                        </label>
                                         <input name='password' value={form.password} onChange={inputChange} className="form-control form-control-sm" id="registerPassword" type="password" placeholder="Password *" />
                                         {
                                             error.password && <p className="error_text">{error.password}</p>
@@ -149,7 +149,7 @@ export const Register = () => {
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="registerPasswordConfirm">
                                             Confirm Password *
-                          </label>
+                                        </label>
                                         <input name='confirm_password' value={form.confirm_password} onChange={inputChange} className="form-control form-control-sm" id="registerPasswordConfirm" type="password" placeholder="Confrm Password *" />
                                         {
                                             error.confirm_password && <p className="error_text">{error.confirm_password}</p>
@@ -161,7 +161,7 @@ export const Register = () => {
                                     <div className="form-group font-size-sm text-muted">
                                         By registering your details, you agree with our Terms &amp; Conditions,
                                         and Privacy and Cookie Policy.
-                        </div>
+                                    </div>
                                 </div>
                                 <div className="col-12 col-md">
                                     {/* Newsletter */}
@@ -170,7 +170,7 @@ export const Register = () => {
                                             <input className="custom-control-input" id="registerNewsletter" type="checkbox" />
                                             <label className="custom-control-label" htmlFor="registerNewsletter">
                                                 Sign me up for the Newsletter!
-                            </label>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +178,7 @@ export const Register = () => {
                                     {/* Button */}
                                     <button className="btn btn-sm btn-dark" type="submit" onClick={RegisterHandle}>
                                         Register
-                        </button>
+                                    </button>
 
                                 </div>
                                 {

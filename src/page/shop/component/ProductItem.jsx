@@ -1,7 +1,8 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Rating, Skeleton } from '@material-ui/lab'
 import { currency } from '../../../util'
+import { LOADING } from '../../../redux/type'
 export function ProductItem({ discount_rate, thumbnail_url, name, price, real_price, rating_average, discount }) {
     let out_price = currency(price),
         discount_price = currency(real_price)
@@ -12,7 +13,7 @@ export function ProductItem({ discount_rate, thumbnail_url, name, price, real_pr
             <div className="card mb-7">
                 {/* Badge */}
                 {
-                    !loading ? (<Skeleton variant='rect' width='100%' height={253} />)
+                    loading ? (<Skeleton variant='rect' width='100%' height={253} />)
                         : (<>
                             {
                                 discount_rate > 0 ? (<div className="badge badge-white card-badge card-badge-left text-uppercase">
@@ -58,7 +59,7 @@ export function ProductItem({ discount_rate, thumbnail_url, name, price, real_pr
                     </div> */}
                     {/* Title */}
                     {
-                        !loading ? <Skeleton variant='rect' width='100%' height={16} />
+                        loading ? <Skeleton variant='rect' width='100%' height={16} />
                             : (<div className="font-weight-bold">
                                 <a className="text-body" href="product.html">
                                     {name}
@@ -66,7 +67,7 @@ export function ProductItem({ discount_rate, thumbnail_url, name, price, real_pr
                             </div>)
                     }
                     {
-                        !loading ? <Skeleton variant='rect' width='100%' height={16} />
+                        loading ? <Skeleton variant='rect' width='100%' height={16} />
                             : (
                                 <>
                                     {/* {

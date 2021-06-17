@@ -1,9 +1,7 @@
-import { useSelector } from "react-redux";
 import { Link, useRouteMatch } from "react-router-dom";
 import { convertObjToQuery, convertQueryToObj } from '../util'
 export function Pagination({ totalPage, currentPage }) {
     let match = useRouteMatch()
-    let { paginate } = useSelector(state => state.product)
     function renderPage() {
         if (totalPage === 1) return []
         let start = currentPage - 2
@@ -12,8 +10,6 @@ export function Pagination({ totalPage, currentPage }) {
         let list = []
         if (end > totalPage) {
             end = totalPage;
-            // start = end - 4
-            // if (start < 1) start = 1
         }
         for (let i = start; i <= end; i++) {
             let objUrl = convertQueryToObj()

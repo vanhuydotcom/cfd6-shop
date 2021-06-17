@@ -7,6 +7,7 @@ import Slider from "./component/Slider";
 import { convertObjToQuery, convertQueryToObj } from '../../util';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoriesAction, productAction } from '../../redux/action/productAction';
+import { LOADING } from '../../redux/type';
 export default function Shop() {
     let { paginate } = useSelector(state => state.product)
     let dispatch = useDispatch()
@@ -15,6 +16,9 @@ export default function Shop() {
     useEffect(() => {
         dispatch(productAction(queryString))
         dispatch(categoriesAction())
+        dispatch({
+            type: LOADING
+        })
     }, [queryString])
 
     return (
