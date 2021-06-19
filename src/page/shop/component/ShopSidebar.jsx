@@ -73,7 +73,7 @@ export default function ShopSidebar() {
                         {/* Toggle */}
                         <a className="nav-link dropdown-toggle font-size-lg text-reset border-bottom mb-6" data-toggle="collapse" href="#categoryCollapse">
                             Category
-                    </a>
+                        </a>
                         {/* Collapse */}
                         <div className="collapse show" id="categoryCollapse">
                             <div className="form-group">
@@ -111,7 +111,7 @@ export default function ShopSidebar() {
                         {/* Toggle */}
                         <a className="nav-link dropdown-toggle font-size-lg text-reset border-bottom mb-6" data-toggle="collapse" href="#priceCollapse">
                             Price
-                    </a>
+                        </a>
                         {/* Collapse */}
                         <div className="collapse show" id="priceCollapse" data-toggle="simplebar" data-target="#priceGroup">
                             {/* Form group*/}

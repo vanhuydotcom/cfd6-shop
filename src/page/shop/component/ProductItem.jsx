@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Rating, Skeleton } from '@material-ui/lab'
 import { currency } from '../../../util'
-import { LOADING } from '../../../redux/type'
-export function ProductItem({ discount_rate, thumbnail_url, name, price, real_price, rating_average, discount }) {
+import addCart from '../../../redux/action/cartAction'
+export function ProductItem(props) {
+    const { discount_rate, thumbnail_url, name, price, real_price, rating_average, discount } = props
     let out_price = currency(price),
         discount_price = currency(real_price)
     let { loading } = useSelector(state => state.product)
+    let dispatch = useDispatch()
+    const handleAddToCart = () => {
+        dispatch(addCart({ ...props }))
+        console.log({ ...props });
+    }
     return (
         <div className="col-6 col-md-4 col-lg-4">
             {/* Card */}
@@ -36,7 +42,7 @@ export function ProductItem({ discount_rate, thumbnail_url, name, price, real_pr
                                         </button>
                                     </span>
                                     <span className="card-action">
-                                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button">
+                                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button" onClick={handleAddToCart}>
                                             <i className="fe fe-shopping-cart" />
                                         </button>
                                     </span>
@@ -53,11 +59,6 @@ export function ProductItem({ discount_rate, thumbnail_url, name, price, real_pr
 
                 {/* Body */}
                 <div className="card-body px-0">
-                    {/* Category */}
-                    {/* <div className="font-size-xs">
-                        <a className="text-muted" href="shop.html">Shoes</a>
-                    </div> */}
-                    {/* Title */}
                     {
                         loading ? <Skeleton variant='rect' width='100%' height={16} />
                             : (<div className="font-weight-bold">
@@ -70,21 +71,6 @@ export function ProductItem({ discount_rate, thumbnail_url, name, price, real_pr
                         loading ? <Skeleton variant='rect' width='100%' height={16} />
                             : (
                                 <>
-                                    {/* {
-                                        rating_average > 0 ? (
-                                            <div class="rating font-size-sm text-dark" data-value={rating_average} >
-                                                <div class="rating-item">
-                                                    <Rating rating={rating_average} />
-                                                </div>
-                                            </div>
-                                        )
-                                            : (
-                                                <div class="rating font-size-sm text-dark" data-value={rating_average} >
-
-                                                </div>
-                                            )
-                                    } */}
-
                                     <div class="rating font-size-sm text-dark" data-value={rating_average} >
                                         <div class="rating-item">
                                             <Rating defaultValue={rating_average} precision={0.5} />
@@ -108,7 +94,6 @@ export function ProductItem({ discount_rate, thumbnail_url, name, price, real_pr
                                 </>
                             )
                     }
-
                     {/* Price */}
 
                 </div>

@@ -5,7 +5,7 @@ const Auth = {
         return Api.post("/login", data);
     },
     register: (data) => {
-        return Api.post("/login", data);
+        return Api.post("/register", data);
     },
 }
 export default Auth

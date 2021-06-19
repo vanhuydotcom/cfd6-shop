@@ -14,11 +14,12 @@ export default function Shop() {
     let objUrl = convertQueryToObj()
     let queryString = convertObjToQuery(objUrl)
     useEffect(() => {
-        dispatch(productAction(queryString))
-        dispatch(categoriesAction())
         dispatch({
             type: LOADING
         })
+        dispatch(productAction(queryString))
+        dispatch(categoriesAction())
+
     }, [queryString])
 
     return (

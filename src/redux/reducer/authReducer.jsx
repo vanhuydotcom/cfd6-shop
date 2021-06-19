@@ -7,6 +7,7 @@ export default function authReducer(state = initState, action) {
     switch (action.type) {
         case LOGIN:
             localStorage.setItem('login', JSON.stringify(action.payload))
+            localStorage.setItem('token', JSON.stringify(action.payload.token))
             return {
                 ...state,
                 login: action.payload

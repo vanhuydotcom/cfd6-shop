@@ -36,8 +36,7 @@ class Api {
             "Content-Type": "application/json",
         }
         if (this.useToken) {
-            let token = JSON.parse(localStorage.getItem('login'))?.token
-            localStorage.setItem('token', JSON.stringify(token))
+            let token = JSON.parse(localStorage.getItem('token'))
             if (token?.accessToken) {
                 headers.Authorization = `Bearer ${token.accessToken}`
             }
@@ -55,7 +54,7 @@ class Api {
             await this.refreshToken()
             let token = JSON.parse(localStorage.getItem('token'))
             if (token?.accessToken) {
-                option.headers.Authenrization = `Bearer ${token.accessToken}`
+                option.headers.Authorization = `Bearer ${token.accessToken}`
             }
             return fetch(url, option)
         }

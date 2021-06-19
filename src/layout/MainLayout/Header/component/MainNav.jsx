@@ -1,9 +1,9 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import useTranslate from '../../../../core/useTranslate'
 export default function MainNav() {
     let { t } = useTranslate()
-    let { path } = useDispatch()
+    let cart = useSelector(state => state.cart)
     return (
         <>
             {/* NAVBAR */}
@@ -65,10 +65,17 @@ export default function MainNav() {
                                 </Link>
                             </li>
                             <li className="nav-item ml-lg-n4">
+
                                 <a className="nav-link" data-toggle="modal" href="#modalShoppingCart">
-                                    <span data-cart-items={2}>
-                                        <i className="fe fe-shopping-cart" />
-                                    </span>
+                                    {
+                                        cart?.num > 0 ? (<span data-cart-items={cart?.num}>
+                                            <i className="fe fe-shopping-cart" />
+                                        </span>)
+                                            :
+                                            (<span data-cart-items={0}>
+                                                <i className="fe fe-shopping-cart" />
+                                            </span>)
+                                    }
                                 </a>
                             </li>
                         </ul>
