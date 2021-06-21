@@ -11,7 +11,6 @@ export function ProductItem(props) {
     let dispatch = useDispatch()
     const handleAddToCart = () => {
         dispatch(addCart({ ...props }))
-        console.log({ ...props });
     }
     return (
         <div className="col-6 col-md-4 col-lg-4">

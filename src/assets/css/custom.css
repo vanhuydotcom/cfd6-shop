@@ -24,3 +24,18 @@
     margin-top: 10px;
     width: 50% !important;
 }
+.cart__item-num {
+    border: none;
+    width: 50px;
+    text-align: center;
+    outline: none;
+}
+.cart__item-button {
+    width: 30px;
+    border: none;
+}
+.cart__item-button:focus {
+    background-color: #ff6f61;
+    color: white;
+    outline: none;
+}

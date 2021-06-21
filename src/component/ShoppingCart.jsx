@@ -1,8 +1,11 @@
 import useTranslate from '../core/useTranslate'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { currency } from '../util'
+import { delItemCart, decreaseItemCart, increaseItemCart, addMoreCard } from '../redux/action/cartAction'
+import { useState } from 'react'
+import { useEffect } from 'react'
 export const ShoppingCart = () => {
     let { t } = useTranslate()
     let cart = useSelector(state => state.cart)
@@ -27,7 +30,7 @@ export const ShoppingCart = () => {
                     </ul>
                     {/* Footer */}
                     <div className="modal-footer line-height-fixed font-size-sm bg-light mt-auto">
-                        <strong>Subtotal</strong> <strong className="ml-auto">$89.00</strong>
+                        <strong>Subtotal</strong> <strong className="ml-auto">{currency(cart?.amount)}</strong>
                     </div>
                     {/* Buttons */}
                     <div className="modal-body">
@@ -60,9 +63,38 @@ export const ShoppingCart = () => {
         document.getElementById('root')
     );
 }
-function CartItem({ name, real_price_text, images, _id, cartNum }) {
+function CartItem({ name, real_price, images, _id, cartNum }) {
+    let price = currency(real_price)
+    let dispatch = useDispatch()
+    const handleRemoveItemCart = (e) => {
+        e.preventDefault()
+        dispatch(delItemCart(_id))
+    }
+    const handleDecrease = (e) => {
+        e.preventDefault()
+        dispatch(decreaseItemCart({ _id, real_price }))
+    }
+    const handleIncrease = (e) => {
+        e.preventDefault()
+        dispatch(increaseItemCart({ _id, real_price }))
+        console.log(_id);
+    }
+    let [input, setInput] = useState(cartNum)
+    useEffect(() => {
+        setInput(cartNum)
+    }, [cartNum])
+    const inputChange = (e) => {
+        setInput(
+            e.target.value
+        )
+    }
+    const handleAddMoreCard = (e) => {
+        if (e.charCode === 13) {
+            let inputNumber = parseInt(input)
+            dispatch(addMoreCard({ _id, inputNumber }))
+        }
+    }
 
-    let price = currency(real_price_text)
     return (
         <li className="list-group-item">
             <div className="row align-items-center">
@@ -76,18 +108,16 @@ function CartItem({ name, real_price_text, images, _id, cartNum }) {
                     {/* Title */}
                     <p className="font-size-sm font-weight-bold mb-6">
                         <a className="text-body" href="./product.html">{name}</a> <br />
-                        <span className="text-muted">{price} vnđ</span>
+                        <span className="text-muted">{price}</span>
                     </p>
                     {/*Footer */}
                     <div className="d-flex align-items-center">
                         {/* Select */}
-                        <select className="custom-select custom-select-xxs w-auto">
-                            <option value={1}>1</option>
-                            <option value={1}>2</option>
-                            <option value={1}>3</option>
-                        </select>
+                        <button className="cart__item-button" onClick={handleDecrease} >-</button>
+                        <input className="cart__item-num" type='text' value={input} onChange={inputChange} onKeyPress={handleAddMoreCard} />
+                        <button className="cart__item-button" onClick={handleIncrease}>+</button>
                         {/* Remove */}
-                        <a className="font-size-xs text-gray-400 ml-auto" href="#!">
+                        <a className="font-size-xs text-gray-400 ml-auto" href="#!" onClick={handleRemoveItemCart}>
                             <i className="fe fe-x" /> Remove
                         </a>
                     </div>
