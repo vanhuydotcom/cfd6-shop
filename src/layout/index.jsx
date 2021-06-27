@@ -1,6 +1,6 @@
+import { Search, ShoppingCart } from "../component"
 import { Footer } from "./MainLayout/Footer"
 import { Header } from "./MainLayout/Header"
-import { ShoppingCart } from "../component/ShoppingCart"
 
 // import { NewsletterHorizontal } from "./MainLayout/NewsletterHorizontal"
 // import { NewsletterVertical } from "./MainLayout/NewsletterVertical"
@@ -15,12 +15,12 @@ export const MainLayout = ({ children }) => {
             {/* <NewsletterHorizontal />
             <NewsletterVertical />
             <PasswordReset />
-            <Search />
             <Sidebar />
             <SizeChart />
-            <WaitList /> */}
+        <WaitList /> */}
             <Header />
             {children}
+            <Search />
             <Footer />
             <ShoppingCart />
         </div>

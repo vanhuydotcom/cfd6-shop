@@ -1,4 +1,4 @@
-import { CATEGORIES, PRODUCT } from './../type'
+import { CATEGORIES, PRODUCT, PRODUCT_DETAIL } from './../type'
 import ProductApi from '../../service/productApi'
 export function productAction(page) {
     return async (dispatch) => {
@@ -22,3 +22,4 @@ export function categoriesAction() {
         }
     }
 }
+

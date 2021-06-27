@@ -88,14 +88,17 @@ export default function cartReducer(state = initialSate, action) {
             let { list, num, amount } = state
             let index = list.findIndex(e => e._id === action.payload._id)
             num -= list[index].cartNum
+            amount -= list[index].cartNum * list[index].real_price
             if (index !== -1) {
                 list[index].cartNum = action.payload.inputNumber
             }
             num += action.payload.inputNumber
+            amount += action.payload.inputNumber * list[index].real_price
             return onCart({
                 ...state,
                 list,
-                num
+                num,
+                amount
             },
             )
 

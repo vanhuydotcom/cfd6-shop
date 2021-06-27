@@ -1,3 +1,4 @@
+
 export function Review() {
     return (
         <section className="pt-9 pb-11" id="reviews">
@@ -48,7 +49,7 @@ export function Review() {
                                 {/* Button */}
                                 <a className="btn btn-sm btn-dark" data-toggle="collapse" href="#reviewForm">
                                     Write Review
-            </a>
+                                </a>
                             </div>
                         </div>
                         {/* New Review */}
@@ -62,7 +63,7 @@ export function Review() {
                                         {/* Text */}
                                         <p className="mb-1 font-size-xs">
                                             Score:
-                </p>
+                                        </p>
                                         {/* Rating form */}
                                         <div className="rating-form">
                                             {/* Input */}
@@ -119,7 +120,7 @@ export function Review() {
                                         {/* Button */}
                                         <button className="btn btn-outline-dark" type="submit">
                                             Post Review
-                </button>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -171,13 +172,13 @@ export function Review() {
                                             {/* Title */}
                                             <p className="mb-2 font-size-lg font-weight-bold">
                                                 So cute!
-                  </p>
+                                            </p>
                                             {/* Text */}
                                             <p className="text-gray-500">
                                                 Justo ut diam erat hendrerit. Morbi porttitor, per eu. Sodales curabitur diam sociis. Taciti
                                                 lobortis nascetur. Ante laoreet odio hendrerit.
                                                 Dictumst curabitur nascetur lectus potenti dis sollicitudin habitant quis vestibulum.
-                  </p>
+                                            </p>
                                             {/* Footer */}
                                             <div className="row align-items-center">
                                                 <div className="col-auto d-none d-lg-block">
@@ -203,7 +204,7 @@ export function Review() {
                                                     {/* Button */}
                                                     <a className="btn btn-xs btn-outline-border" href="#!">
                                                         Comment
-                      </a>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -256,12 +257,12 @@ export function Review() {
                                             {/* Title */}
                                             <p className="mb-2 font-size-lg font-weight-bold">
                                                 Cute, but too small
-                  </p>
+                                            </p>
                                             {/* Text */}
                                             <p className="text-gray-500">
                                                 Shall good midst can't. Have fill own his multiply the divided. Thing great. Of heaven whose
                                                 signs.
-                  </p>
+                                            </p>
                                             {/* Footer */}
                                             <div className="row align-items-center">
                                                 <div className="col-auto d-none d-lg-block">
@@ -287,7 +288,7 @@ export function Review() {
                                                     {/* Button */}
                                                     <a className="btn btn-xs btn-outline-border" href="#!">
                                                         Comment
-                      </a>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -339,11 +340,11 @@ export function Review() {
                                                 {/* Title */}
                                                 <p className="mb-2 font-size-lg font-weight-bold">
                                                     Very good
-                    </p>
+                                                </p>
                                                 {/* Text */}
                                                 <p className="text-gray-500">
                                                     Made face lights yielding forth created for image behold blessed seas.
-                    </p>
+                                                </p>
                                                 {/* Footer */}
                                                 <div className="row align-items-center">
                                                     <div className="col-auto d-none d-lg-block">
@@ -369,7 +370,7 @@ export function Review() {
                                                         {/* Button */}
                                                         <a className="btn btn-xs btn-outline-border" href="#!">
                                                             Comment
-                        </a>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -1,9 +1,11 @@
-import useTranslate from '../../core/useTranslate'
+import React from 'react'
+import ReactDom from "react-dom"
+import useTranslate from "../../core/useTranslate"
 
 export const Search = () => {
     let { t } = useTranslate()
 
-    return (
+    return ReactDom.createPortal(
         <>
             {/* Search */}
             <div className="modal fixed-right fade" id="modalSearch" tabIndex={-1} role="dialog" aria-hidden="true">
@@ -119,14 +121,16 @@ export const Search = () => {
                             {/* Text */}
                             <p className="mb-3 font-size-sm text-center">
                                 Nothing matches your search
-              </p>
+                            </p>
                             <p className="mb-0 font-size-sm text-center">
                                 😞
-              </p>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
+        </>,
+        document.getElementById('root')
+
     )
 }

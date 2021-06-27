@@ -9,19 +9,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { categoriesAction, productAction } from '../../redux/action/productAction';
 import { LOADING } from '../../redux/type';
 export default function Shop() {
-    let { paginate } = useSelector(state => state.product)
+    let { paginate, product, loading } = useSelector(state => state.product)
     let dispatch = useDispatch()
     let objUrl = convertQueryToObj()
     let queryString = convertObjToQuery(objUrl)
     useEffect(() => {
+        // dispatch(categoriesAction())
         dispatch({
             type: LOADING
         })
         dispatch(productAction(queryString))
-        dispatch(categoriesAction())
-
     }, [queryString])
-
+    if (!product) return loading
     return (
         <section className="py-11">
             <div className="container">

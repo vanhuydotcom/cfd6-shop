@@ -24,30 +24,29 @@ export default function ShopSidebar() {
     }
     let minRef = useRef()
     let maxRef = useRef()
-    let radioRef = useRef()
-    let [value, setValue] = useState(
-        {
-            a: {
-                min: 100000,
-                max: 1000000000
-            },
-            b: {
-                min: 1000000000,
-                max: 5000000000
-            },
-            c: {
-                min: 5000000000,
-                max: 10000000000
-            },
-            d: {
-                min: 10000000000,
-                max: 999999999999
-            }
-        }
-    )
+    // let radioRef = useRef()
+    // let [value, setValue] = useState(
+    //     {
+    //         a: {
+    //             min: 100000,
+    //             max: 1000000000
+    //         },
+    //         b: {
+    //             min: 1000000000,
+    //             max: 5000000000
+    //         },
+    //         c: {
+    //             min: 5000000000,
+    //             max: 10000000000
+    //         },
+    //         d: {
+    //             min: 10000000000,
+    //             max: 999999999999
+    //         }
+    //     }
+    // )
     function _apply(e) {
         e.preventDefault()
-
         if (minRef.current.value || maxRef.current.value) {
             if (minRef.current.value) {
                 objUrl.min = minRef.current.value.trim()
@@ -85,19 +84,20 @@ export default function ShopSidebar() {
                                         categories.map((e) => (
 
                                             <li key={e._id} className="list-styled-item">
-                                                {
+                                                <Link className={"list-styled-link "}
+                                                    data-toggle="collapse"
+                                                    to={`/shop?${convertObjToQuery({ ...objUrl, categories: e.id })}`}
+                                                    onClick={() => handleClickCategory(e)}
+
+                                                >
+                                                    {e.title}
+                                                </Link>
+                                                {/* {
                                                     loading ? <Skeleton variant='rect' width='100%' height={16} /> :
                                                         (
-                                                            <Link className={"list-styled-link "}
-                                                                data-toggle="collapse"
-                                                                to={`/shop?${convertObjToQuery({ ...objUrl, categories: e.id })}`}
-                                                                onClick={() => handleClickCategory(e)}
-
-                                                            >
-                                                                {e.title}
-                                                            </Link>
+                                                            
                                                         )
-                                                }
+                                                } */}
 
                                             </li>
                                         ))

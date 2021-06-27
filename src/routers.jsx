@@ -36,9 +36,16 @@ let routers = [
             },
             {
                 component: Product,
-                path: '/product',
+                path: '/product/:slug',
             },
-
+            {
+                component: Checkout,
+                path: '/checkout',
+            },
+            {
+                component: ShoppingCart,
+                path: '/shopping-cart',
+            },
             {
                 component: About,
                 path: '/about',

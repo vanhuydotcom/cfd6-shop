@@ -41,7 +41,7 @@ export default function Checkout() {
                             {/* Button */}
                             <button className="btn btn-block btn-dark">
                                 Place Order
-              </button>
+                            </button>
                         </div>
                     </div>
                 </div>

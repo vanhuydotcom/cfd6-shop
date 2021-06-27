@@ -1,4 +1,51 @@
-export function ProductSummary({ badges, thumbnail_url }) {
+import { useEffect, useState, useRef } from "react"
+import { useDispatch } from "react-redux"
+import addCart, { addMoreCard, decreaseItemCart, increaseItemCart } from "../../../redux/action/cartAction"
+import { currency } from "../../../util"
+
+export function ProductSummary(props) {
+    let $ = window.$
+    let { _id, cartNum, images, discount_rate, name, price, real_price, stock_item, configurable_options, rating_average, review_count } = props
+    let dispatch = useDispatch()
+    let topRef = useRef()
+    let bottomRef = useRef()
+    let [input, setInput] = useState(1)
+    const inputChange = (e) => {
+        if (e.target.value <= 0) {
+            setInput(parseInt(e.target.value = 1))
+        } else (
+            setInput(parseInt(e.target.value))
+        )
+    }
+    const dec = (e) => {
+        e.preventDefault()
+        if (input > 1) {
+            setInput(input - 1)
+        } else {
+            setInput(1)
+        }
+    }
+    const inc = (e) => {
+        e.preventDefault()
+        setInput(input + 1)
+    }
+    useEffect(() => {
+        $(topRef.current).flickity({
+            draggable: false,
+            fade: true,
+        });
+        $(bottomRef.current).flickity({
+            asNavFor: "#productSlider",
+            contain: true,
+            wrapAround: false
+        });
+    }, [])
+    const handleAtc = (e) => {
+        e.preventDefault()
+        dispatch(addCart({ ...props, cartNum: input }))
+
+    }
+
     return (
         <>
             <section>
@@ -10,42 +57,36 @@ export function ProductSummary({ badges, thumbnail_url }) {
                                     {/* Card */}
                                     <div className="card">
                                         {/* Badge */}
-                                        <div className="badge badge-primary card-badge text-uppercase">
-                                            {badges}
-                                        </div>
+                                        {
+                                            discount_rate ? <div className="badge badge-primary card-badge text-uppercase">
+                                                {discount_rate} %
+                                            </div>
+                                                : null
+                                        }
+
                                         {/* Slider */}
-                                        <div className="mb-4" data-flickity="{&quot;draggable&quot;: false, &quot;fade&quot;: true}" id="productSlider">
+                                        <div className="mb-4" ref={topRef} id="productSlider">
                                             {/* Item */}
-                                            <a href="/img/products/product-7.jpg" data-fancybox>
-                                                <img src={thumbnail_url} alt="..." className="card-img-top" />
-                                            </a>
-                                            {/* Item */}
-                                            <a href="/img/products/product-122.jpg" data-fancybox>
-                                                <img src="/img/products/product-122.jpg" alt="..." className="card-img-top" />
-                                            </a>
-                                            {/* Item */}
-                                            <a href="/img/products/product-146.jpg" data-fancybox>
-                                                <img src="/img/products/product-146.jpg" alt="..." className="card-img-top" />
-                                            </a>
+                                            {
+                                                images.map((e) => <a href={e.large_url}>
+                                                    <img src={e.medium_url} alt="..." className="card-img-top" />
+                                                </a>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                     {/* Slider */}
-                                    <div className="flickity-nav mx-n2 mb-10 mb-md-0" data-flickity="{&quot;asNavFor&quot;: &quot;#productSlider&quot;, &quot;contain&quot;: true, &quot;wrapAround&quot;: false}">
+                                    <div className="flickity-nav mx-n2 mb-10 mb-md-0" ref={bottomRef}>
                                         {/* Item */}
-                                        <div className="col-12 px-2" style={{ maxWidth: '113px' }}>
-                                            {/* Image */}
-                                            <div className="embed-responsive embed-responsive-1by1 bg-cover" style={{ backgroundImage: 'url(/img/products/product-7.jpg)' }} />
-                                        </div>
-                                        {/* Item */}
-                                        <div className="col-12 px-2" style={{ maxWidth: '113px' }}>
-                                            {/* Image */}
-                                            <div className="embed-responsive embed-responsive-1by1 bg-cover" style={{ backgroundImage: 'url(/img/products/product-122.jpg)' }} />
-                                        </div>
-                                        {/* Item */}
-                                        <div className="col-12 px-2" style={{ maxWidth: '113px' }}>
-                                            {/* Image */}
-                                            <div className="embed-responsive embed-responsive-1by1 bg-cover" style={{ backgroundImage: 'url(/img/products/product-146.jpg)' }} />
-                                        </div>
+                                        {
+                                            images.map((e) => (
+                                                <div className="col-12 px-2" style={{ maxWidth: '113px' }}>
+                                                    {/* Image */}
+                                                    <div className="embed-responsive embed-responsive-1by1 bg-cover" style={{ backgroundImage: `url(${e.medium_url})` }} />
+                                                </div>
+
+                                            ))
+                                        }
                                     </div>
                                 </div>
                                 <div className="col-12 col-md-6 pl-lg-10">
@@ -53,146 +94,96 @@ export function ProductSummary({ badges, thumbnail_url }) {
                                     <div className="row mb-1">
                                         <div className="col">
                                             {/* Preheading */}
-                                            <a className="text-muted" href="shop.html">Sneakers</a>
+                                            {/* {
+                                                inventory_status ? <a className="text-muted" href="shop.html">{inventory_status}</a>
+                                                    :
+                                                    <a className="text-muted" href="shop.html"></a>
+                                            } */}
                                         </div>
                                         <div className="col-auto">
+
                                             {/* Rating */}
-                                            <div className="rating font-size-xs text-dark" data-value={4}>
-                                                <div className="rating-item">
-                                                    <i className="fas fa-star" />
-                                                </div>
-                                                <div className="rating-item">
-                                                    <i className="fas fa-star" />
-                                                </div>
-                                                <div className="rating-item">
-                                                    <i className="fas fa-star" />
-                                                </div>
-                                                <div className="rating-item">
-                                                    <i className="fas fa-star" />
-                                                </div>
-                                                <div className="rating-item">
-                                                    <i className="fas fa-star" />
-                                                </div>
-                                            </div>
+                                            {
+                                                rating_average > 0 ? (<div className="rating font-size-xs text-dark" data-value={rating_average}>
+                                                    <div className="rating-item">
+                                                        <i className="fas fa-star" />
+                                                    </div>
+                                                    <div className="rating-item">
+                                                        <i className="fas fa-star" />
+                                                    </div>
+                                                    <div className="rating-item">
+                                                        <i className="fas fa-star" />
+                                                    </div>
+                                                    <div className="rating-item">
+                                                        <i className="fas fa-star" />
+                                                    </div>
+                                                    <div className="rating-item">
+                                                        <i className="fas fa-star" />
+                                                    </div>
+                                                </div>)
+                                                    :
+                                                    null
+
+                                            }
+
                                             <a className="font-size-sm text-reset ml-2" href="#reviews">
-                                                Reviews (6)
-                        </a>
+                                                Reviews ({review_count})
+                                            </a>
                                         </div>
                                     </div>
                                     {/* Heading */}
-                                    <h3 className="mb-2">Leather Sneakers</h3>
+                                    <h3 className="mb-2">{name}</h3>
                                     {/* Price */}
                                     <div className="mb-7">
-                                        <span className="font-size-lg font-weight-bold text-gray-350 text-decoration-line-through">$115.00</span>
-                                        <span className="ml-1 font-size-h5 font-weight-bolder text-primary">$85.00</span>
-                                        <span className="font-size-sm ml-1">(In Stock)</span>
+                                        <span className="font-size-lg font-weight-bold text-gray-350 text-decoration-line-through">{currency(price)}</span>
+                                        <span className="ml-1 font-size-h5 font-weight-bolder text-primary">{currency(real_price)}</span>
+                                        <span className="font-size-sm ml-1">{stock_item.qty > 0 ? '(Còn hàng)' : '(Hết hàng)'}</span>
                                     </div>
                                     {/* Form */}
                                     <form>
+                                        {
+                                            configurable_options ? configurable_options.map((e, i) => (
+                                                <div className="form-group" key={i}>
+                                                    {/* Label */}
+                                                    <p className='mb-5 '  >
+                                                        {e.name}:{
+                                                            e.values.map((e1, i1) => <strong id="colorCaption" key={i1} className={`option-value `} >{e1.label}</strong>)
+                                                        }
+
+                                                    </p>
+                                                    {/* Radio */}
+
+                                                    {/* <div className="mb-8 ml-n1">
+                                                        {
+                                                            configurable_products.map((e, i) => (
+                                                                <div className="custom-control custom-control-inline custom-control-img" key={i} onClick={() => handleOption(i)}>
+                                                                    <input type="radio" className="custom-control-input" id="imgRadioOne" name="imgRadio" data-toggle="form-caption" data-target="#colorCaption" defaultValue="White" defaultChecked />
+                                                                    <label className="custom-control-label" htmlFor="imgRadioOne">
+                                                                        <span className="embed-responsive embed-responsive-1by1 bg-cover" style={{ backgroundImage: `url(${e.images[0].medium_url})` }} />
+                                                                    </label>
+                                                                </div>
+                                                            ))
+                                                        }
+                                                    </div> */}
+                                                </div>
+                                            ))
+                                                :
+                                                null
+                                        }
+
                                         <div className="form-group">
-                                            {/* Label */}
-                                            <p className="mb-5">
-                                                Color: <strong id="colorCaption">White</strong>
-                                            </p>
-                                            {/* Radio */}
-                                            <div className="mb-8 ml-n1">
-                                                <div className="custom-control custom-control-inline custom-control-img">
-                                                    <input type="radio" className="custom-control-input" id="imgRadioOne" name="imgRadio" data-toggle="form-caption" data-target="#colorCaption" defaultValue="White" defaultChecked />
-                                                    <label className="custom-control-label" htmlFor="imgRadioOne">
-                                                        <span className="embed-responsive embed-responsive-1by1 bg-cover" style={{ backgroundImage: 'url(/img/products/product-7.jpg)' }} />
-                                                    </label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-img">
-                                                    <input type="radio" className="custom-control-input" id="imgRadioTwo" name="imgRadio" data-toggle="form-caption" data-target="#colorCaption" defaultValue="Black" />
-                                                    <label className="custom-control-label" htmlFor="imgRadioTwo">
-                                                        <span className="embed-responsive embed-responsive-1by1 bg-cover" style={{ backgroundImage: 'url(/img/products/product-49.jpg)' }} />
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            {/* Label */}
-                                            <p className="mb-5">
-                                                Size: <strong><span id="sizeCaption">7.5</span> US</strong>
-                                            </p>
-                                            {/* Radio */}
-                                            <div className="mb-2">
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioOne" defaultValue={6} data-toggle="form-caption" data-target="#sizeCaption" />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioOne">6</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioTwo" defaultValue="6.5" data-toggle="form-caption" data-target="#sizeCaption" disabled />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioTwo">6.5</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioThree" defaultValue={7} data-toggle="form-caption" data-target="#sizeCaption" />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioThree">7</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioFour" defaultValue="7.5" data-toggle="form-caption" data-target="#sizeCaption" defaultChecked />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioFour">7.5</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioFive" defaultValue={8} data-toggle="form-caption" data-target="#sizeCaption" />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioFive">8</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioSix" defaultValue="8.5" data-toggle="form-caption" data-target="#sizeCaption" />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioSix">8.5</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioSeven" defaultValue={9} data-toggle="form-caption" data-target="#sizeCaption" disabled />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioSeven">9</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioEight" defaultValue="9.5" data-toggle="form-caption" data-target="#sizeCaption" disabled />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioEight">9.5</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioNine" defaultValue={10} data-toggle="form-caption" data-target="#sizeCaption" />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioNine">10</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioTen" defaultValue="10.5" data-toggle="form-caption" data-target="#sizeCaption" />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioTen">10.5</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioEleven" defaultValue={11} data-toggle="form-caption" data-target="#sizeCaption" />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioEleven">11</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioTwelve" defaultValue={12} data-toggle="form-caption" data-target="#sizeCaption" />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioTwelve">12</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioThirteen" defaultValue={13} data-toggle="form-caption" data-target="#sizeCaption" />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioThirteen">13</label>
-                                                </div>
-                                                <div className="custom-control custom-control-inline custom-control-size mb-2">
-                                                    <input type="radio" className="custom-control-input" name="sizeRadio" id="sizeRadioFourteen" defaultValue={14} data-toggle="form-caption" data-target="#sizeCaption" />
-                                                    <label className="custom-control-label" htmlFor="sizeRadioFourteen">14</label>
-                                                </div>
-                                            </div>
-                                            {/* Size chart */}
-                                            <p className="mb-8">
-                                                <img src="/img/icons/icon-ruler.svg" alt="..." className="img-fluid" /> <a className="text-reset text-decoration-underline ml-3" data-toggle="modal" href="#modalSizeChart">Size
-                            chart</a>
-                                            </p>
+
                                             <div className="form-row mb-7">
                                                 <div className="col-12 col-lg-auto">
-                                                    {/* Quantity */}
-                                                    <select className="custom-select mb-2">
-                                                        <option value={1} selected>1</option>
-                                                        <option value={2}>2</option>
-                                                        <option value={3}>3</option>
-                                                        <option value={4}>4</option>
-                                                        <option value={5}>5</option>
-                                                    </select>
+
+                                                    <button className="custom-select custom-button mb-2" onClick={dec}>-</button>
+                                                    <input className="custom-select custom-input mb-2" type='number' value={input} onChange={inputChange} />
+                                                    <button className="custom-select custom-button mb-2" onClick={inc}>+</button>
+
                                                 </div>
                                                 <div className="col-12 col-lg">
                                                     {/* Submit */}
-                                                    <button type="submit" className="btn btn-block btn-dark mb-2">
+                                                    <button type="submit" className="btn btn-block btn-dark mb-2" onClick={handleAtc}  >
                                                         Add to Cart <i className="fe fe-shopping-cart ml-2" />
                                                     </button>
                                                 </div>
@@ -207,7 +198,7 @@ export function ProductSummary({ badges, thumbnail_url }) {
                                             <p>
                                                 <span className="text-gray-500">Is your size/color sold out?</span>
                                                 <a className="text-reset text-decoration-underline" data-toggle="modal" href="#modalWaitList">Join the
-                            Wait List!</a>
+                                                    Wait List!</a>
                                             </p>
                                             {/* Share */}
                                             <p className="mb-0">
@@ -234,3 +225,4 @@ export function ProductSummary({ badges, thumbnail_url }) {
         </>
     )
 }
+

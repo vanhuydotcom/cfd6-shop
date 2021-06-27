@@ -7,5 +7,9 @@ const ProductApi = {
     categories() {
         return fetch(`${endpoint}/categories`).then(res => res.json())
     },
+    productItemDetail(slug) {
+        return fetch(`${endpoint}/product?slug=${slug}`).then(res => res.json())
+
+    },
 }
 export default ProductApi

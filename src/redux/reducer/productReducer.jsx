@@ -15,7 +15,6 @@ export function productReducer(state = initialState, action) {
                 product: action.payload.data,
                 paginate: action.payload.paginate,
                 loading: false
-
             }
         case CATEGORIES:
             localStorage.setItem('categories', JSON.stringify(action.payload))

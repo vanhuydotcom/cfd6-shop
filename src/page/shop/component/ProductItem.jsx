@@ -1,10 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Rating, Skeleton } from '@material-ui/lab'
 import { currency } from '../../../util'
 import addCart from '../../../redux/action/cartAction'
+
 export function ProductItem(props) {
-    const { discount_rate, thumbnail_url, name, price, real_price, rating_average, discount } = props
+    const { discount_rate, thumbnail_url, name, price, real_price, rating_average, discount, slug } = props
     let out_price = currency(price),
         discount_price = currency(real_price)
     let { loading } = useSelector(state => state.product)
@@ -29,10 +31,10 @@ export function ProductItem(props) {
                             {/* Image */}
                             <div className="card-img">
                                 {/* Image */}
-                                <a className="card-img-hover" href="product.html">
+                                <Link className="card-img-hover" to={`/product/${slug}`}>
                                     <img className="card-img-top card-img-back" src={thumbnail_url} alt="..." />
                                     <img className="card-img-top card-img-front" src={thumbnail_url} alt="..." />
-                                </a>
+                                </Link>
                                 {/* Actions */}
                                 <div className="card-actions">
                                     <span className="card-action">
