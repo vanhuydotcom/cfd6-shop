@@ -3,7 +3,8 @@ let cart = JSON.parse(localStorage.getItem('cart')) || []
 const initialSate = {
     list: cart?.list || [],
     num: cart?.num || 0,
-    amount: cart?.amount || 0
+    amount: cart?.amount || 0,
+    tax: cart?.tax || 10,
 }
 const onCart = (cart) => {
     localStorage.setItem('cart', JSON.stringify(cart));

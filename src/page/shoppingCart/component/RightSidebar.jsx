@@ -1,4 +1,9 @@
+import { useSelector } from "react-redux"
+import { currency } from "../../../util"
+
 export default function RightSidebar() {
+    let { amount, tax } = useSelector(state => state.cart)
+
     return (
         <div className="col-12 col-md-5 col-lg-4 offset-lg-1">
             {/* Total */}
@@ -6,13 +11,13 @@ export default function RightSidebar() {
                 <div className="card-body">
                     <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
                         <li className="list-group-item d-flex">
-                            <span>Subtotal</span> <span className="ml-auto font-size-sm">$89.00</span>
+                            <span>Subtotal</span> <span className="ml-auto font-size-sm">{currency(amount)}</span>
                         </li>
                         <li className="list-group-item d-flex">
-                            <span>Tax</span> <span className="ml-auto font-size-sm">$00.00</span>
+                            <span>Tax</span> <span className="ml-auto font-size-sm">{currency(amount / tax)}</span>
                         </li>
                         <li className="list-group-item d-flex font-size-lg font-weight-bold">
-                            <span>Total</span> <span className="ml-auto font-size-sm">$89.00</span>
+                            <span>Total</span> <span className="ml-auto font-size-sm">{currency(amount + amount / tax)}</span>
                         </li>
                         <li className="list-group-item font-size-sm text-center text-gray-500">
                             Shipping cost calculated at Checkout *

@@ -7,9 +7,9 @@ export default function CountDown() {
                     <div className="row justify-content-end">
                         <div className="col-12 col-md-8 col-lg-6">
                             {/* Heading */}
-                            <h3 className="mb-7">
+                            <h3 className="mb-7" >
                                 Get -50% from <br />Summer Collection
-                </h3>
+                            </h3>
                             {/* Counter */}
                             <div className="d-flex mb-9" data-countdown data-date="Jan 5, 2021 15:37:25">
                                 <div className="text-center">

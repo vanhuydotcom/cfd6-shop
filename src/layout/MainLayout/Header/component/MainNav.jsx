@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useRouteMatch } from "react-router-dom"
 import useTranslate from '../../../../core/useTranslate'
 export default function MainNav() {
     let { t } = useTranslate()
     let cart = useSelector(state => state.cart)
+    let { path } = useRouteMatch()
     return (
         <>
             {/* NAVBAR */}
@@ -21,30 +22,30 @@ export default function MainNav() {
                         <ul className="navbar-nav mx-auto">
                             <li className="nav-item ">
                                 {/* Toggle */}
-                                <Link className="nav-link" data-toggle="dropdown" to="/">{t('Home')}</Link>
+                                <Link className="nav-link" data-toggle="dropdown" to="/shop">{t('All Product')}</Link>
                             </li>
                             <li className="nav-item  position-static">
                                 {/* Toggle */}
-                                <Link className="nav-link" data-toggle="dropdown" to="#">{t('Catalog')}</Link>
+                                <Link className="nav-link" data-toggle="dropdown" to={`/shop?categories=1789`}>{t('Phone-Tablet')}</Link>
 
                             </li>
                             <li className="nav-item ">
                                 {/* Toggle */}
-                                <Link className="nav-link" data-toggle="dropdown" to="/shop">{t('Shop')}</Link>
+                                <Link className="nav-link" data-toggle="dropdown" to={`/shop?categories=1801`}>{t('Camera')}</Link>
                                 {/* Menu */}
                             </li>
                             <li className="nav-item ">
                                 {/* Toggle */}
-                                <Link className="nav-link" data-toggle="dropdown" to="#">{t('Pages')}</Link>
+                                <Link className="nav-link" data-toggle="dropdown" to={`/shop?categories=17166`}>{t('International')}</Link>
                                 {/* Menu */}
                             </li>
                             <li className="nav-item ">
                                 {/* Toggle */}
-                                <Link className="nav-link" data-toggle="dropdown" to="#">{t('Blog')}</Link>
+                                <Link className="nav-link" data-toggle="dropdown" to="/store-locator">{t('Store')}</Link>
                                 {/* Menu */}
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="docs/getting-started.html">{t('Docs')}</Link>
+                                <Link className="nav-link" to="/contact-us">{t('Contact')}</Link>
                             </li>
                         </ul>
                         {/* Nav */}

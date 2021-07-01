@@ -1,4 +1,11 @@
+import { useEffect } from "react"
+import { useRef } from "react"
+let $ = window.$
 export default function Reviews() {
+    let ref = useRef()
+    useEffect(() => {
+        $(ref.current).flickity()
+    })
     return (
         <>
             {/* REVIEWS */}
@@ -9,7 +16,7 @@ export default function Reviews() {
                             {/* Preheading */}
                             <h6 className="heading-xxs mb-3 text-gray-400">
                                 What buyers say
-                </h6>
+                            </h6>
                             {/* Heading */}
                             <h2 className="mb-10">Latest buyers Reviews</h2>
                         </div>
@@ -17,7 +24,7 @@ export default function Reviews() {
                     <div className="row">
                         <div className="col-12">
                             {/* Slider */}
-                            <div data-flickity="{&quot;pageDots&quot;: true}">
+                            <div ref={ref} data-flickity="{&quot;pageDots&quot;: true}">
                                 <div className="col-12 col-sm-8 col-md-6 col-lg-4">
                                     {/* Card */}
                                     <div className="card-lg card border">
@@ -32,11 +39,11 @@ export default function Reviews() {
                                                     {/* Preheading */}
                                                     <a className="font-size-xs text-muted" href="shop.html">
                                                         Shoes
-                            </a>
+                                                    </a>
                                                     {/* Heading */}
                                                     <a className="d-block font-weight-bold text-body" href="product.html">
                                                         Low top Sneakers
-                            </a>
+                                                    </a>
                                                     {/* Rating */}
                                                     <div className="rating font-size-xxs text-warning" data-value={3}>
                                                         <div className="rating-item">
@@ -62,7 +69,7 @@ export default function Reviews() {
                                                 <p className="text-muted">
                                                     From creepeth said moved given divide make multiply of him shall itself also above second doesn't
                                                     unto created saying land herb sea midst night wherein.
-                          </p>
+                                                </p>
                                                 <footer className="font-size-xs text-muted">
                                                     Logan Edwards, <time dateTime="2019-06-01">01 Jun 2019</time>
                                                 </footer>
@@ -84,11 +91,11 @@ export default function Reviews() {
                                                     {/* Preheading */}
                                                     <a className="font-size-xs text-muted" href="shop.html">
                                                         Dresses
-                            </a>
+                                                    </a>
                                                     {/* Heading */}
                                                     <a className="d-block font-weight-bold text-body" href="product.html">
                                                         Cotton print Dress
-                            </a>
+                                                    </a>
                                                     {/* Rating */}
                                                     <div className="rating font-size-xxs text-warning" data-value={5}>
                                                         <div className="rating-item">
@@ -115,7 +122,7 @@ export default function Reviews() {
                                                     God every fill great replenish darkness unto. Very open. Likeness their that light. Given under
                                                     image to. Subdue of shall cattle day fish form saw spirit and given stars, us you whales may,
                                                     land, saw fill unto.
-                          </p>
+                                                </p>
                                                 <footer className="font-size-xs text-muted">
                                                     Jane Jefferson, <time dateTime="2019-05-29">29 May 2019</time>
                                                 </footer>
@@ -137,11 +144,11 @@ export default function Reviews() {
                                                     {/* Preheading */}
                                                     <a className="font-size-xs text-muted" href="shop.html">
                                                         T-shirts
-                            </a>
+                                                    </a>
                                                     {/* Heading */}
                                                     <a className="d-block font-weight-bold text-body" href="product.html">
                                                         Oversized print T-shirt
-                            </a>
+                                                    </a>
                                                     {/* Rating */}
                                                     <div className="rating font-size-xxs text-warning" data-value={4}>
                                                         <div className="rating-item">
@@ -167,7 +174,7 @@ export default function Reviews() {
                                                 <p className="text-muted">
                                                     Fill his waters wherein signs likeness waters. Second light gathered appear sixth fourth, seasons
                                                     behold creeping female.
-                          </p>
+                                                </p>
                                                 <footer className="font-size-xs text-muted">
                                                     Darrell Baker, <time dateTime="2019-05-18">18 May 2019</time>
                                                 </footer>
@@ -189,11 +196,11 @@ export default function Reviews() {
                                                     {/* Preheading */}
                                                     <a className="font-size-xs text-muted" href="shop.html">
                                                         Bags &amp; Accessories
-                            </a>
+                                                    </a>
                                                     {/* Heading */}
                                                     <a className="d-block font-weight-bold text-body" href="product.html">
                                                         Suede cross body Bag
-                            </a>
+                                                    </a>
                                                     {/* Rating */}
                                                     <div className="rating font-size-xxs text-warning" data-value={4}>
                                                         <div className="rating-item">
@@ -219,7 +226,7 @@ export default function Reviews() {
                                                 <p className="text-muted">
                                                     God every fill great replenish darkness unto. Very open. Likeness their that light. Given under
                                                     image to. Subdue of shall cattle day fish form saw spirit and given stars.
-                          </p>
+                                                </p>
                                                 <footer className="font-size-xs text-muted">
                                                     Pavel Doe, <time dateTime="2019-05-29">29 May 2019</time>
                                                 </footer>

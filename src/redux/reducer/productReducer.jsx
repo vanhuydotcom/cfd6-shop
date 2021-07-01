@@ -5,7 +5,10 @@ const initialState = {
     categories: JSON.parse(localStorage.getItem('categories')) || [],
     categories_title: '',
     loading: false,
-
+    //get data cho home page
+    phone_rating: [],
+    sport_rating: [],
+    consumerRating: []
 }
 export function productReducer(state = initialState, action) {
     switch (action.type) {
@@ -31,6 +34,22 @@ export function productReducer(state = initialState, action) {
             return {
                 ...state,
                 loading: true,
+            }
+        //SET DATA CHO HOME PAGE
+        case 'TOP_PHONE':
+            return {
+                ...state,
+                phone_rating: action.payload.data
+            }
+        case 'TOP_SPORT':
+            return {
+                ...state,
+                sport_rating: action.payload.data
+            }
+        case 'TOP_CONSUMER':
+            return {
+                ...state,
+                consumer_rating: action.payload.data
             }
         default:
             return state

@@ -22,4 +22,37 @@ export function categoriesAction() {
         }
     }
 }
-
+//get data cho home page
+export function phoneRating() {
+    return async (dispatch) => {
+        let res = await ProductApi.phoneRating();
+        if (res) {
+            dispatch({
+                type: "TOP_PHONE",
+                payload: res,
+            })
+        }
+    }
+}
+export function sportRating() {
+    return async (dispatch) => {
+        let res = await ProductApi.sportRating();
+        if (res) {
+            dispatch({
+                type: "TOP_SPORT",
+                payload: res,
+            })
+        }
+    }
+}
+export function consumerRating() {
+    return async (dispatch) => {
+        let res = await ProductApi.consumerRating();
+        if (res) {
+            dispatch({
+                type: "TOP_CONSUMER",
+                payload: res,
+            })
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useRef, useState } from "react"
 
-import { Link, useHistory, useRouteMatch } from "react-router-dom"
+import { NavLink, Link, useHistory, useRouteMatch } from "react-router-dom"
 import { Skeleton } from '@material-ui/lab'
 import useTranslate from "../../../core/useTranslate"
 import { CATEGORIES_TITLE } from "../../../redux/type"
@@ -24,27 +24,6 @@ export default function ShopSidebar() {
     }
     let minRef = useRef()
     let maxRef = useRef()
-    // let radioRef = useRef()
-    // let [value, setValue] = useState(
-    //     {
-    //         a: {
-    //             min: 100000,
-    //             max: 1000000000
-    //         },
-    //         b: {
-    //             min: 1000000000,
-    //             max: 5000000000
-    //         },
-    //         c: {
-    //             min: 5000000000,
-    //             max: 10000000000
-    //         },
-    //         d: {
-    //             min: 10000000000,
-    //             max: 999999999999
-    //         }
-    //     }
-    // )
     function _apply(e) {
         e.preventDefault()
         if (minRef.current.value || maxRef.current.value) {
@@ -78,14 +57,13 @@ export default function ShopSidebar() {
                             <div className="form-group">
                                 <ul className="list-styled mb-0" id="productsNav">
                                     {/* <li className="list-styled-item">
-                                        <Link className="list-styled-link" to="/shop"> All Products    </Link>
+                                        <NavLink exact className="list-styled-link" to="/shop"> All Products    </NavLink>
                                     </li> */}
                                     {
-                                        categories.map((e) => (
+                                        categories.map(e => (
 
                                             <li key={e._id} className="list-styled-item">
-                                                <Link className={"list-styled-link "}
-                                                    data-toggle="collapse"
+                                                <Link className={`list-styled-link`}
                                                     to={`/shop?${convertObjToQuery({ ...objUrl, categories: e.id })}`}
                                                     onClick={() => handleClickCategory(e)}
 
@@ -94,9 +72,7 @@ export default function ShopSidebar() {
                                                 </Link>
                                                 {/* {
                                                     loading ? <Skeleton variant='rect' width='100%' height={16} /> :
-                                                        (
-                                                            
-                                                        )
+                                                 
                                                 } */}
 
                                             </li>

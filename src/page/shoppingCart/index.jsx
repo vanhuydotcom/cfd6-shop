@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import CartItem from "./component/CartItem";
 import RightSidebar from "./component/RightSidebar";
 export default function ShoppingCart() {
-    let { list } = useSelector(state => state.cart)
-
+    let { list, num } = useSelector(state => state.cart)
+    if (num === 0) return <Redirect to='/shop' />
     return (
         <section className="pt-7 pb-12">
             <div className="container">

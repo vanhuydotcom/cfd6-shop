@@ -14,6 +14,7 @@ input[type="number"] {
     width: 100% !important;
     text-align: right;
     font-style: italic;
+    margin-top: 8px;
 }
 /* .fa-star:before {
     color: yellow;
