@@ -1,4 +1,5 @@
-import { ADD_CART, DECREASE_ITEM_CART, DEL_ITEM_CART, INCREASE_ITEM_CART, ADD_MORE_CART } from "../type";
+import cartApi from "../../service/cartApi";
+import { ADD_CART, DECREASE_ITEM_CART, DEL_ITEM_CART, INCREASE_ITEM_CART, ADD_MORE_CART, ORDER_COMPLETED } from "../type";
 
 export default function addCart(cart) {
     return {
@@ -29,5 +30,17 @@ export function addMoreCard(data) {
     return {
         type: ADD_MORE_CART,
         payload: data
+    }
+}
+/*order*/
+export function orderAction() {
+    return async (dispatch) => {
+        let res = await cartApi.order()
+        if (res) {
+            dispatch({
+                type: ORDER_COMPLETED,
+                payload: res
+            })
+        }
     }
 }

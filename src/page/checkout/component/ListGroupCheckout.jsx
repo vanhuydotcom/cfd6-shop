@@ -2,10 +2,11 @@ import { useSelector } from "react-redux"
 import useTranslate from "../../../core/useTranslate"
 import { currency } from "../../../util"
 
-export default function ListGroupCheckout() {
+export default function ListGroupCheckout({ fee }) {
     let { t } = useTranslate()
     let { list, amount, tax, num } = useSelector(state => state.cart)
-    let total = amount + amount / tax + 20000
+
+
     return (
         <>
             <h6 className="mb-7">Order Items ({num})</h6>
@@ -49,10 +50,21 @@ export default function ListGroupCheckout() {
                             <span>Tax</span> <span className="ml-auto font-size-sm">{currency(amount / tax)}</span>
                         </li>
                         <li className="list-group-item d-flex">
-                            <span>Shipping</span> <span className="ml-auto font-size-sm">{currency(20000)}</span>
+                            <span>Shipping</span>
+                            {
+                                fee && fee ? <span className="ml-auto font-size-sm">{currency(parseInt(fee[0]))}</span>
+                                    : <span className="ml-auto font-size-sm">0</span>
+                            }
+
                         </li>
                         <li className="list-group-item d-flex font-size-lg font-weight-bold">
-                            <span>Total</span> <span className="ml-auto">{currency(total)}</span>
+
+                            <span>Total</span>
+                            {
+                                fee && fee ? <span className="ml-auto">{currency(amount + amount / tax + parseInt(fee[0]))}</span>
+                                    : <span className="ml-auto">{currency(amount + amount / tax + 0)}</span>
+                            }
+
                         </li>
                     </ul>
                 </div>
