@@ -6,6 +6,7 @@ const initialSate = {
     amount: cart?.amount || 0,
     tax: cart?.tax || 10,
     order: []
+
 }
 const onCart = (cart) => {
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -111,9 +112,8 @@ export default function cartReducer(state = initialSate, action) {
         case ORDER_COMPLETED: {
             return {
                 ...state,
-                order: action.payload
+                order: action.payload.data
             }
-
         }
 
         default:

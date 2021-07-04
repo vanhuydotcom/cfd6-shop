@@ -9,24 +9,21 @@ import ListGroupCheckout from './component/ListGroupCheckout'
 import { currency } from '../../util'
 import { useState } from 'react'
 import { orderAction } from '../../redux/action/cartAction'
-export default function Checkout(initialValue) {
+import cartApi from '../../service/cartApi'
+export default function Checkout() {
     let { t } = useTranslate()
     let dispatch = useDispatch()
-    let value = initialValue;
+    let value = {};
     let auth = useSelector(state => state.auth)
     let { num } = useSelector(state => state.cart)
     let shipping_fee = [0, 20000, 45000, 100000]
-
     let [fee, setFee] = useState([value])
     const checkedRadio = (e) => {
         let value = e.target.value;
-
         setFee({
             fee: [value]
         })
     }
-
-
     let yearNow = (new Date()).getFullYear()
     const schema = yup.object().shape({
         first_name: yup.string().required('Không để trống').name('Tên không đúng định dạng'),
@@ -67,9 +64,10 @@ export default function Checkout(initialValue) {
         resolver: yupResolver(schema)
     })
     const onSubmit = (data) => {
-        //Gọi API để cập nhật dữ liệu ở đây
 
-        console.log(data);
+        //Gọi API để cập nhật dữ liệu ở đây
+        dispatch(orderAction(data))
+
     };
     if (num === 0) return <Redirect to='/shop' />
     return (
