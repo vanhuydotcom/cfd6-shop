@@ -9,16 +9,16 @@ export default function Address() {
                             {/* Heading */}
                             <h6 className="mb-6">
                                 Shipping Address
-                </h6>
+                            </h6>
                             {/* Text */}
                             <p className="text-muted mb-0">
                                 Daniel Robinson <br />
-                  3997 Raccoon Run <br />
-                  Kingston <br />
-                  45644 <br />
-                  United States <br />
-                  6146389574
-                </p>
+                                3997 Raccoon Run <br />
+                                Kingston <br />
+                                45644 <br />
+                                United States <br />
+                                6146389574
+                            </p>
                             {/* Action */}
                             <div className="card-action card-action-right">
                                 {/* Button */}
@@ -40,16 +40,16 @@ export default function Address() {
                             {/* Heading */}
                             <h6 className="mb-6">
                                 Billing Address
-                </h6>
+                            </h6>
                             {/* Text */}
                             <p className="text-muted mb-0">
                                 Daniel Robinson <br />
-                  3997 Raccoon Run <br />
-                  Kingston <br />
-                  45644 <br />
-                  United States <br />
-                  6146389574
-                </p>
+                                3997 Raccoon Run <br />
+                                Kingston <br />
+                                45644 <br />
+                                United States <br />
+                                6146389574
+                            </p>
                             {/* Action */}
                             <div className="card-action card-action-right">
                                 {/* Button */}

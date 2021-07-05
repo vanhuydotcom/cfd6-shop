@@ -16,6 +16,7 @@ export const ADD_MORE_CART = 'ADD_MORE_CART'
 export const ORDER_COMPLETED = 'ORDER_COMPLETED'
 
 
+export const ADD_WISHLIST = 'ADD_WISHLIST'
 
 
 

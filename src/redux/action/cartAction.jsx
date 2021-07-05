@@ -33,9 +33,9 @@ export function addMoreCard(data) {
     }
 }
 /*order*/
-export function orderAction() {
+export function orderAction(id) {
     return async (dispatch) => {
-        let res = await cartApi.order()
+        let res = await cartApi.order(id)
         if (res) {
             dispatch({
                 type: ORDER_COMPLETED,

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Rating, Skeleton } from '@material-ui/lab'
 import { currency } from '../../../util'
 import addCart from '../../../redux/action/cartAction'
+import { addWishlist } from '../../../redux/action/userAction'
 
 export function ProductItem(props) {
     const { discount_rate, thumbnail_url, name, price, real_price, rating_average, discount, slug } = props
@@ -48,7 +49,7 @@ export function ProductItem(props) {
                                         </button>
                                     </span>
                                     <span className="card-action">
-                                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button">
+                                        <button className="btn btn-xs btn-circle btn-white-primary" onClick={dispatch.bind(null, addWishlist({ ...props }))} data-toggle="button">
                                             <i className="fe fe-heart" />
                                         </button>
                                     </span>

@@ -15,7 +15,8 @@ export default function Checkout() {
     let dispatch = useDispatch()
     let value = {};
     let auth = useSelector(state => state.auth)
-    let { num } = useSelector(state => state.cart)
+    let { num, list } = useSelector(state => state.cart)
+
     let shipping_fee = [0, 20000, 45000, 100000]
     let [fee, setFee] = useState([value])
     const checkedRadio = (e) => {
@@ -64,10 +65,9 @@ export default function Checkout() {
         resolver: yupResolver(schema)
     })
     const onSubmit = (data) => {
-
         //Gọi API để cập nhật dữ liệu ở đây
         dispatch(orderAction(data))
-
+        console.log(data);
     };
     if (num === 0) return <Redirect to='/shop' />
     return (

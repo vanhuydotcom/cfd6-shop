@@ -19,6 +19,7 @@ import Payment from './page/account/component/Payment';
 import Orders from './page/account/component/Orders';
 import PersonalInfo from './page/account/component/PersonalInfo';
 import Address from './page/account/component/Address';
+import WishList from './page/account/component/WishList';
 
 let routers = [
     {
@@ -64,6 +65,10 @@ let routers = [
                     {
                         component: Address,
                         path: '/address'
+                    },
+                    {
+                        component: WishList,
+                        path: '/wishlist'
                     },
                     {
                         component: Payment,
