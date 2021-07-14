@@ -39,7 +39,7 @@ export default function Account({ children }) {
                                 <NavLink className="list-group-item list-group-item-action dropright-toggle " to={`${path}/payment`}>
                                     Payment Methods
                                 </NavLink>
-                                <NavLink className="list-group-item list-group-item-action dropright-toggle" onClick={LogoutHandle} to="#">
+                                <NavLink className="list-group-item list-group-item-action dropright-toggle" onClick={LogoutHandle} to="/auth">
                                     Logout
                                 </NavLink>
                             </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react"
 import { useDispatch } from "react-redux"
-import addCart, { addMoreCard, decreaseItemCart, increaseItemCart } from "../../../redux/action/cartAction"
+import { addCart, addMoreCard, decreaseItemCart, increaseItemCart } from "../../../redux/action/cartAction"
 import { currency } from "../../../util"
 
 export function ProductSummary(props) {
@@ -142,7 +142,7 @@ export function ProductSummary(props) {
                                     {/* Form */}
                                     <form>
                                         {
-                                            configurable_options ? configurable_options.map((e, i) => (
+                                            configurable_options && configurable_options ? configurable_options.map((e, i) => (
                                                 <div className="form-group" key={i}>
                                                     {/* Label */}
                                                     <p className='mb-5 '  >

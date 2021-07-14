@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { currency } from "../../../util";
 import addCart from '../../../redux/action/cartAction'
+import { getProductDetail } from "../../../redux/action/productAction";
 export default function TopSeller() {
     let { phone_rating, sport_rating, consumer_rating } = useSelector(state => state.product)
     let dispatch = useDispatch()
@@ -48,7 +49,7 @@ export default function TopSeller() {
                                                             {/* Actions */}
                                                             <div className="card-actions">
                                                                 <span className="card-action">
-                                                                    <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="modal" data-target="#modalProduct">
+                                                                    <button className="btn btn-xs btn-circle btn-white-primary" onClick={dispatch.bind(null, getProductDetail(e?.slug))} data-toggle="modal" data-target="#modalProduct">
                                                                         <i className="fe fe-eye" />
                                                                     </button>
                                                                 </span>
@@ -114,7 +115,7 @@ export default function TopSeller() {
                                                             {/* Actions */}
                                                             <div className="card-actions">
                                                                 <span className="card-action">
-                                                                    <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="modal" data-target="#modalProduct">
+                                                                    <button className="btn btn-xs btn-circle btn-white-primary" onClick={dispatch.bind(null, getProductDetail(e?.slug))} data-toggle="modal" data-target="#modalProduct">
                                                                         <i className="fe fe-eye" />
                                                                     </button>
                                                                 </span>
@@ -180,7 +181,7 @@ export default function TopSeller() {
                                                             {/* Actions */}
                                                             <div className="card-actions">
                                                                 <span className="card-action">
-                                                                    <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="modal" data-target="#modalProduct">
+                                                                    <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="modal" onClick={dispatch.bind(null, getProductDetail(e?.slug))} data-target="#modalProduct">
                                                                         <i className="fe fe-eye" />
                                                                     </button>
                                                                 </span>

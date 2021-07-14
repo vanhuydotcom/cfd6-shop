@@ -5,7 +5,7 @@ const initialSate = {
     num: cart?.num || 0,
     amount: cart?.amount || 0,
     tax: cart?.tax || 10,
-    order: []
+    // order: []
 
 }
 const onCart = (cart) => {
@@ -109,12 +109,6 @@ export default function cartReducer(state = initialSate, action) {
 
         };
 
-        case ORDER_COMPLETED: {
-            return {
-                ...state,
-                order: action.payload.data
-            }
-        }
 
         default:
             return state

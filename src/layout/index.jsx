@@ -1,4 +1,6 @@
 import { Search, ShoppingCart } from "../component"
+import { Wishlist } from "../component/modal/WishList"
+import { Product } from "../component/modal/Product"
 import { Footer } from "./MainLayout/Footer"
 import { Header } from "./MainLayout/Header"
 
@@ -23,6 +25,8 @@ export const MainLayout = ({ children }) => {
             <Search />
             <Footer />
             <ShoppingCart />
+            <Product />
+            <Wishlist />
         </div>
     )
 }

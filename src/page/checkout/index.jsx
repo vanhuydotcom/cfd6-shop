@@ -24,6 +24,7 @@ export default function Checkout() {
         setFee({
             fee: [value]
         })
+        console.log(fee);
     }
     let yearNow = (new Date()).getFullYear()
     const schema = yup.object().shape({
@@ -66,7 +67,7 @@ export default function Checkout() {
     })
     const onSubmit = (data) => {
         //Gọi API để cập nhật dữ liệu ở đây
-        dispatch(orderAction(data))
+        dispatch(orderAction())
         console.log(data);
     };
     if (num === 0) return <Redirect to='/shop' />

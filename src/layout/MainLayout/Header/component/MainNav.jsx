@@ -61,7 +61,7 @@ export default function MainNav() {
                                 </Link>
                             </li>
                             <li className="nav-item ml-lg-n4">
-                                <Link className="nav-link" to="/account/widhlist">
+                                <Link className="nav-link" to="/account/wishlist">
                                     <i className="fe fe-heart" />
                                 </Link>
                             </li>

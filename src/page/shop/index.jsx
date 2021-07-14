@@ -12,12 +12,13 @@ export default function Shop() {
     let { paginate, product, loading } = useSelector(state => state.product)
     let dispatch = useDispatch()
     let objUrl = convertQueryToObj()
+    console.log(objUrl);
     let queryString = convertObjToQuery(objUrl)
     useEffect(() => {
-        // dispatch(categoriesAction())
         dispatch({
             type: LOADING
         })
+        dispatch(categoriesAction())
         dispatch(productAction(queryString))
     }, [queryString])
     if (!product) return loading

@@ -11,6 +11,20 @@ export function productAction(page) {
         }
     }
 }
+export function getProductDetail(slug) {
+    return async (dispatch) => {
+        let res = await ProductApi.productItemDetail(slug);
+        if (res) {
+            dispatch({
+                type: PRODUCT_DETAIL,
+                payload: res,
+            })
+        }
+    }
+}
+
+
+
 export function categoriesAction() {
     return async (dispatch) => {
         let res = await ProductApi.categories();

@@ -1,11 +1,11 @@
 import React from 'react'
-import ReactDom from "react-dom"
+import ReactDOM from "react-dom"
 import useTranslate from "../../core/useTranslate"
 
 export const Search = () => {
     let { t } = useTranslate()
 
-    return ReactDom.createPortal(
+    return ReactDOM.createPortal(
         <>
             {/* Search */}
             <div className="modal fixed-right fade" id="modalSearch" tabIndex={-1} role="dialog" aria-hidden="true">

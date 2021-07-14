@@ -78,3 +78,39 @@ input[type="number"] {
 .d-none {
     display: flex !important;
 }
+.custom-checkbox-df {
+    margin-top: 30px;
+}
+.fe-lock::before {
+    content: "\e987";
+}
+.cart-action-right,
+.card-action {
+    display: flex !important;
+    flex-direction: column !important;
+}
+.btn-active-df {
+    pointer-events: none !important;
+    cursor: unset;
+    background-color: #ff6f61 !important;
+    color: #fff !important;
+}
+/* .mb-7-custom {
+    margin-top: 2rem !important;
+} */
+.text-wrap {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 25px;
+    overflow: hidden;
+}
+.modal-custom {
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+}
+.align-custom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

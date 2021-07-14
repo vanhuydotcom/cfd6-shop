@@ -79,7 +79,12 @@ class Api {
         return this.request(`${endpoint}${url}`).then(this.json)
     }
     delete(url) {
-        return this.request(`${endpoint}${url}`).then(this.json)
+        let headers = this._setUpHeaders()
+        return this.request(`${endpoint}${url}`, {
+            method: 'DELETE',
+            headers,
+
+        }).then(this.json)
     }
 }
 export default new Api()

@@ -1,7 +1,7 @@
 import { Rating } from "@material-ui/lab"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import addCart from "../../../redux/action/cartAction"
+import { addCart } from "../../../redux/action/cartAction"
 import { currency } from "../../../util"
 
 export function ProductReplace() {

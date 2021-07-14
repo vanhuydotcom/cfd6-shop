@@ -15,11 +15,15 @@ import Shop from './page/shop';
 
 import Account from './page/account';
 import OrderDetail from './page/account/component/OrderDetail';
-import Payment from './page/account/component/Payment';
 import Orders from './page/account/component/Orders';
 import PersonalInfo from './page/account/component/PersonalInfo';
-import Address from './page/account/component/Address';
-import WishList from './page/account/component/WishList';
+import Address from './page/account/component/address/Address';
+import AddressList from './page/account/component/address/AddressList';
+import Wishlist from './page/account/component/wishlist';
+import Payment from './page/account/component/payment';
+import PaymentList from './page/account/component/paymentList';
+
+
 
 let routers = [
     {
@@ -64,15 +68,23 @@ let routers = [
 
                     {
                         component: Address,
+                        path: '/address/:action/:_id'
+                    },
+                    {
+                        component: AddressList,
                         path: '/address'
                     },
                     {
-                        component: WishList,
-                        path: '/wishlist'
+                        component: Payment,
+                        path: '/payment/:action/:_id'
                     },
                     {
-                        component: Payment,
+                        component: PaymentList,
                         path: '/payment'
+                    },
+                    {
+                        component: Wishlist,
+                        path: '/wishlist'
                     },
                     {
                         component: Orders,

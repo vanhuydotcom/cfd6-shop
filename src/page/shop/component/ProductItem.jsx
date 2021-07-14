@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Rating, Skeleton } from '@material-ui/lab'
 import { currency } from '../../../util'
-import addCart from '../../../redux/action/cartAction'
+import { addCart } from '../../../redux/action/cartAction'
 import { addWishlist } from '../../../redux/action/userAction'
+import { getProductDetail } from '../../../redux/action/productAction'
 
 export function ProductItem(props) {
+
     const { discount_rate, thumbnail_url, name, price, real_price, rating_average, discount, slug } = props
+
     let out_price = currency(price),
         discount_price = currency(real_price)
     let { loading } = useSelector(state => state.product)
@@ -15,6 +18,7 @@ export function ProductItem(props) {
     const handleAddToCart = () => {
         dispatch(addCart({ ...props }))
     }
+
     return (
         <div className="col-6 col-md-4 col-lg-4">
             {/* Card */}
@@ -39,7 +43,7 @@ export function ProductItem(props) {
                                 {/* Actions */}
                                 <div className="card-actions">
                                     <span className="card-action">
-                                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="modal" data-target="#modalProduct">
+                                        <button className="btn btn-xs btn-circle btn-white-primary" onClick={dispatch.bind(null, getProductDetail(slug))} data-toggle="modal" data-target="#modalProduct">
                                             <i className="fe fe-eye" />
                                         </button>
                                     </span>
@@ -49,7 +53,7 @@ export function ProductItem(props) {
                                         </button>
                                     </span>
                                     <span className="card-action">
-                                        <button className="btn btn-xs btn-circle btn-white-primary" onClick={dispatch.bind(null, addWishlist({ ...props }))} data-toggle="button">
+                                        <button className="btn btn-xs btn-circle btn-white-primary" onClick={dispatch.bind(null, addWishlist({ ...props }))} data-toggle="modal" data-target="#modalWishlist">
                                             <i className="fe fe-heart" />
                                         </button>
                                     </span>

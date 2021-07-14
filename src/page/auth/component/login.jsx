@@ -77,7 +77,7 @@ export const Login = () => {
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="loginEmail">
                                             Email Address *
-                    </label>
+                                        </label>
                                         <input value={form.username} name="username" onChange={inputChange} className="form-control form-control-sm" id="loginEmail" placeholder="Email Address *" />
                                         {
                                             error.username && <p className="error_text">{error.username}</p>
@@ -89,7 +89,7 @@ export const Login = () => {
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="loginPassword">
                                             Password *
-                    </label>
+                                        </label>
                                         <input value={form.password} name='password' onChange={inputChange} className="form-control form-control-sm" id="loginPassword" type="password" placeholder="Password *" />
                                         {
                                             error.password && <p className="error_text">{error.password}</p>
@@ -104,7 +104,7 @@ export const Login = () => {
                                             <input className="custom-control-input" id="loginRemember" type="checkbox" />
                                             <label className="custom-control-label" htmlFor="loginRemember">
                                                 Remember me
-                      </label>
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -112,14 +112,14 @@ export const Login = () => {
                                     {/* Link */}
                                     <div className="form-group">
                                         <a className="font-size-sm text-reset" data-toggle="modal" href="#modalPasswordReset">Forgot
-                      Password?</a>
+                                            Password?</a>
                                     </div>
                                 </div>
                                 <div className="col-12">
                                     {/* Button */}
                                     <button className="btn btn-sm btn-dark" type="submit" onClick={LoginHandle}>
                                         Sign In
-                  </button>
+                                    </button>
                                 </div>
                                 {
                                     loginError.error && (
