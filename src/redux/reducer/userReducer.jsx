@@ -11,12 +11,7 @@ const initState = {
 }
 export default function userReducer(state = initState, action) {
     switch (action.type) {
-        // case ERR: {
-        //     return {
-        //         ...state,
-        //         error: action.payload.error
-        //     }
-        // }
+
         case LOADING_WISHLIST: {
             return {
                 ...state,

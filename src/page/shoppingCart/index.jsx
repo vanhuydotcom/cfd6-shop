@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { updateCart } from "../../redux/action/cartAction";
 import CartItem from "./component/CartItem";
 import RightSidebar from "./component/RightSidebar";
 export default function ShoppingCart() {
-    let { list, num } = useSelector(state => state.cart)
+    let cart, { list, num } = useSelector(state => state.cart)
+    let dispatch = useDispatch()
     if (num === 0) return <Redirect to='/shop' />
     return (
         <section className="pt-7 pb-12">
@@ -44,10 +46,9 @@ export default function ShoppingCart() {
                                     </div>
                                 </form>
                             </div>
-                            <div className="col-12 col-md-auto">
-                                {/* Button */}
-                                <button className="btn btn-sm btn-outline-dark">Update Cart</button>
-                            </div>
+                            {/* <div className="col-12 col-md-auto">
+                                <button className="btn btn-sm btn-outline-dark" onClick={dispatch.bind(null, updateCart())}>Update Cart</button>
+                            </div> */}
                         </div>
                     </div>
                     <RightSidebar />

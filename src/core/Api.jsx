@@ -75,8 +75,15 @@ class Api {
         }).then(this.json)
 
     }
-    put(url) {
-        return this.request(`${endpoint}${url}`).then(this.json)
+    put(url, data = {}) {
+        let headers = this._setUpHeaders();
+        let body = JSON.stringify(data)
+
+        return this.request(`${endpoint}${url}`, {
+            method: 'PUT',
+            headers,
+            body
+        }).then(this.json)
     }
     delete(url) {
         let headers = this._setUpHeaders()

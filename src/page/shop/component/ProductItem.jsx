@@ -48,7 +48,7 @@ export function ProductItem(props) {
                                         </button>
                                     </span>
                                     <span className="card-action">
-                                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button" onClick={handleAddToCart}>
+                                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button" onClick={dispatch.bind(null, addCart(props))}>
                                             <i className="fe fe-shopping-cart" />
                                         </button>
                                     </span>

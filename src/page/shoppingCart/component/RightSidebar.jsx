@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import { currency } from "../../../util"
 
 export default function RightSidebar() {
@@ -26,11 +27,11 @@ export default function RightSidebar() {
                 </div>
             </div>
             {/* Button */}
-            <a className="btn btn-block btn-dark mb-2" href="checkout.html">Proceed to Checkout</a>
+            <Link className="btn btn-block btn-dark mb-2" to="/checkout">Proceed to Checkout</Link>
             {/* Link */}
-            <a className="btn btn-link btn-sm px-0 text-body" href="shop.html">
+            <Link className="btn btn-link btn-sm px-0 text-body" to="/shop">
                 <i className="fe fe-arrow-left mr-2" /> Continue Shopping
-            </a>
+            </Link>
         </div>
 
     )

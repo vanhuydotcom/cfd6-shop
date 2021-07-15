@@ -1,4 +1,4 @@
-import { ADD_CART, ADD_MORE_CART, DECREASE_ITEM_CART, DEL_ITEM_CART, INCREASE_ITEM_CART, ORDER_COMPLETED } from "../type";
+import { ADD_CART, ADD_MORE_CART, DECREASE_ITEM_CART, DEL_ITEM_CART, GET_CART, INCREASE_ITEM_CART, ORDER_COMPLETED, UPDATE_CART } from "../type";
 let cart = JSON.parse(localStorage.getItem('cart')) || []
 const initialSate = {
     list: cart?.list || [],
@@ -14,6 +14,18 @@ const onCart = (cart) => {
 }
 export default function cartReducer(state = initialSate, action) {
     switch (action.type) {
+        case UPDATE_CART: {
+            return {
+                ...state,
+                list: action.payload
+            }
+        }
+        case GET_CART: {
+            return {
+                ...state,
+                list: action.payload.data
+            }
+        }
         case ADD_CART:
             {
                 let { list, num, amount } = state;

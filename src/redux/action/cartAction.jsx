@@ -1,6 +1,31 @@
+import { useLayoutEffect } from "react";
 import cartApi from "../../service/cartApi";
-import { ADD_CART, DECREASE_ITEM_CART, DEL_ITEM_CART, INCREASE_ITEM_CART, ADD_MORE_CART, ORDER_COMPLETED } from "../type";
+import { ADD_CART, DECREASE_ITEM_CART, DEL_ITEM_CART, INCREASE_ITEM_CART, ADD_MORE_CART, ORDER_COMPLETED, GET_CART, UPDATE_CART } from "../type";
 
+// export function getCart() {
+//     return async (dispatch) => {
+//         let res = await cartApi.getCartFromUser()
+//         if (res) {
+//             dispatch({
+//                 type: GET_CART,
+//                 payload: res
+//             })
+//             console.log(res);
+//         }
+//     }
+// };  
+// export function updateCart(data) {
+//     return async (dispatch) => {
+//         let res = await cartApi.update(data)
+//         if (res) {
+//             dispatch({
+//                 type: UPDATE_CART,
+//                 payload: res
+//             })
+//         }
+//         console.log(res);
+//     }
+// };
 export function addCart(cart) {
     return async (dispatch) => {
         let res = await cartApi.create(cart)
@@ -9,10 +34,9 @@ export function addCart(cart) {
                 type: ADD_CART,
                 payload: cart
             })
+            console.log(cart);
         }
     }
-
-
 };
 export function delItemCart(id) {
     return {
@@ -38,6 +62,7 @@ export function addMoreCard(data) {
         payload: data
     }
 }
+
 /*order*/
 export function orderAction(cart) {
     return async (dispatch) => {
