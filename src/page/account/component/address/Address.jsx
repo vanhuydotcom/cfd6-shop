@@ -8,7 +8,7 @@ import { addAddress } from "../../../../redux/action/userAction"
 
 import { useTranslate } from "../../../../core/useTranslate"
 export default function Address() {
-    let { t } = useTranslate
+    let { t } = useTranslate()
     let history = useHistory()
     let dispatch = useDispatch()
     let { _id } = useParams()
@@ -118,7 +118,7 @@ export default function Address() {
                     </div>
                     <div className="col-12">
                         {/* Mobile Phone */}
-                        <div className="form-group mb-0">
+                        <div className="form-group mb-5">
                             <label htmlFor="checkoutBillingPhone">{t('Mobile Phone ')}*</label>
                             <input {...register('phone')} className="form-control form-control-sm" id="checkoutBillingPhone" type="tel" placeholder="Mobile Phone" />
                             {errors?.phone && <p className="error_text">{errors.phone?.message}</p>}

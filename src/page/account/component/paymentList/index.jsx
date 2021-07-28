@@ -15,6 +15,7 @@ export default function PaymentList() {
     let dispatch = useDispatch()
     useEffect(() => {
         dispatch(getPayment())
+
     }, [])
     const _addNew = () => {
         history.push(`${path}/create-new/${_id ? _id : ':_id'}`)

@@ -4,7 +4,7 @@ import { Link, useHistory, useRouteMatch } from 'react-router-dom'
 import { changeDefaultAddress, getAddress, removeAddress } from '../../../../redux/action/userAction'
 import { useTranslate } from '../../../../core/useTranslate'
 export default function AddressList() {
-    let { t } = useTranslate
+    let { t } = useTranslate()
     let dispatch = useDispatch()
     let { address } = useSelector(state => state.user)
     console.log(address);
@@ -28,7 +28,7 @@ export default function AddressList() {
                 <div className="col-12">
                     {/* Button */}
                     <Link className="btn btn-block btn-lg btn-outline-border" to={`/account/address/create-new/${_id ? _id : ':_id'}`}>
-                        {t(' Edit Address')} <i className="fe fe-plus" />
+                        {t(' Add Address')} <i className="fe fe-plus" />
                     </Link>
                 </div>
             </div>

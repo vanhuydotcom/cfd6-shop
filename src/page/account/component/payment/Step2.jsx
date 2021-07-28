@@ -25,7 +25,7 @@ export default function Step2() {
     const onSubmit = (data) => {
         dispatch(addPayment({ card_type, data }))
         history.push('/account/payment')
-        window.location.reload()
+        // window.location.reload()
     }
     return (
         <>

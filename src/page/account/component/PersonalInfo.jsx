@@ -9,7 +9,6 @@ import userApi from "../../../service/userApi";
 export default function PersonalInfo() {
     let { t } = useTranslate()
     let auth = useSelector(state => state.auth)
-    console.log(auth?.login?.gender);
     let dispatch = useDispatch()
     let schema = yup.object().shape({
         first_name: yup.string().required("Don't leave blank").name('Not a valid name'),
@@ -33,8 +32,8 @@ export default function PersonalInfo() {
         let date = new Date(year, month, day);
     })
     function dateChange(e) {
-        let name = e.target.name
-        let value = e.target.value
+        let name = parseInt(e.target.name)
+        let value = parseInt(e.target.value)
         if (name === 'year') setYear(parseInt(value))
         if (name === 'month') setMonth(parseInt(value))
         if (name === 'day') setDay(parseInt(value))
@@ -42,6 +41,7 @@ export default function PersonalInfo() {
     let date = new Date(year, month, 0);
     let dayArr = date.getDate()
     async function onSubmit(data) {
+        console.log(data);
         let res = await userApi.update(data)
         if (res.data) {
             dispatch(updateProfileAction(res.data))
@@ -103,7 +103,7 @@ export default function PersonalInfo() {
                                     <label className="sr-only" htmlFor="accountDate">
                                         {t('Date')}
                                     </label>
-                                    <select {...register('day', { value: auth?.login?.day })} value={day} onChange={dateChange} className="custom-select custom-select-sm" id="accountDate">
+                                    <select {...register('day', { value: auth?.login?.day ? auth?.login?.day : day })} onChange={dateChange} className="custom-select custom-select-sm" id="accountDate">
                                         {
                                             [...Array(dayArr)].map((e, i) => <option value={i + 1} key={i}>{i + 1}</option>)
                                         }
@@ -114,7 +114,7 @@ export default function PersonalInfo() {
                                     <label className="sr-only" htmlFor="accountMonth">
                                         {t('Month')}
                                     </label>
-                                    <select {...register('month', { value: auth?.login?.month })} value={month} onChange={dateChange} className="custom-select custom-select-sm" id="accountMonth">
+                                    <select {...register('month', { value: auth?.login?.month ? auth?.login?.month : month })} onChange={dateChange} className="custom-select custom-select-sm" id="accountMonth">
                                         {
                                             [...Array(12)].map((e, i) => <option value={i + 1} key={i}>{i + 1}</option>)
                                         }
@@ -125,7 +125,7 @@ export default function PersonalInfo() {
                                     <label className="sr-only" htmlFor="accountYear">
                                         {t('Year')}
                                     </label>
-                                    <select {...register('year', { value: auth?.login?.year })} value={year} onChange={dateChange} className="custom-select custom-select-sm" id="accountYear">
+                                    <select {...register('year', { value: auth?.login?.year ? auth?.login?.year : year })} onChange={dateChange} className="custom-select custom-select-sm" id="accountYear">
                                         {
                                             [...Array(50)].map((e, i) => <option value={yearNow - i} key={i}>{yearNow - i}</option>)
                                         }

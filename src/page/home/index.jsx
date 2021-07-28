@@ -35,10 +35,7 @@ export default function Home() {
             <Features />
             <BestPick />
             <TopSeller />
-            {
-                useCountDown(CountDown, 99999)
-            }
-            {/* <CountDown /> */}
+            {useCountDown(CountDown, 99999)}
             <Reviews />
             <Brands />
         </>
