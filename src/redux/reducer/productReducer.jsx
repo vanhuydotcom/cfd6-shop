@@ -1,4 +1,4 @@
-import { CATEGORIES, CATEGORIES_TITLE, LOADING, PRODUCT, PRODUCT_DETAIL } from './../type'
+import { CATEGORIES, CATEGORIES_TITLE, LOADING, PRODUCT, PRODUCT_DETAIL, REVIEW, SEARCH } from './../type'
 const initialState = {
     product: [],
     product_detail: [],
@@ -9,9 +9,11 @@ const initialState = {
     //get data cho home page
     phone_rating: [],
     sport_rating: [],
-    consumerRating: []
+    consumerRating: [],
+    search: null,
+    review: []
 }
-export function productReducer(state = initialState, action) {
+export default function productReducer(state = initialState, action) {
     switch (action.type) {
         case PRODUCT:
             return {
@@ -36,13 +38,32 @@ export function productReducer(state = initialState, action) {
         case CATEGORIES_TITLE:
             return {
                 ...state,
-                categories_title: action.payload.title
+                categories_title: action.payload
             }
         case LOADING:
             return {
                 ...state,
                 loading: true,
             }
+        case SEARCH: {
+            return {
+                ...state,
+                search: action.payload
+            }
+        }
+        //Review
+        case REVIEW: {
+            return {
+                ...state,
+                review: action.payload
+            }
+        }
+        // case REVIEW_SUCCESS: {
+        //     return {
+        //         ...state,
+        //         review: action.payload
+        //     }
+        // }
         //SET DATA CHO HOME PAGE
         case 'TOP_PHONE':
             return {

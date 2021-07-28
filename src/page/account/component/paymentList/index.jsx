@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link, useHistory, useParams, useRouteMatch } from "react-router-dom"
+import { useHistory, useParams, useRouteMatch } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { changeDefaultPayment, getPayment, removePayment } from '../../../../redux/action/userAction'
+import { useTranslate } from '../../../../core/useTranslate'
 
 export default function PaymentList() {
+    let { t } = useTranslate()
     let { payment, card_type } = useSelector(state => state.user)
     let history = useHistory()
     let { _id } = useParams()
@@ -30,7 +32,7 @@ export default function PaymentList() {
                 <div className="col-12">
                     {/* Button */}
                     <button className="btn btn-block btn-lg btn-outline-border" onClick={_addNew} >
-                        Add Payment Method <i className="fe fe-plus" />
+                        {t(' Add Payment Method')} <i className="fe fe-plus" />
                     </button>
                 </div>
             </div>
@@ -39,6 +41,8 @@ export default function PaymentList() {
     )
 }
 const CardItem = (props) => {
+    let { t } = useTranslate()
+
     let { card_type, data, _id } = props
 
     let { path } = useRouteMatch()
@@ -81,17 +85,17 @@ const CardItem = (props) => {
                     </h6>
                     {/* Text */}
                     <p className="mb-5">
-                        <strong>Card Number:</strong> <br />
+                        <strong>{t('Card Number')}:</strong> <br />
                         <span className="text-muted">{data?.id}</span>
                     </p>
                     {/* Text */}
                     <p className="mb-5">
-                        <strong>Expiry Date:</strong> <br />
+                        <strong>{t('Expiry Date')}:</strong> <br />
                         <span className="text-muted">{data?.month}/{data?.year}</span>
                     </p>
                     {/* Text */}
                     <p className="mb-0">
-                        <strong>Name on Card:</strong> <br />
+                        <strong>{t('Name on Card')}:</strong> <br />
                         <span className="text-muted">{data?.name}</span>
                     </p>
                     {/* Action */}

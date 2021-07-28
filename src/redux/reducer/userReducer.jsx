@@ -1,4 +1,4 @@
-import { ADD_ADDRESS, ADD_WISHLIST, CHANGE_DEFAULT_ADDRESS, DEFAULT_ADDRESS, GET_ADDRESS, CARD_TYPE, REMOVE_ADDRESS, ADD_PAYMENT, GET_PAYMENT, ERR, GET_WISHLIST, REMOVE_WISHLIST, LOADING_WISHLIST } from "../type";
+import { ADD_ADDRESS, ADD_WISHLIST, CHANGE_DEFAULT_ADDRESS, DEFAULT_ADDRESS, GET_ADDRESS, CARD_TYPE, REMOVE_ADDRESS, ADD_PAYMENT, GET_PAYMENT, GET_WISHLIST, REMOVE_WISHLIST, LOADING_WISHLIST, CHANGE_DEFAULT_PAYMENT } from "../type";
 let user = []
 const initState = {
     error: '',
@@ -97,13 +97,8 @@ export default function userReducer(state = initState, action) {
                 payment: action.payload
             }
         }
-        case GET_PAYMENT: {
-            return {
-                ...state,
-                payment: action.payload
-            }
-        }
-        case CHANGE_DEFAULT_ADDRESS: {
+
+        case CHANGE_DEFAULT_PAYMENT: {
             let { payment } = state
             return {
                 ...state,

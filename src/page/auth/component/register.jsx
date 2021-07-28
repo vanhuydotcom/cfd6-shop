@@ -1,12 +1,11 @@
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import useTranslate from '../../../core/useTranslate'
+import { useDispatch } from 'react-redux'
+import { useTranslate } from '../../../core/useTranslate'
 import useFormValidate from '../../../hook/useFormValidate'
 import { registerAction } from '../../../redux/action/authAction'
 import Auth from '../../../service/auth'
 
 export const Register = () => {
-    let auth = useSelector(state => state.auth)
     let { t } = useTranslate()
     let { error, form, inputChange, check } = useFormValidate({
         first_name: '',
@@ -92,7 +91,7 @@ export const Register = () => {
                 <div className="card card-lg">
                     <div className="card-body">
                         {/* Heading */}
-                        <h6 className="mb-7">New Customer</h6>
+                        <h6 className="mb-7">{t('New Customer')}</h6>
                         {/* Form */}
                         <form>
                             <div className="row">
@@ -100,7 +99,7 @@ export const Register = () => {
                                     {/* Email */}
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="registerfirst_name">
-                                            First Name *
+                                            {t('First Name')} *
                                         </label>
                                         <input name='first_name' value={form.first_name} onChange={inputChange} className="form-control form-control-sm" id="registerfirst_name" type="text" placeholder="First Name *" />
                                         {
@@ -112,7 +111,7 @@ export const Register = () => {
                                     {/* Email */}
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="registerlast_name">
-                                            Last Name *
+                                            {t('Last Name')} *
                                         </label>
                                         <input name='last_name' value={form.last_name} onChange={inputChange} className="form-control form-control-sm" id="registerlast_name" type="text" placeholder="Last Name *" />
                                         {
@@ -124,7 +123,7 @@ export const Register = () => {
                                     {/* Email */}
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="registerEmail">
-                                            Email Address *
+                                            {t('Email Address')} *
                                         </label>
                                         <input name='email' value={form.email} onChange={inputChange} className="form-control form-control-sm" id="registerEmail" type="email" placeholder="Email Address *" />
                                         {
@@ -136,7 +135,7 @@ export const Register = () => {
                                     {/* Password */}
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="registerPassword">
-                                            Password *
+                                            {t("Password")} *
                                         </label>
                                         <input name='password' value={form.password} onChange={inputChange} className="form-control form-control-sm" id="registerPassword" type="password" placeholder="Password *" />
                                         {
@@ -148,7 +147,7 @@ export const Register = () => {
                                     {/* Password */}
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="registerPasswordConfirm">
-                                            Confirm Password *
+                                            {t("Confirm Password")} *
                                         </label>
                                         <input name='confirm_password' value={form.confirm_password} onChange={inputChange} className="form-control form-control-sm" id="registerPasswordConfirm" type="password" placeholder="Confrm Password *" />
                                         {
@@ -159,8 +158,7 @@ export const Register = () => {
                                 <div className="col-12 col-md-auto">
                                     {/* Link */}
                                     <div className="form-group font-size-sm text-muted">
-                                        By registering your details, you agree with our Terms &amp; Conditions,
-                                        and Privacy and Cookie Policy.
+                                        {t('By registering your details, you agree with our Terms & Conditions, and Privacy and Cookie Policy.')}
                                     </div>
                                 </div>
                                 <div className="col-12 col-md">
@@ -169,7 +167,7 @@ export const Register = () => {
                                         <div className="custom-control custom-checkbox">
                                             <input className="custom-control-input" id="registerNewsletter" type="checkbox" />
                                             <label className="custom-control-label" htmlFor="registerNewsletter">
-                                                Sign me up for the Newsletter!
+                                                {t('Sign me up for the Newsletter!')}
                                             </label>
                                         </div>
                                     </div>
@@ -177,7 +175,7 @@ export const Register = () => {
                                 <div className="col-12">
                                     {/* Button */}
                                     <button className="btn btn-sm btn-dark" type="submit" onClick={RegisterHandle}>
-                                        Register
+                                        {t('Register')}
                                     </button>
 
                                 </div>

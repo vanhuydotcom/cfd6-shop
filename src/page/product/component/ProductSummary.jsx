@@ -1,11 +1,13 @@
 import { useEffect, useState, useRef } from "react"
 import { useDispatch } from "react-redux"
-import { addCart, addMoreCard, decreaseItemCart, increaseItemCart } from "../../../redux/action/cartAction"
+import { useTranslate } from "../../../core/useTranslate"
+import { addCart } from "../../../redux/action/cartAction"
 import { currency } from "../../../util"
 
 export function ProductSummary(props) {
+    let { t } = useTranslate()
     let $ = window.$
-    let { _id, cartNum, images, discount_rate, name, price, real_price, stock_item, configurable_options, rating_average, review_count } = props
+    let { images, discount_rate, name, price, real_price, stock_item, configurable_options } = props
     let dispatch = useDispatch()
     let topRef = useRef()
     let bottomRef = useRef()
@@ -100,9 +102,8 @@ export function ProductSummary(props) {
                                                     <a className="text-muted" href="shop.html"></a>
                                             } */}
                                         </div>
-                                        <div className="col-auto">
+                                        {/* <div className="col-auto">
 
-                                            {/* Rating */}
                                             {
                                                 rating_average > 0 ? (<div className="rating font-size-xs text-dark" data-value={rating_average}>
                                                     <div className="rating-item">
@@ -129,7 +130,7 @@ export function ProductSummary(props) {
                                             <a className="font-size-sm text-reset ml-2" href="#reviews">
                                                 Reviews ({review_count})
                                             </a>
-                                        </div>
+                                        </div> */}
                                     </div>
                                     {/* Heading */}
                                     <h3 className="mb-2">{name}</h3>
@@ -184,22 +185,22 @@ export function ProductSummary(props) {
                                                 <div className="col-12 col-lg">
                                                     {/* Submit */}
                                                     <button type="submit" className="btn btn-block btn-dark mb-2" onClick={handleAtc}  >
-                                                        Add to Cart <i className="fe fe-shopping-cart ml-2" />
+                                                        {t('Add to Cart')} <i className="fe fe-shopping-cart ml-2" />
                                                     </button>
                                                 </div>
                                                 <div className="col-12 col-lg-auto">
                                                     {/* Wishlist */}
                                                     <button className="btn btn-outline-dark btn-block mb-2" data-toggle="button">
-                                                        Wishlist <i className="fe fe-heart ml-2" />
+                                                        {t('Wishlist')} <i className="fe fe-heart ml-2" />
                                                     </button>
                                                 </div>
                                             </div>
                                             {/* Text */}
-                                            <p>
+                                            {/* <p>
                                                 <span className="text-gray-500">Is your size/color sold out?</span>
                                                 <a className="text-reset text-decoration-underline" data-toggle="modal" href="#modalWaitList">Join the
                                                     Wait List!</a>
-                                            </p>
+                                            </p> */}
                                             {/* Share */}
                                             <p className="mb-0">
                                                 <span className="mr-4">Share:</span>

@@ -1,7 +1,5 @@
-import useTranslate from '../../core/useTranslate'
 
 export const WaitList = () => {
-  let { t } = useTranslate()
 
   return (
     <>

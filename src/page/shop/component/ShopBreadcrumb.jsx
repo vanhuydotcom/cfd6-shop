@@ -1,7 +1,6 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useHistory, useRouteMatch } from "react-router"
-import useTranslate from "../../../core/useTranslate"
+import { useTranslate } from "../../../core/useTranslate"
 import { convertObjToQuery, convertQueryToObj } from "../../../util"
 
 export default function ShopBreadcrumb() {
@@ -9,12 +8,12 @@ export default function ShopBreadcrumb() {
     let { path } = useRouteMatch()
     let history = useHistory()
     let { categories_title } = useSelector(state => state.product)
+    let title = categories_title?.title
     let category = {
         title: t('All Product'),
         link: '/shop'
     }
     let queryString = convertObjToQuery()
-
     function sortChange(e) {
         let objUrl = convertQueryToObj()
         objUrl.sort = e.target.value // sort sap xep cac phan tu trong mang va tra ve mang moi
@@ -28,8 +27,9 @@ export default function ShopBreadcrumb() {
                 <div className="col-12 col-md">
                     {/* Heading */}
                     {/* <h3 className="mb-1">{categories_title.title}</h3> */}
+
                     {categories_title ?
-                        (<h3 className="mb-1">{categories_title}</h3>)
+                        (<h3 className="mb-1">{title}</h3>)
                         :
                         (<h3 className="mb-1">{category.title}</h3>)
                     }
@@ -40,7 +40,7 @@ export default function ShopBreadcrumb() {
                             <a className="text-gray-400" href="index.html">Home</a>
                         </li>
                         <li className="breadcrumb-item active">
-                            {categories_title}
+                            {title}
                         </li>
                     </ol>
                 </div>

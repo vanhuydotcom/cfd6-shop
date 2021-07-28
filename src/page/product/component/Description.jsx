@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useTranslate } from "../../../core/useTranslate";
 
 export function Description({ des, spec }) {
+    let { t } = useTranslate()
     let [showLess, setShowLess] = useState(true);
     return (
         <>
@@ -11,10 +13,10 @@ export function Description({ des, spec }) {
                             {/* Nav */}
                             <div className="nav nav-tabs nav-overflow justify-content-start justify-content-md-center border-bottom">
                                 <a className="nav-link active" data-toggle="tab" href="#descriptionTab">
-                                    Description
+                                    {t('Description')}
                                 </a>
                                 <a className="nav-link" data-toggle="tab" href="#sizeTab">
-                                    General Information
+                                    {t('General Information')}
                                 </a>
 
                             </div>

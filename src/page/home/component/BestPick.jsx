@@ -1,7 +1,9 @@
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { useTranslate } from "../../../core/useTranslate"
 
 export default function BestPick() {
+    let { t } = useTranslate()
     let { categories } = useSelector(state => state.product)
 
     return (
@@ -14,13 +16,13 @@ export default function BestPick() {
                             <div className="col-12 col-md-10 col-lg-8 col-xl-6 text-center">
                                 {/* Preheading */}
                                 <h6 className="heading-xxs mb-3 text-gray-400">
-                                    New Collection
+                                    {t('New Collection')}
                                 </h6>
                                 {/* Heading */}
-                                <h2 className="mb-4">Best Picks 2021</h2>
+                                <h2 className="mb-4">{t('Best Picks')} 2021</h2>
                                 {/* Subheading */}
                                 <p className="mb-10 text-gray-500">
-                                    Appear, dry there darkness they're seas, dry waters thing fly midst. Beast, above fly brought Very green.
+                                    {t("Appear, dry there darkness they're seas, dry waters thing fly midst. Beast, above fly brought Very green.")}
                                 </p>
                             </div>
                         </div>
@@ -38,7 +40,7 @@ export default function BestPick() {
                                         <h4 className="mb-0">{categories[2]?.title}</h4>
                                         {/* Link */}
                                         <Link className="btn btn-link stretched-link text-reset" to={`/shop?categories=${categories[2]?.id}`}>
-                                            Shop Now <i className="fe fe-arrow-right ml-2" />
+                                            {t('Shop Now')} <i className="fe fe-arrow-right ml-2" />
                                         </Link>
                                     </div>
                                 </div>
@@ -61,7 +63,7 @@ export default function BestPick() {
                                         <h4 className="mb-0">{categories[3]?.title}</h4>
                                         {/* Link */}
                                         <Link className="btn btn-link stretched-link px-0 text-reset" to={`/shop?categories=${categories[3]?.id}`}>
-                                            Shop Now <i className="fe fe-arrow-right ml-2" />
+                                            {t('Shop Now')} <i className="fe fe-arrow-right ml-2" />
                                         </Link>
                                     </div>
                                 </div>
@@ -79,7 +81,7 @@ export default function BestPick() {
                                         <h4 className="mb-0">{categories[1]?.title}</h4>
                                         {/* Link */}
                                         <Link className="btn btn-link stretched-link px-0 text-reset" to={`/shop?categories=${categories[3]?.id}`}>
-                                            Shop Now <i className="fe fe-arrow-right ml-2" />
+                                            {t('Shop Now')} <i className="fe fe-arrow-right ml-2" />
                                         </Link>
                                     </div>
                                 </div>
@@ -97,7 +99,7 @@ export default function BestPick() {
                                         <h4 className="mb-0">{categories[4]?.title}</h4>
                                         {/* Link */}
                                         <Link className="btn btn-link stretched-link text-reset" to={`/shop?categories=${categories[4]?.id}`}>
-                                            Shop Now <i className="fe fe-arrow-right ml-2" />
+                                            {t('Shop Now')} <i className="fe fe-arrow-right ml-2" />
                                         </Link>
                                     </div>
                                 </div>

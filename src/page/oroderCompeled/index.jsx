@@ -1,7 +1,16 @@
-import useTranslate from "../../core/useTranslate"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { Link, useParams } from "react-router-dom"
+import { useTranslate } from "../../core/useTranslate"
+import { clearCart } from "../../redux/action/cartAction"
 
 export default function OrderCompleted() {
     let { t } = useTranslate()
+    let { _id } = useParams()
+    let dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(clearCart())
+    })
     return (
         <>
             {/* CONTENT */}
@@ -12,17 +21,15 @@ export default function OrderCompleted() {
                             {/* Icon */}
                             <div className="mb-7 font-size-h1">❤️</div>
                             {/* Heading */}
-                            <h2 className="mb-5">Your Order is Completed!</h2>
+                            <h2 className="mb-5">{t('Your Order is Completed!')}</h2>
                             {/* Text */}
                             <p className="mb-7 text-gray-500">
-                                Your order <span className="text-body text-decoration-underline">673290789</span> has been completed. Your order
-                details
-                are shown for your personal accont.
-              </p>
+                                {t('Your order')} <span className="text-body text-decoration-underline">{_id}</span> {t('has been completed. Your order details are shown for your personal accont')}.
+                            </p>
                             {/* Button */}
-                            <a className="btn btn-dark" href="#!">
-                                View My Orders
-              </a>
+                            <Link className="btn btn-dark" to="/account/orders" >
+                                {t('View My Orders')}
+                            </Link>
                         </div>
                     </div>
                 </div>

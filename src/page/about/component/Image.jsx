@@ -1,6 +1,4 @@
-import useTranslate from '../../../core/useTranslate'
 export default function Image() {
-    let { t } = useTranslate()
     return (
         <>
             {/* IMAGES */}

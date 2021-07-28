@@ -1,4 +1,4 @@
-import useTranslate from '../../core/useTranslate'
+import { useTranslate } from '../../core/useTranslate'
 
 export const NewsletterVertical = () => {
     let { t } = useTranslate()
@@ -36,7 +36,7 @@ export const NewsletterVertical = () => {
                                         {/* Button */}
                                         <button className="btn btn-sm btn-dark" type="submit">
                                             Subscribe
-                    </button>
+                                        </button>
                                     </div>
                                 </div>
                             </form>

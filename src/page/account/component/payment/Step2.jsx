@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import yup from '../../../../hook/yupPattern'
-import useTranslate from '../../../../core/useTranslate'
+import { useTranslate } from '../../../../core/useTranslate'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPayment } from '../../../../redux/action/userAction'
 import { useHistory } from 'react-router-dom'
@@ -12,9 +12,9 @@ export default function Step2() {
     let dispatch = useDispatch()
     let history = useHistory()
     let schema = yup.object().shape({
-        id: yup.string().required('Không để trống'),
-        name: yup.string().required('Không để trống'),
-        cvv: yup.string().required('không để trống').max(3, 'cvv không đúng').min(3, 'cvv không đúng'),
+        id: yup.string().required("Don't leave blank"),
+        name: yup.string().required("Don't leave blank"),
+        cvv: yup.string().required("Don't leave blank").max(3, 'Not a valid Cvv').min(3, 'Not a valid Cvv'),
         default: yup.bool()
     })
     let { register, handleSubmit, formState: { errors } } = useForm({
@@ -25,7 +25,7 @@ export default function Step2() {
     const onSubmit = (data) => {
         dispatch(addPayment({ card_type, data }))
         history.push('/account/payment')
-        // window.location.reload()
+        window.location.reload()
     }
     return (
         <>
@@ -38,14 +38,14 @@ export default function Step2() {
                 <div className="row">
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="cardNumber">Card Number *</label>
+                            <label htmlFor="cardNumber">{t('Card Number')} *</label>
                             <input {...register('id')} className="form-control" id="cardNumber" type="text" placeholder="Card Number" />
                             {errors && <p className='error_text'> {errors?.id?.message}</p>}
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="nameOnCard">Name on Card *</label>
+                            <label htmlFor="nameOnCard">{t('Name on Card')} *</label>
                             <input {...register('name')} className="form-control" id="nameOnCard" type="text" placeholder="Name on Card" />
                             {errors && <p className='error_text'> {errors?.name?.message}</p>}
                         </div>
@@ -53,12 +53,12 @@ export default function Step2() {
                     <div className="col-12">
                         {/* Label */}
                         <label>
-                            Expiry Date *
+                            {t(' Expiry Date ')}*
                         </label>
                     </div>
                     <div className="col-12 col-md-4">
                         <div className="form-group">
-                            <label className="sr-only" htmlFor="paymentMonth">Month</label>
+                            <label className="sr-only" htmlFor="paymentMonth">{t('Month')}</label>
 
                             <select {...register('month')} className="custom-select " id="paymentMonth">
                                 <option value="1">{t('January')}</option>
@@ -78,7 +78,7 @@ export default function Step2() {
                     </div>
                     <div className="col-12 col-md-4">
                         <div className="form-group">
-                            <label className="sr-only" htmlFor="paymentCardYear">Year</label>
+                            <label className="sr-only" htmlFor="paymentCardYear">{t('Year')}</label>
 
                             <select {...register('year')} className="custom-select" id="paymentCardYear">
                                 {
@@ -112,7 +112,7 @@ export default function Step2() {
                 </div>
                 {/* Button */}
                 <button className="btn btn-dark" type="submit">
-                    Add Card
+                    {t(' Add Card')}
                 </button>
             </form>
         </>

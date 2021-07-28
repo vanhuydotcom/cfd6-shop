@@ -1,41 +1,21 @@
-import { useLayoutEffect } from "react";
 import cartApi from "../../service/cartApi";
-import { ADD_CART, DECREASE_ITEM_CART, DEL_ITEM_CART, INCREASE_ITEM_CART, ADD_MORE_CART, ORDER_COMPLETED, GET_CART, UPDATE_CART } from "../type";
+import { ADD_CART, DECREASE_ITEM_CART, DEL_ITEM_CART, INCREASE_ITEM_CART, ADD_MORE_CART, GET_CART, CLEAR_CART } from "../type";
 
-// export function getCart() {
-//     return async (dispatch) => {
-//         let res = await cartApi.getCartFromUser()
-//         if (res) {
-//             dispatch({
-//                 type: GET_CART,
-//                 payload: res
-//             })
-//             console.log(res);
-//         }
-//     }
-// };  
-// export function updateCart(data) {
-//     return async (dispatch) => {
-//         let res = await cartApi.update(data)
-//         if (res) {
-//             dispatch({
-//                 type: UPDATE_CART,
-//                 payload: res
-//             })
-//         }
-//         console.log(res);
-//     }
-// };
-export function addCart(cart) {
+export function getCart() {
     return async (dispatch) => {
-        let res = await cartApi.create(cart)
-        if (res) {
+        let res = await cartApi.getCartFromUser()
+        if (res.data) {
             dispatch({
-                type: ADD_CART,
-                payload: cart
+                type: GET_CART,
+                payload: res.data
             })
-            console.log(cart);
         }
+    }
+};
+export function addCart(cart) {
+    return {
+        type: ADD_CART,
+        payload: cart
     }
 };
 export function delItemCart(id) {
@@ -55,6 +35,7 @@ export function increaseItemCart(data) {
         type: INCREASE_ITEM_CART,
         payload: data
     }
+
 }
 export function addMoreCard(data) {
     return {
@@ -62,16 +43,9 @@ export function addMoreCard(data) {
         payload: data
     }
 }
-
-/*order*/
-export function orderAction(cart) {
-    return async (dispatch) => {
-        let res = await cartApi.order(cart)
-        if (res) {
-            dispatch({
-                type: ORDER_COMPLETED,
-                payload: cart
-            })
-        }
+export function clearCart(cart) {
+    return {
+        type: CLEAR_CART,
+        payload: cart
     }
 }

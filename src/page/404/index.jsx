@@ -1,4 +1,7 @@
+import { useTranslate } from "../../core/useTranslate"
+
 export default function NotFound() {
+    let { t } = useTranslate()
     return (
         <>
             {/* CONTENT */}
@@ -9,16 +12,15 @@ export default function NotFound() {
                             {/* Icon */}
                             <div className="mb-7 font-size-h1">🙁</div>
                             {/* Heading */}
-                            <h2 className="mb-5">404. Page not found.</h2>
+                            <h2 className="mb-5">404. {t('Page not found')}.</h2>
                             {/* Text */}
                             <p className="mb-7 text-gray-500">
-                                Sorry, we couldn't find the page you where looking for.
-                                We suggest that you return to home page.
-              </p>
+                                {t("Sorry, we couldn't find the page you where looking for. We suggest that you return to home page.")}
+                            </p>
                             {/* Button */}
                             <a className="btn btn-dark" href="index.html">
-                                Go to Homepage
-              </a>
+                                {t('Go to Homepage')}
+                            </a>
                         </div>
                     </div>
                 </div>

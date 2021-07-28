@@ -14,12 +14,14 @@ export default function authReducer(state = initState, action) {
             }
         case LOGOUT:
             localStorage.setItem('login', false)
+            localStorage.removeItem('token')
             return {
                 ...state,
                 login: false
             }
         case REGISTER:
             localStorage.setItem('login', JSON.stringify(action.payload))
+            localStorage.setItem('token', JSON.stringify(action.payload.token))
             return {
                 ...state,
                 login: action.payload
@@ -35,5 +37,4 @@ export default function authReducer(state = initState, action) {
             return state;
     }
 
-    return state
 }

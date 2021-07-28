@@ -1,6 +1,6 @@
 import Features from "../home/component/Features";
 import AboutUs from "./component/AboutUs";
-import Breadcrumb from "./component/Breadcrumb";
+// import Breadcrumb from "./component/Breadcrumb";
 import Image from "./component/Image";
 import OurStory from "./component/OurStory";
 import Review from "./component/Review";
@@ -11,9 +11,9 @@ import Welcome from "./component/Welcom";
 export default function About() {
     return (
         <>
-            <Breadcrumb /> //component
+            {/* <Breadcrumb /> */}
             <Welcome />
-            <OurStory /> //component
+            <OurStory />
             <AboutUs />
             <OurStory />
             <Slogan />

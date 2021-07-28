@@ -1,8 +1,4 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { productAction } from "../../../redux/action/productAction";
-import { convertObjToQuery, convertQueryToObj } from "../../../util";
-import { LOADING } from "../../../redux/type";
+import { useSelector } from "react-redux";
 import { ProductItem } from "./ProductItem";
 
 export default function ShopProduct() {

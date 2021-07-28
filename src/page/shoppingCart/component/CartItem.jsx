@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useTranslate } from "../../../core/useTranslate";
 import { addMoreCard, decreaseItemCart, delItemCart, increaseItemCart } from "../../../redux/action/cartAction";
 import { currency } from "../../../util";
 
 export default function CartItem({ name, thumbnail_url, slug, real_price, cartNum, _id }) {
+    let { t } = useTranslate()
     let dispatch = useDispatch()
     let [input, setInput] = useState(cartNum)
     useEffect(() => {
@@ -42,7 +44,7 @@ export default function CartItem({ name, thumbnail_url, slug, real_price, cartNu
                         <Link className="text-body" to={`/product/${slug}`}>{name}</Link>
                     </div>
                     <div className="mb-2 font-size-sm">
-                        <span className="ml-auto">Price: {currency(real_price * cartNum)}</span>
+                        <span className="ml-auto">{t('Price')}: {currency(real_price * cartNum)}</span>
                     </div>
                     {/* Text */}
                     {/* <p className="mb-7 font-size-sm text-muted">
@@ -54,7 +56,7 @@ export default function CartItem({ name, thumbnail_url, slug, real_price, cartNu
                         <input className="cart__item-num" type='number' value={input} onChange={inputChange} onKeyPress={handleAddMoreCard} />
                         <button className="cart__item-button" onClick={() => dispatch(increaseItemCart({ _id, real_price }))}>+</button>
                         <a className="font-size-xs text-gray-400 ml-auto" href="" onClick={() => dispatch(delItemCart(_id))}>
-                            <i className="fe fe-x" /> Remove
+                            <i className="fe fe-x" /> {t('Remove')}
                         </a>
                     </div>
                 </div>

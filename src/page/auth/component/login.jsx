@@ -1,15 +1,12 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router'
-import useTranslate from '../../../core/useTranslate'
+import { useTranslate } from '../../../core/useTranslate'
 import useFormValidate from '../../../hook/useFormValidate'
 import { loginAction } from '../../../redux/action/authAction'
 import Auth from '../../../service/auth'
 
 export const Login = () => {
     let { t } = useTranslate()
-    let auth = useSelector(state => state.auth)
-
     let { error, form, inputChange, check } = useFormValidate({
         username: '',
         password: ''
@@ -68,7 +65,7 @@ export const Login = () => {
                 <div className="card card-lg mb-10 mb-md-0">
                     <div className="card-body">
                         {/* Heading */}
-                        <h6 className="mb-7">Returning Customer</h6>
+                        <h6 className="mb-7">{t('Returning Customer')}</h6>
                         {/* Form */}
                         <form>
                             <div className="row">
@@ -76,7 +73,7 @@ export const Login = () => {
                                     {/* Email */}
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="loginEmail">
-                                            Email Address *
+                                            {t('Email Address')} *
                                         </label>
                                         <input value={form.username} name="username" onChange={inputChange} className="form-control form-control-sm" id="loginEmail" placeholder="Email Address *" />
                                         {
@@ -88,7 +85,7 @@ export const Login = () => {
                                     {/* Password */}
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="loginPassword">
-                                            Password *
+                                            {t('Password')} *
                                         </label>
                                         <input value={form.password} name='password' onChange={inputChange} className="form-control form-control-sm" id="loginPassword" type="password" placeholder="Password *" />
                                         {
@@ -103,7 +100,7 @@ export const Login = () => {
                                         <div className="custom-control custom-checkbox">
                                             <input className="custom-control-input" id="loginRemember" type="checkbox" />
                                             <label className="custom-control-label" htmlFor="loginRemember">
-                                                Remember me
+                                                {t('Remember me')}
                                             </label>
                                         </div>
                                     </div>
@@ -111,14 +108,13 @@ export const Login = () => {
                                 <div className="col-12 col-md-auto">
                                     {/* Link */}
                                     <div className="form-group">
-                                        <a className="font-size-sm text-reset" data-toggle="modal" href="#modalPasswordReset">Forgot
-                                            Password?</a>
+                                        <a className="font-size-sm text-reset" data-toggle="modal" href="#modalPasswordReset">{t('Forgot Password')}?</a>
                                     </div>
                                 </div>
                                 <div className="col-12">
                                     {/* Button */}
                                     <button className="btn btn-sm btn-dark" type="submit" onClick={LoginHandle}>
-                                        Sign In
+                                        {t('Sign In')}
                                     </button>
                                 </div>
                                 {

@@ -1,7 +1,5 @@
-import useTranslate from '../../core/useTranslate'
 
 export const SizeChart = () => {
-  let { t } = useTranslate()
 
   return (
     <>

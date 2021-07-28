@@ -1,6 +1,4 @@
-import useTranslate from '../../../core/useTranslate'
 export default function Breadcrumb() {
-    let { t } = useTranslate()
     return (
         <>
             {/* BREADCRUMB */}
@@ -15,7 +13,7 @@ export default function Breadcrumb() {
                                 </li>
                                 <li className="breadcrumb-item active">
                                     About Us
-                </li>
+                                </li>
                             </ol>
                         </div>
                     </div>

@@ -50,5 +50,10 @@ const userApi = {
     getPaymentDefault: (_id) => {
         return Api.token().get(`/ecommerce/v1/profile/payment-default`)
     },
+    //fake data to use customer review
+    
 }
+
+
+
 export default userApi

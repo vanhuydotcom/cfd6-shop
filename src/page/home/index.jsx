@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { categoriesAction, consumerRating, phoneRating, sportRating } from "../../redux/action/productAction";
 import { LOADING } from "../../redux/type";
@@ -9,10 +9,14 @@ import CountDown from "./component/CountDown";
 import Features from "./component/Features";
 import Reviews from "./component/Reviews";
 import TopSeller from "./component/TopSeller";
+import { getCart } from "../../redux/action/cartAction";
+import useCountDown from "../../hoc/useCountDown";
 
 export default function Home() {
     let dispatch = useDispatch()
-    useEffect(() => {
+    let { login } = useSelector(state => state.auth)
+
+    useEffect((e) => {
         dispatch(categoriesAction())
         dispatch({
             type: LOADING
@@ -20,15 +24,21 @@ export default function Home() {
         dispatch(phoneRating())
         dispatch(sportRating())
         dispatch(consumerRating())
-    }, [])
+        if (login) {
+            dispatch(getCart())
+        }
 
+    }, [])
     return (
         <>
             <Categories />
             <Features />
             <BestPick />
             <TopSeller />
-            <CountDown />
+            {
+                useCountDown(CountDown, 99999)
+            }
+            {/* <CountDown /> */}
             <Reviews />
             <Brands />
         </>

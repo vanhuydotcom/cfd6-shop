@@ -1,4 +1,7 @@
+import { useTranslate } from "../../../core/useTranslate"
+
 export default function Brands() {
+    let { t } = useTranslate()
     return (
         <>
             {/* BRANDS */}
@@ -10,8 +13,8 @@ export default function Brands() {
                             <h2 className="mb-3">@shopper</h2>
                             {/* Subheading */}
                             <p className="mb-10 font-size-lg text-gray-500">
-                                Appear, dry there darkness they're seas, dry waters.
-                </p>
+                                {t("Appear, dry there darkness they're seas, dry waters.")}
+                            </p>
                         </div>
                     </div>
                     <div className="row mx-n1 mb-10">
@@ -24,7 +27,7 @@ export default function Brands() {
                                 <a className="card-img-overlay card-img-overlay-hover align-items-center bg-dark-40" href="blog-post.html">
                                     <p className="my-0 font-size-xxs text-center text-white">
                                         <i className="fe fe-heart mr-2" /> 248 <i className="fe fe-message-square mr-2 ml-3" /> 7
-                    </p>
+                                    </p>
                                 </a>
                             </div>
                         </div>
@@ -37,7 +40,7 @@ export default function Brands() {
                                 <a className="card-img-overlay card-img-overlay-hover align-items-center bg-dark-40" href="blog-post.html">
                                     <p className="my-0 font-size-xxs text-center text-white">
                                         <i className="fe fe-heart mr-2" /> 248 <i className="fe fe-message-square mr-2 ml-3" /> 7
-                    </p>
+                                    </p>
                                 </a>
                             </div>
                         </div>
@@ -50,7 +53,7 @@ export default function Brands() {
                                 <a className="card-img-overlay card-img-overlay-hover align-items-center bg-dark-40" href="blog-post.html">
                                     <p className="my-0 font-size-xxs text-center text-white">
                                         <i className="fe fe-heart mr-2" /> 248 <i className="fe fe-message-square mr-2 ml-3" /> 7
-                    </p>
+                                    </p>
                                 </a>
                             </div>
                         </div>
@@ -63,7 +66,7 @@ export default function Brands() {
                                 <a className="card-img-overlay card-img-overlay-hover align-items-center bg-dark-40" href="blog-post.html">
                                     <p className="my-0 font-size-xxs text-center text-white">
                                         <i className="fe fe-heart mr-2" /> 248 <i className="fe fe-message-square mr-2 ml-3" /> 7
-                    </p>
+                                    </p>
                                 </a>
                             </div>
                         </div>
@@ -76,7 +79,7 @@ export default function Brands() {
                                 <a className="card-img-overlay card-img-overlay-hover align-items-center bg-dark-40" href="blog-post.html">
                                     <p className="my-0 font-size-xxs text-center text-white">
                                         <i className="fe fe-heart mr-2" /> 248 <i className="fe fe-message-square mr-2 ml-3" /> 7
-                    </p>
+                                    </p>
                                 </a>
                             </div>
                         </div>
@@ -89,7 +92,7 @@ export default function Brands() {
                                 <a className="card-img-overlay card-img-overlay-hover align-items-center bg-dark-40" href="blog-post.html">
                                     <p className="my-0 font-size-xxs text-center text-white">
                                         <i className="fe fe-heart mr-2" /> 248 <i className="fe fe-message-square mr-2 ml-3" /> 7
-                    </p>
+                                    </p>
                                 </a>
                             </div>
                         </div>

@@ -1,6 +1,4 @@
-import useTranslate from '../../../core/useTranslate'
 export default function Social() {
-    let { t } = useTranslate()
     return (
         <>
             {/* SOCIAL */}

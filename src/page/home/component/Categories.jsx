@@ -1,14 +1,10 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
-import { categoriesAction } from "../../../redux/action/productAction";
-import { LOADING } from "../../../redux/type";
+import { useTranslate } from "../../../core/useTranslate";
 
 export default function Categories() {
+    let { t } = useTranslate()
     let { categories } = useSelector(state => state.product)
-    useEffect(() => {
-        console.log(categories);
-    })
     return (
         <section>
             {
@@ -28,7 +24,7 @@ export default function Categories() {
                                     {/* Button */}
 
                                     <Link className="btn btn-white stretched-link" to={`/shop?categories=${categories[0]?.id}`}>
-                                        Shop Now <i className="fe fe-arrow-right ml-2" />
+                                        {t('Shop Now')} <i className="fe fe-arrow-right ml-2" />
                                     </Link>
                                 </div>
                             </div>
@@ -45,7 +41,7 @@ export default function Categories() {
                                 <div className="card-body mt-auto py-8">
                                     {/* Button */}
                                     <Link className="btn btn-white stretched-link" to={`/shop?categories=${categories[13]?.id}`}>
-                                        Shop Now <i className="fe fe-arrow-right ml-2" />
+                                        {t('Shop Now')} <i className="fe fe-arrow-right ml-2" />
                                     </Link>
                                 </div>
                             </div>
@@ -63,7 +59,7 @@ export default function Categories() {
                                 <div className="card-body mt-auto py-8">
                                     {/* Button */}
                                     <Link className="btn btn-white stretched-link" to={`/shop?categories=${categories[10]?.id}`}>
-                                        Shop Now <i className="fe fe-arrow-right ml-2" />
+                                        {t('Shop Now')} <i className="fe fe-arrow-right ml-2" />
                                     </Link>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-import useTranslate from '../../../core/useTranslate'
+import { useTranslate } from '../../../core/useTranslate'
 export default function OurStory() {
     let { t } = useTranslate()
     return (

@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom"
-import useTranslate from "../../../../core/useTranslate"
+import { useTranslate } from "../../../../core/useTranslate"
 
 export default function TopNav() {
-    let { t } = useTranslate()
-
+    let { t, lang, selectLang } = useTranslate()
+    const _translate = (e) => {
+        e.preventDefault()
+        selectLang(e.target.dataset.value)
+    }
     return (
         <>
             {/* NAVBAR */}
@@ -21,12 +24,10 @@ export default function TopNav() {
                     <div className="collapse navbar-collapse" id="topbarCollapse">
                         {/* Nav */}
                         <ul className="nav nav-divided navbar-nav mr-auto">
-                            <li className="nav-item dropdown">
-                                {/* Toggle */}
+                            {/* <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" data-toggle="dropdown" to="#">
                                     <img className="mb-1 mr-1" src="/img/flags/usa.svg" alt="..." />{t(' United States')}
                                 </Link>
-                                {/* Menu */}
                                 <div className="dropdown-menu minw-0">
                                     <Link className="dropdown-item" to="#!">
                                         <img className="mb-1 mr-2" src="/img/flags/usa.svg" alt="USA" />{t(' United States')}
@@ -38,38 +39,41 @@ export default function TopNav() {
                                         <img className="mb-1 mr-2" src="/img/flags/germany.svg" alt="Germany" />{t('Germany')}
                                     </Link>
                                 </div>
-                            </li>
-                            <li className="nav-item dropdown">
-                                {/* Toggle */}
+                            </li> */}
+                            {/* <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" data-toggle="dropdown" to="#">USD</Link>
-                                {/* Menu */}
                                 <div className="dropdown-menu minw-0">
                                     <Link className="dropdown-item" to="#!">USD</Link>
                                     <Link className="dropdown-item" to="#!">EUR</Link>
                                 </div>
-                            </li>
+                            </li> */}
                             <li className="nav-item dropdown">
                                 {/* Toggle */}
-                                <Link className="nav-link dropdown-toggle" data-toggle="dropdown" to="#">{t('English')}</Link>
+                                <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                                    {
+                                        lang === "en" && "English" ||
+                                        lang === "vn" && "Việt Nam"
+                                    }
+                                </a>
                                 {/* Menu */}
                                 <div className="dropdown-menu minw-0">
-                                    <Link className="dropdown-item" to="#">{t('English')}</Link>
-                                    <Link className="dropdown-item" to="#">{t('French')}</Link>
-                                    <Link className="dropdown-item" to="#">{t('German')}</Link>
+                                    <a className="dropdown-item" href="#" data-value='en' onClick={_translate}>English</a>
+                                    <a className="dropdown-item" href="#" data-value='vn' onClick={_translate}>Việt Nam</a>
+                                    {/* <a className="dropdown-item" href="#">{t('German')}</a> */}
                                 </div>
                             </li>
                         </ul>
                         {/* Nav */}
                         <ul className="nav navbar-nav mr-8">
                             <li className="nav-item">
-                                <Link className="nav-link" to="./shipping-and-returns.html">{t('Shipping')}</Link>
+                                <Link className="nav-link" to="/shipping-and-return">{t('Shipping & Returns')}</Link>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link className="nav-link" to="./faq.html">FAQ</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="./contact-us.html">{t('Contact')}</Link>
-                            </li>
+                            </li> */}
                         </ul>
                         {/* Nav */}
                         <ul className="nav navbar-nav flex-row">

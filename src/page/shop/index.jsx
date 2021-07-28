@@ -12,7 +12,6 @@ export default function Shop() {
     let { paginate, product, loading } = useSelector(state => state.product)
     let dispatch = useDispatch()
     let objUrl = convertQueryToObj()
-    console.log(objUrl);
     let queryString = convertObjToQuery(objUrl)
     useEffect(() => {
         dispatch({

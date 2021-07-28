@@ -1,10 +1,8 @@
 import React, { useEffect, useRef } from 'react'
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory, useRouteMatch } from 'react-router-dom'
-import { changeDefaultAddress, defaultAddress, getAddress, removeAddress } from '../../../../redux/action/userAction'
-import userApi from '../../../../service/userApi'
-import useTranslate from '../../../../core/useTranslate'
+import { changeDefaultAddress, getAddress, removeAddress } from '../../../../redux/action/userAction'
+import { useTranslate } from '../../../../core/useTranslate'
 export default function AddressList() {
     let { t } = useTranslate
     let dispatch = useDispatch()
@@ -30,7 +28,7 @@ export default function AddressList() {
                 <div className="col-12">
                     {/* Button */}
                     <Link className="btn btn-block btn-lg btn-outline-border" to={`/account/address/create-new/${_id ? _id : ':_id'}`}>
-                        Add Address <i className="fe fe-plus" />
+                        {t(' Edit Address')} <i className="fe fe-plus" />
                     </Link>
                 </div>
             </div>

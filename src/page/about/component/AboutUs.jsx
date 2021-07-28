@@ -1,4 +1,4 @@
-import useTranslate from '../../../core/useTranslate'
+import { useTranslate } from '../../../core/useTranslate'
 export default function AboutUs() {
     let { t } = useTranslate()
     return (
@@ -32,7 +32,7 @@ export default function AboutUs() {
                         <div className="col-12 text-center">
                             {/* Button */}
                             <a className="btn btn-dark" href="shop.html">
-                                Shop Now <i className="fe fe-arrow-right ml-2" />
+                                {t('Shop Now')} <i className="fe fe-arrow-right ml-2" />
                             </a>
                         </div>
                     </div>

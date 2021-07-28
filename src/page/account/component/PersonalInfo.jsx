@@ -1,152 +1,134 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux"
-import { ErrorMes, useForm } from "../../../hook/useForm";
+import { useTranslate } from "../../../core/useTranslate";
+import yup from "../../../hook/yupPattern";
 import { updateProfileAction } from "../../../redux/action/authAction";
 import userApi from "../../../service/userApi";
 export default function PersonalInfo() {
+    let { t } = useTranslate()
     let auth = useSelector(state => state.auth)
-    let data = useSelector(state => state.auth)
-    console.log(auth);
+    console.log(auth?.login?.gender);
     let dispatch = useDispatch()
-    let { register, handleSubmit, error, form, check } = useForm({
-        first_name: auth.login.first_name,
-        last_name: auth.login.last_name,
-        email: auth.login.email,
-        password: '',
-        confirm_password: ''
-    },
-        {
-            rule: {
-                first_name: {
-                    required: true,
-                },
-                last_name: {
-                    required: true,
-                },
+    let schema = yup.object().shape({
+        first_name: yup.string().required("Don't leave blank").name('Not a valid name'),
+        last_name: yup.string().required("Don't leave blank").name('Not a valid name'),
+        // email: yup.string(),
+        password: yup.string(),
+        confirm_password: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match')
+        // gender: yup.string().required('please choose gender')
 
-                password: {
-                    required: true,
-                },
-                confirm_password: {
-                    required: true,
-                    match: 'password'
+    })
+    let { register, handleSubmit, formState: { errors } } = useForm({
+        method: "onChange",
+        resolver: yupResolver(schema)
+    })
 
-                }
-            },
-            mes: {
-                first_name: {
-                    required: 'Please enter your first name',
-                },
-                last_name: {
-                    required: 'Please enter your last name',
-                },
-                email: {
-                    required: 'Please enter your email',
-                    pattern: 'Your mail is not valid',
-                },
-                password: {
-                    required: 'Please enter your password',
-                },
-                confirm_password: {
-                    required: 'Please enter your password again',
-                    match: 'Password incorrect'
-
-                }
-            }
-        })
-    async function formSubmitValidateSuccess(form) {
-        let res = await userApi.update(form)
+    let yearNow = (new Date()).getFullYear()
+    let [day, setDay] = useState()
+    let [month, setMonth] = useState(1)
+    let [year, setYear] = useState(yearNow)
+    useEffect(() => {
+        let date = new Date(year, month, day);
+    })
+    function dateChange(e) {
+        let name = e.target.name
+        let value = e.target.value
+        if (name === 'year') setYear(parseInt(value))
+        if (name === 'month') setMonth(parseInt(value))
+        if (name === 'day') setDay(parseInt(value))
+    }
+    let date = new Date(year, month, 0);
+    let dayArr = date.getDate()
+    async function onSubmit(data) {
+        let res = await userApi.update(data)
         if (res.data) {
             dispatch(updateProfileAction(res.data))
         }
-
     }
     return (
         <div className="col-12 col-md-9 col-lg-8 offset-lg-1">
             {/* Form */}
-            <form onSubmit={handleSubmit(formSubmitValidateSuccess)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
                     <div className="col-12 col-md-6">
                         {/* Email */}
                         <div className="form-group">
-                            <label htmlFor="accountfirst_name">First Name * </label>
-                            <input className="form-control form-control-sm" id="accountfirst_name" type="text" placeholder="First Name *" {...register("first_name", { required: true })} />
-                            <ErrorMes error={error.first_name} />
+                            <label htmlFor="accountfirst_name">{t('First Name')}* </label>
+                            <input className="form-control form-control-sm" id="accountfirst_name" type="text" placeholder="First Name *" {...register("first_name", { value: auth?.login?.first_name })} />
+                            {errors && <p className='error_text'>{errors?.first_name?.message} </p>}
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
                         <div className="form-group">
-                            <label htmlFor="accountlast_name">Last Name *  </label>
-                            <input className="form-control form-control-sm" id="accountlast_name" type="text" placeholder="Last Name *" {...register('last_name', { required: true })} />
-                            <ErrorMes error={error.last_name} />
-
+                            <label htmlFor="accountlast_name">{t('Last Name')} *  </label>
+                            <input className="form-control form-control-sm" id="accountlast_name" type="text" placeholder="Last Name *" {...register('last_name', { value: auth?.login?.last_name })} />
+                            {errors && <p className='error_text'>{errors?.last_name?.message} </p>}
                         </div>
                     </div>
                     <div className="col-12">
                         {/* Email */}
                         <div className="form-group">
-                            <label htmlFor="accountEmail">Email Address *</label>
-                            <input className="form-control form-control-sm" id="accountEmail" type="email" placeholder="Email Address *" disabled value={auth.login.email} />
-                            <ErrorMes error={error.email} />
+                            <label htmlFor="accountEmail">{t('Email Address')} *</label>
+                            <input defaultValue={auth?.login?.email} className="form-control form-control-sm" id="accountEmail" type="email" placeholder="Email Address *" disabled />
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        {/* Password */}
+                        <div className="form-group">
+                            <label htmlFor="accountPassword">{t('New Password')} * </label>
+                            <input className="form-control form-control-sm" id="accountPassword" type="password" placeholder="Current Password *" {...register('password')} />
+                            {errors && <p className='error_text'>{errors?.password?.message} </p>}
 
                         </div>
                     </div>
                     <div className="col-12 col-md-6">
                         {/* Password */}
                         <div className="form-group">
-                            <label htmlFor="accountPassword">Password * </label>
-                            <input className="form-control form-control-sm" id="accountPassword" type="password" placeholder="Current Password *" {...register('password', { required: true },)} />
-                            <ErrorMes error={error.password} />
-
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        {/* Password */}
-                        <div className="form-group">
-                            <label htmlFor="AccountNewPassword">Confirm Password * </label>
-                            <input className="form-control form-control-sm" id="AccountNewPassword" type="password" placeholder="New Password *" {...register('confirm_password', { required: true, match: "password" })} />
-
-                            <ErrorMes error={error.confirm_password} />
-
+                            <label htmlFor="AccountNewPassword">{t('Confirm Password')} * </label>
+                            <input className="form-control form-control-sm" id="AccountNewPassword" type="password" placeholder="New Password *" {...register('confirm_password')} />
+                            {errors && <p className='error_text'>{errors?.confirm_password?.message} </p>}
                         </div>
                     </div>
                     <div className="col-12 col-lg-6">
                         {/* Birthday */}
                         <div className="form-group">
                             {/* Label */}
-                            <label>Date of Birth</label>
+                            <label>{t('Date of Birth')}</label>
                             {/* Inputs */}
                             <div className="form-row">
                                 <div className="col-auto">
                                     {/* Date */}
                                     <label className="sr-only" htmlFor="accountDate">
-                                        Date
+                                        {t('Date')}
                                     </label>
-                                    <select className="custom-select custom-select-sm" id="accountDate">
-                                        <option>10</option>
-                                        <option>11</option>
-                                        <option selected>12</option>
+                                    <select {...register('day', { value: auth?.login?.day })} value={day} onChange={dateChange} className="custom-select custom-select-sm" id="accountDate">
+                                        {
+                                            [...Array(dayArr)].map((e, i) => <option value={i + 1} key={i}>{i + 1}</option>)
+                                        }
                                     </select>
                                 </div>
                                 <div className="col">
                                     {/* Date */}
                                     <label className="sr-only" htmlFor="accountMonth">
-                                        Month
+                                        {t('Month')}
                                     </label>
-                                    <select className="custom-select custom-select-sm" id="accountMonth">
-                                        <option>January</option>
-                                        <option selected>February</option>
-                                        <option>March</option>
+                                    <select {...register('month', { value: auth?.login?.month })} value={month} onChange={dateChange} className="custom-select custom-select-sm" id="accountMonth">
+                                        {
+                                            [...Array(12)].map((e, i) => <option value={i + 1} key={i}>{i + 1}</option>)
+                                        }
                                     </select>
                                 </div>
                                 <div className="col-auto">
                                     {/* Date */}
                                     <label className="sr-only" htmlFor="accountYear">
-                                        Year
+                                        {t('Year')}
                                     </label>
-                                    <select className="custom-select custom-select-sm" id="accountYear">
-                                        <option>1990</option>
-                                        <option selected>1991</option>
-                                        <option>1992</option>
+                                    <select {...register('year', { value: auth?.login?.year })} value={year} onChange={dateChange} className="custom-select custom-select-sm" id="accountYear">
+                                        {
+                                            [...Array(50)].map((e, i) => <option value={yearNow - i} key={i}>{yearNow - i}</option>)
+                                        }
                                     </select>
                                 </div>
                             </div>
@@ -155,20 +137,27 @@ export default function PersonalInfo() {
                     <div className="col-12 col-lg-6">
                         {/* Gender */}
                         <div className="form-group mb-8">
-                            <label>Gender</label>
+                            <label>{t('Gender')}</label>
                             <div className="btn-group-toggle" data-toggle="buttons">
-                                <label className="btn btn-sm btn-outline-border active">
-                                    <input type="radio" name="gender" defaultChecked /> Male
+                                <label className={`btn btn-sm btn-outline-border ${auth?.login?.gender === "Male" ?
+                                    'active' : ''
+
+                                    }`}>
+                                    <input  {...register('gender')} value='Male' type="radio" /> {t('Male')}
                                 </label>
-                                <label className="btn btn-sm btn-outline-border">
-                                    <input type="radio" name="gender" /> Female
+                                <label className={`btn btn-sm btn-outline-border ${auth?.login?.gender === "Female" ?
+                                    'active' : ''
+
+                                    }`}>
+                                    <input {...register('gender')} value='Female' type="radio" /> {t('Female')}
                                 </label>
                             </div>
+
                         </div>
                     </div>
                     <div className="col-12">
                         {/* Button */}
-                        <button className="btn btn-dark" type="submit">Save Changes</button>
+                        <button className="btn btn-dark" type="submit">{t('Save Changes')}</button>
                     </div>
                 </div>
             </form>

@@ -13,9 +13,11 @@ const PageApi = {
         }).then(res => res.json())
     },
     StoreApi() {
-        return fetch(`${endpoint}/store`, {
+        return fetch('/local_db/location_db.json', {
             method: 'GET',
         }).then(res => res.json())
     }
+
+
 }
 export default PageApi

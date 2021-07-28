@@ -1,7 +1,5 @@
-import useTranslate from '../../core/useTranslate'
 
 export const Sidebar = () => {
-    let { t } = useTranslate()
 
     return (
         <>
@@ -21,7 +19,7 @@ export const Sidebar = () => {
                                     {/* Toggle */}
                                     <a className="nav-link dropdown-toggle" data-toggle="collapse" href="#sidebarHome">
                                         Home
-                  </a>
+                                    </a>
                                     {/* Collapse */}
                                     <div className="collapse" id="sidebarHome" data-parent="#sidebarNav">
                                         <ul className="list-styled font-size-lg py-3 mb-0">
@@ -56,7 +54,7 @@ export const Sidebar = () => {
                                     {/* Toggle */}
                                     <a className="nav-link dropdown-toggle" data-toggle="collapse" href="#sidebarCatalog">
                                         Catalog
-                  </a>
+                                    </a>
                                     {/* Collapse */}
                                     <div className="collapse" id="sidebarCatalog" data-parent="#sidebarNav">
                                         <div className="row">
@@ -166,7 +164,7 @@ export const Sidebar = () => {
                                     {/* Toggle */}
                                     <a className="nav-link dropdown-toggle" data-toggle="collapse" href="#sidebarShop">
                                         Shop
-                  </a>
+                                    </a>
                                     {/* Collapse */}
                                     <div className="collapse" id="sidebarShop" data-parent="#sidebarNav">
                                         <div className="row">
@@ -278,37 +276,37 @@ export const Sidebar = () => {
                                                     <li className="list-styled-item">
                                                         <a className="list-styled-link" data-toggle="modal" href="#modalNewsletterHorizontal">
                                                             Newsletter: Horizontal
-                            </a>
+                                                        </a>
                                                     </li>
                                                     <li className="list-styled-item">
                                                         <a className="list-styled-link" data-toggle="modal" href="#modalNewsletterVertical">
                                                             Newsletter: Vertical
-                            </a>
+                                                        </a>
                                                     </li>
                                                     <li className="list-styled-item">
                                                         <a className="list-styled-link" data-toggle="modal" href="#modalProduct">
                                                             Product
-                            </a>
+                                                        </a>
                                                     </li>
                                                     <li className="list-styled-item">
                                                         <a className="list-styled-link" data-toggle="modal" href="#modalSearch">
                                                             Search
-                            </a>
+                                                        </a>
                                                     </li>
                                                     <li className="list-styled-item">
                                                         <a className="list-styled-link" data-toggle="modal" href="#modalShoppingCart">
                                                             Shopping Cart
-                            </a>
+                                                        </a>
                                                     </li>
                                                     <li className="list-styled-item">
                                                         <a className="list-styled-link" data-toggle="modal" href="#modalSizeChart">
                                                             Size Chart
-                            </a>
+                                                        </a>
                                                     </li>
                                                     <li className="list-styled-item">
                                                         <a className="list-styled-link" data-toggle="modal" href="#modalWaitList">
                                                             Wait List
-                            </a>
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -319,7 +317,7 @@ export const Sidebar = () => {
                                     {/* Toggle */}
                                     <a className="nav-link dropdown-toggle" data-toggle="collapse" href="#sidebarPages">
                                         Pages
-                  </a>
+                                    </a>
                                     {/* Collapse */}
                                     <div className="collapse" id="sidebarPages" data-parent="#sidebarNav">
                                         <ul className="list-styled font-size-lg py-3 mb-0">
@@ -348,7 +346,7 @@ export const Sidebar = () => {
                                     {/* Toggle */}
                                     <a className="nav-link dropdown-toggle" data-toggle="collapse" href="#sidebarBlog">
                                         Blog
-                  </a>
+                                    </a>
                                     {/* Collapse */}
                                     <div className="collapse" id="sidebarBlog" data-parent="#sidebarNav">
                                         <ul className="list-styled font-size-lg py-3 mb-0">
@@ -399,7 +397,7 @@ export const Sidebar = () => {
                             {/* Footer */}
                             <div className="font-size-xxs text-gray-350">
                                 © 2019 All rights reserved. Designed by Unvab.
-              </div>
+                            </div>
                         </div>
                     </div>
                 </div>

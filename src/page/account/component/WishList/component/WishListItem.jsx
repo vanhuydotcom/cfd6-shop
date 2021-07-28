@@ -1,16 +1,14 @@
-import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { Skeleton } from "@material-ui/lab"
-import useTranslate from "../../../../../core/useTranslate"
+import { useTranslate } from "../../../../../core/useTranslate"
 import { getProductDetail } from "../../../../../redux/action/productAction"
-import { getAddress, getWishlist, removeWishlist } from "../../../../../redux/action/userAction"
-import { LOADING_WISHLIST } from "../../../../../redux/type"
+import { getWishlist, removeWishlist } from "../../../../../redux/action/userAction"
 import { convertObjToQuery, convertQueryToObj, currency } from "../../../../../util"
 
 export default function WishlistItem(props) {
     let { thumbnail_url, name, slug, discount, price, real_price, _id } = props
-    let { loading, wishlist } = useSelector(state => state.user)
+    let { loading } = useSelector(state => state.user)
     let { t } = useTranslate()
     let dispatch = useDispatch()
     const _remove = () => {

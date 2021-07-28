@@ -7,7 +7,7 @@ import { convertObjToQuery, convertQueryToObj } from "../../../../util";
 import WishlistItem from "./component/WishlistItem";
 
 export default function Wishlist() {
-    let { wishlist, paginate, loading } = useSelector(state => state.user)
+    let { wishlist, paginate } = useSelector(state => state.user)
     let objUrl = convertQueryToObj()
     let queryString = convertObjToQuery(objUrl)
     let dispatch = useDispatch()

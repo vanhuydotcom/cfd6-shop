@@ -1,6 +1,30 @@
-import useTranslate from '../../core/useTranslate'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+import { useTranslate } from '../../core/useTranslate'
+import yup from '../../hook/yupPattern'
+import { addDoc } from '../../service/firebase/service'
 export const Footer = () => {
     let { t } = useTranslate()
+    let [success, setSuccess] = useState(null)
+    let schema = yup.object().shape({
+        email: yup.string().required('Cannot be left blank').email('Email not be valid '),
+    })
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        mode: "onChange",
+        resolver: yupResolver(schema)
+    })
+
+    const onSubmit = (data) => {
+        addDoc('notify', { data })
+        if (data) {
+            setSuccess("It's success")
+        }
+    }
+    const _clear = () => {
+        document.querySelector('#form-ft').reset()
+    }
     return (
         <>
             {/* FOOTER */}
@@ -12,13 +36,15 @@ export const Footer = () => {
                                 {/* Heading */}
                                 <h5 className="mb-7 text-center text-white">{t('Want style Ideas and Treats ?')}</h5>
                                 {/* Form */}
-                                <form className="mb-11">
+                                <form className="mb-11" onSubmit={handleSubmit(onSubmit)} id="form-ft">
                                     <div className="form-row align-items-start">
                                         <div className="col">
-                                            <input type="email" className="form-control form-control-gray-700 form-control-lg" placeholder="Enter Email *" />
+                                            <input {...register('email')} type="email" className="form-control form-control-gray-700 form-control-lg" placeholder="Enter Email *" />
+                                            {errors && <p className='error_text' style={{ color: '#fff' }}>{errors?.email?.message}</p>}
+                                            {success && <p className='error_text' style={{ color: '#fff' }}>{success}</p>}
                                         </div>
                                         <div className="col-auto">
-                                            <button type="submit" className="btn btn-gray-500 btn-lg">Subscribe</button>
+                                            <button onClick={_clear} type="submit" className="btn btn-gray-500 btn-lg">{t('Subscribe')}</button>
                                         </div>
                                     </div>
                                 </form>
@@ -60,81 +86,75 @@ export const Footer = () => {
                             <div className="col-6 col-sm">
                                 {/* Heading */}
                                 <h6 className="heading-xxs mb-4 text-white">
-                                    Support
-                </h6>
+                                    {t('Support')}
+                                </h6>
                                 {/* Links */}
                                 <ul className="list-unstyled mb-7 mb-sm-0">
                                     <li>
-                                        <a className="text-gray-300" href="./contact-us.html">Contact Us</a>
+                                        <Link className="text-gray-300" to="/contact-us">{t('Contact Us')}</Link>
                                     </li>
                                     <li>
-                                        <a className="text-gray-300" href="./faq.html">FAQs</a>
+                                        <Link className="text-gray-300" to="/faq">{t('FAQs')}</Link>
                                     </li>
+                                    {/* <li>
+                                        <a className="text-gray-300" data-toggle="modal" to="#modalSizeChart">{t('Size Guide')}</a>
+                                    </li> */}
                                     <li>
-                                        <a className="text-gray-300" data-toggle="modal" href="#modalSizeChart">Size Guide</a>
-                                    </li>
-                                    <li>
-                                        <a className="text-gray-300" href="./shipping-and-returns.html">Shipping &amp; Returns</a>
+                                        <Link className="text-gray-300" to="/shipping-and-return">{t('Shipping & Returns')}</Link>
                                     </li>
                                 </ul>
                             </div>
                             <div className="col-6 col-sm">
                                 {/* Heading */}
                                 <h6 className="heading-xxs mb-4 text-white">
-                                    Shop
-                </h6>
+                                    {t('Shop')}
+                                </h6>
                                 {/* Links */}
                                 <ul className="list-unstyled mb-7 mb-sm-0">
                                     <li>
-                                        <a className="text-gray-300" href="./shop.html">Men's Shopping</a>
+                                        <Link className="text-gray-300" to="/shop?sort=real_price.-1">Advance Shopping</Link>
                                     </li>
                                     <li>
-                                        <a className="text-gray-300" href="./shop.html">Women's Shopping</a>
+                                        <Link className="text-gray-300" to="/shop?sort=rating_average.-1">Customer Review</Link>
                                     </li>
                                     <li>
-                                        <a className="text-gray-300" href="./shop.html">Kids' Shopping</a>
-                                    </li>
-                                    <li>
-                                        <a className="text-gray-300" href="./shop.html">Discounts</a>
+                                        <Link className="text-gray-300" to="/shop?sort=discount_rate.-1">Discounts</Link>
                                     </li>
                                 </ul>
                             </div>
                             <div className="col-6 col-sm">
                                 {/* Heading */}
                                 <h6 className="heading-xxs mb-4 text-white">
-                                    Company
-                </h6>
+                                    {t('Company')}
+                                </h6>
                                 {/* Links */}
                                 <ul className="list-unstyled mb-0">
                                     <li>
-                                        <a className="text-gray-300" href="./about.html">Our Story</a>
+                                        <Link className="text-gray-300" to="/About">About Us</Link>
                                     </li>
                                     <li>
-                                        <a className="text-gray-300" href="#!">Careers</a>
+                                        <Link className="text-gray-300" to="#!">Careers</Link>
                                     </li>
                                     <li>
-                                        <a className="text-gray-300" href="#!">Terms &amp; Conditions</a>
-                                    </li>
-                                    <li>
-                                        <a className="text-gray-300" href="#!">Privacy &amp; Cookie policy</a>
+                                        <Link className="text-gray-300" to="#!">Terms &amp; Conditions</Link>
                                     </li>
                                 </ul>
                             </div>
                             <div className="col-6 col-sm">
                                 {/* Heading */}
                                 <h6 className="heading-xxs mb-4 text-white">
-                                    Contact
-                </h6>
+                                    {t(" Contact")}
+                                </h6>
                                 {/* Links */}
                                 <ul className="list-unstyled mb-0">
                                     <li>
-                                        <a className="text-gray-300" href="#!">1-202-555-0105</a>
+                                        <a className="text-gray-300" to="#!">1-202-555-0105</a>
                                     </li>
                                     <li>
-                                        <a className="text-gray-300" href="#!">1-202-555-0106</a>
+                                        <a className="text-gray-300" to="#!">1-202-555-0106</a>
                                     </li>
                                     <li>
-                                        <a className="text-gray-300" href="#!">help@shopper.com</a>
+                                        <a className="text-gray-300" to="#!">help@shopper.com</a>
                                     </li>
                                 </ul>
                             </div>
@@ -148,7 +168,7 @@ export const Footer = () => {
                                 {/* Copyright */}
                                 <p className="mb-3 mb-md-0 font-size-xxs text-muted">
                                     © 2019 All rights reserved. Designed by Unvab.
-                </p>
+                                </p>
                             </div>
                             <div className="col-auto">
                                 {/* Payment methods */}

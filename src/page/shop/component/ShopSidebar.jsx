@@ -1,17 +1,13 @@
+import { useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useRef, useState } from "react"
-
-import { NavLink, Link, useHistory, useRouteMatch } from "react-router-dom"
-import { Skeleton } from '@material-ui/lab'
-import useTranslate from "../../../core/useTranslate"
+import { Link, useHistory, useRouteMatch } from "react-router-dom"
 import { CATEGORIES_TITLE } from "../../../redux/type"
 import { convertObjToQuery, convertQueryToObj } from "../../../util"
 export default function ShopSidebar() {
-    let { t } = useTranslate()
     let dispatch = useDispatch()
     let { url } = useRouteMatch()
     let history = useHistory()
-    let { categories, loading } = useSelector(state => state.product)
+    let { categories } = useSelector(state => state.product)
     const handleClickCategory = (e) => {
         dispatch({
             type: CATEGORIES_TITLE,
@@ -19,6 +15,7 @@ export default function ShopSidebar() {
         })
     }
     let objUrl = convertQueryToObj()
+
     if (objUrl.page) {
         delete objUrl.page
     }
@@ -53,34 +50,22 @@ export default function ShopSidebar() {
                             Category
                         </a>
                         {/* Collapse */}
-                        <div className="collapse show" id="categoryCollapse">
-                            <div className="form-group">
-                                <ul className="list-styled mb-0" id="productsNav">
-                                    {/* <li className="list-styled-item">
-                                        <NavLink exact className="list-styled-link" to="/shop"> All Products    </NavLink>
-                                    </li> */}
-                                    {
-                                        categories.map(e => (
+                        <div className="form-group">
+                            <ul className="list-styled mb-0" id="productsNav">
+                                {/* <li className="list-styled-item">
+                                    <Link exact className="list-styled-link" to="/shop">
+                                        {t('All Product')}
+                                    </Link>
 
-                                            <li key={e._id} className="list-styled-item">
-                                                <Link className={`list-styled-link`}
-                                                    to={`/shop?${convertObjToQuery({ ...objUrl, categories: e.id })}`}
-                                                    onClick={() => handleClickCategory(e)}
-
-                                                >
-                                                    {e.title}
-                                                </Link>
-                                                {/* {
-                                                    loading ? <Skeleton variant='rect' width='100%' height={16} /> :
-                                                 
-                                                } */}
-
-                                            </li>
-                                        ))
-                                    }
-
-                                </ul>
-                            </div>
+                                </li> */}
+                                {
+                                    categories.map(e => <li key={e._id} className="list-styled-item">
+                                        <Link className={`list-styled-link`} to={`/shop?${convertObjToQuery({ ...objUrl, categories: e.id })}`}
+                                            onClick={() => handleClickCategory(e)}>
+                                            {e.title}
+                                        </Link></li>)
+                                }
+                            </ul>
                         </div>
                     </li>
                     <li className="nav-item">

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import useTranslate from "../../../core/useTranslate"
+import { useTranslate } from "../../../core/useTranslate"
 import { currency } from "../../../util"
 
 export default function ListGroupCheckout({ fee }) {
@@ -9,7 +9,7 @@ export default function ListGroupCheckout({ fee }) {
 
     return (
         <>
-            <h6 className="mb-7">Order Items ({num})</h6>
+            <h6 className="mb-7">{t('Order Items')} ({num})</h6>
             {/* Divider */}
             <hr className="my-7" />
             <ul className="list-group list-group-lg list-group-flush-y list-group-flush-x mb-7">
@@ -44,13 +44,13 @@ export default function ListGroupCheckout({ fee }) {
                 <div className="card-body">
                     <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
                         <li className="list-group-item d-flex">
-                            <span>Subtotal</span> <span className="ml-auto font-size-sm">{currency(amount)}</span>
+                            <span>{t('Subtotal')}</span> <span className="ml-auto font-size-sm">{currency(amount)}</span>
                         </li>
                         <li className="list-group-item d-flex">
-                            <span>Tax</span> <span className="ml-auto font-size-sm">{currency(amount / tax)}</span>
+                            <span>{t('Tax')}</span> <span className="ml-auto font-size-sm">{currency(amount / tax)}</span>
                         </li>
                         <li className="list-group-item d-flex">
-                            <span>Shipping</span>
+                            <span>{t('Shipping')}</span>
                             {
                                 fee && fee ? <span className="ml-auto font-size-sm">{currency(parseInt(fee[0]))}</span>
                                     : <span className="ml-auto font-size-sm">0</span>
@@ -59,7 +59,7 @@ export default function ListGroupCheckout({ fee }) {
                         </li>
                         <li className="list-group-item d-flex font-size-lg font-weight-bold">
 
-                            <span>Total</span>
+                            <span>{t('Total')}</span>
                             {
                                 fee && fee ? <span className="ml-auto">{currency(amount + amount / tax + parseInt(fee[0]))}</span>
                                     : <span className="ml-auto">{currency(amount + amount / tax + 0)}</span>

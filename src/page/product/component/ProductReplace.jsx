@@ -1,10 +1,12 @@
 import { Rating } from "@material-ui/lab"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { useTranslate } from "../../../core/useTranslate"
 import { addCart } from "../../../redux/action/cartAction"
 import { currency } from "../../../util"
 
 export function ProductReplace() {
+    let { t } = useTranslate()
     let { product } = useSelector(state => state.product)
     return (
 
@@ -13,7 +15,7 @@ export function ProductReplace() {
                 <div className="row">
                     <div className="col-12">
                         {/* Heading */}
-                        <h4 className="mb-10 text-center">You might also like</h4>
+                        <h4 className="mb-10 text-center">{t('You might also like')}</h4>
                         {/* Items */}
                         <div className="row">
                             {

@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
-import { Route, Switch, useParams } from 'react-router-dom'
 import Step1 from './Step1'
 import Step2 from './Step2'
 

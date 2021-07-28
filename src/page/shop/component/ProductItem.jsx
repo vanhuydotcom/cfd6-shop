@@ -3,21 +3,20 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Rating, Skeleton } from '@material-ui/lab'
 import { currency } from '../../../util'
-import { addCart } from '../../../redux/action/cartAction'
 import { addWishlist } from '../../../redux/action/userAction'
+
 import { getProductDetail } from '../../../redux/action/productAction'
+import { addCart } from '../../../redux/action/cartAction'
 
 export function ProductItem(props) {
-
-    const { discount_rate, thumbnail_url, name, price, real_price, rating_average, discount, slug } = props
-
+    let { discount_rate, thumbnail_url, name, price, real_price, rating_average, discount, slug } = props
     let out_price = currency(price),
         discount_price = currency(real_price)
     let { loading } = useSelector(state => state.product)
     let dispatch = useDispatch()
-    const handleAddToCart = () => {
-        dispatch(addCart({ ...props }))
-    }
+    // const handleAddToCart = () => {
+    //     dispatch(addCart({ ...props }))
+    // }
 
     return (
         <div className="col-6 col-md-4 col-lg-4">
@@ -48,7 +47,7 @@ export function ProductItem(props) {
                                         </button>
                                     </span>
                                     <span className="card-action">
-                                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button" onClick={dispatch.bind(null, addCart(props))}>
+                                        <button className="btn btn-xs btn-circle btn-white-primary" data-toggle="button" onClick={(e) => dispatch(addCart({ ...props }))}>
                                             <i className="fe fe-shopping-cart" />
                                         </button>
                                     </span>

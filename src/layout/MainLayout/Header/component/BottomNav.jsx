@@ -1,4 +1,4 @@
-import useTranslate from '../../../../core/useTranslate'
+import { useTranslate } from '../../../../core/useTranslate'
 
 export default function BottomNav() {
     let { t } = useTranslate()
@@ -13,7 +13,7 @@ export default function BottomNav() {
                             <div className="text-center text-white">
                                 <span className="heading-xxs letter-spacing-xl">
                                     ⚡️ {t('Happy Holiday Deals on Everything')} ⚡️
-                </span>
+                                </span>
                             </div>
                         </div>
                     </div>

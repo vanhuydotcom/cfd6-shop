@@ -1,4 +1,4 @@
-import { CATEGORIES, PRODUCT, PRODUCT_DETAIL } from './../type'
+import { CATEGORIES, PRODUCT, PRODUCT_DETAIL, SEARCH } from './../type'
 import ProductApi from '../../service/productApi'
 export function productAction(page) {
     return async (dispatch) => {
@@ -32,6 +32,17 @@ export function categoriesAction() {
             dispatch({
                 type: CATEGORIES,
                 payload: res,
+            })
+        }
+    }
+}
+export function searchAction(keyword) {
+    return async (dispatch) => {
+        let res = await ProductApi.search(keyword);
+        if (res.data) {
+            dispatch({
+                type: SEARCH,
+                payload: res.data,
             })
         }
     }
@@ -70,3 +81,5 @@ export function consumerRating() {
         }
     }
 }
+
+

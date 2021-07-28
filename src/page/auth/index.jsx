@@ -5,10 +5,9 @@ import { Login } from './component/Login';
 import { Register } from './component/Register';
 
 export default function Auth() {
-    let auth = useSelector(state => state.auth)
-    if (auth.login) {
-        return <Redirect to='/' />
-    }
+    let { login } = useSelector(state => state.auth)
+    if (login) return <Redirect to='/' />
+
     return (
         <>
             {/* CONTENT */}

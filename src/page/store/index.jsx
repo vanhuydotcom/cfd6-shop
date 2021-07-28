@@ -1,13 +1,15 @@
-import Map from "./component/Map";
-import StoreLocator from "./component/StoreLocator";
+
+import StoreLocation from './component/StoreLocation'
+import Headers from "./component/Headers";
 
 export default function Store() {
+
     return (
         <>
             {/* HEADER */}
-            <StoreLocator />
+            <Headers />
             {/* MAP */}
-            <Map/>
-       </>
+            <StoreLocation />
+        </>
     )
 }

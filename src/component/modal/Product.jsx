@@ -2,10 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useTranslate } from '../../core/useTranslate'
 import { currency } from '../../util'
 export const Product = () => {
+    let { t } = useTranslate()
     let { product_detail } = useSelector(state => state.product)
-    console.log(product_detail);
     return ReactDOM.createPortal(
         <div className="modal fade" id="modalProduct" tabIndex={-1} role="dialog" aria-hidden="true">
             <div className="modal-dialog modal-dialog-centered modal-xl" role="document">
@@ -22,7 +23,7 @@ export const Product = () => {
                                 <img className="img-fluid" src={product_detail[0]?.thumbnail_url} alt="..." />
                                 {/* Button */}
                                 <Link className="btn btn-sm btn-block btn-primary" to={`/product/${product_detail[0]?.slug}`}>
-                                    More Product Info <i className="fe fe-info ml-2" />
+                                    {t(' More Product Info')} <i className="fe fe-info ml-2" />
                                 </Link>
                             </div>
                             <div className="col-12 col-lg-6 col-xl-7 py-9 px-md-9">
@@ -81,13 +82,13 @@ export const Product = () => {
                                             <div className="col-12 col-lg">
                                                 {/* Submit */}
                                                 <button type="submit" className="btn btn-block btn-dark mb-2">
-                                                    Add to Cart <i className="fe fe-shopping-cart ml-2" />
+                                                    {t('Add to Cart')} <i className="fe fe-shopping-cart ml-2" />
                                                 </button>
                                             </div>
                                             <div className="col-12 col-lg-auto">
                                                 {/* Wishlist */}
                                                 <button className="btn btn-outline-dark btn-block mb-2" data-toggle="button">
-                                                    Wishlist <i className="fe fe-heart ml-2" />
+                                                    {t('Wishlist')} <i className="fe fe-heart ml-2" />
                                                 </button>
                                             </div>
                                         </div>

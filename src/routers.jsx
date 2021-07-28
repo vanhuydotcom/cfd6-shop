@@ -8,14 +8,15 @@ import FAQ from './page/faq';
 import Home from './page/home';
 import OrderCompleted from './page/oroderCompeled';
 import Product from './page/product';
-import shipAndReturn from './page/shipAndReturn';
 import ShoppingCart from './page/shoppingCart';
 import Store from './page/store';
 import Shop from './page/shop';
+import ShipAndReturn from './page/shipAndReturn';
+import ComingSoon from './page/comingSoon';
 
 import Account from './page/account';
-import OrderDetail from './page/account/component/OrderDetail';
-import Orders from './page/account/component/Orders';
+import OrderDetail from './page/account/component/orders/OrderDetail';
+import Orders from './page/account/component/orders/Orders';
 import PersonalInfo from './page/account/component/PersonalInfo';
 import Address from './page/account/component/address/Address';
 import AddressList from './page/account/component/address/AddressList';
@@ -26,6 +27,10 @@ import PaymentList from './page/account/component/paymentList';
 
 
 let routers = [
+    {
+        component: ComingSoon,
+        path: '/coming-soon'
+    },
     {
         component: MainLayout,
         path: '/',
@@ -46,6 +51,10 @@ let routers = [
             {
                 component: Checkout,
                 path: '/checkout',
+            },
+            {
+                component: OrderCompleted,
+                path: '/order-completed/:_id',
             },
             {
                 component: ShoppingCart,
@@ -91,6 +100,11 @@ let routers = [
                         path: '/orders',
                     },
                     {
+                        component: OrderDetail,
+                        path: '/order-detail/:_id',
+                    },
+
+                    {
                         component: PersonalInfo,
                         path: '/'
                     },
@@ -100,9 +114,27 @@ let routers = [
 
             },
             {
+                component: ShipAndReturn,
+                path: '/shipping-and-return',
+            },
+            {
                 component: FAQ,
                 path: '/faq',
-                exact: true
+
+            },
+            {
+                component: Contact,
+                path: '/contact-us',
+
+            },
+            {
+                component: Store,
+                path: '/store-locator',
+
+            },
+            {
+                component: About,
+                path: '/about-us',
 
             },
             {

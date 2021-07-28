@@ -1,8 +1,10 @@
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { useTranslate } from "../../../core/useTranslate"
 import { currency } from "../../../util"
 
 export default function RightSidebar() {
+    let { t } = useTranslate()
     let { amount, tax } = useSelector(state => state.cart)
 
     return (
@@ -12,25 +14,25 @@ export default function RightSidebar() {
                 <div className="card-body">
                     <ul className="list-group list-group-sm list-group-flush-y list-group-flush-x">
                         <li className="list-group-item d-flex">
-                            <span>Subtotal</span> <span className="ml-auto font-size-sm">{currency(amount)}</span>
+                            <span>{t('Subtotal')}</span> <span className="ml-auto font-size-sm">{currency(amount)}</span>
                         </li>
                         <li className="list-group-item d-flex">
-                            <span>Tax</span> <span className="ml-auto font-size-sm">{currency(amount / tax)}</span>
+                            <span>{t('Tax')}</span> <span className="ml-auto font-size-sm">{currency(amount / tax)}</span>
                         </li>
                         <li className="list-group-item d-flex font-size-lg font-weight-bold">
-                            <span>Total</span> <span className="ml-auto font-size-sm">{currency(amount + amount / tax)}</span>
+                            <span>{t('Total')}</span> <span className="ml-auto font-size-sm">{currency(amount + amount / tax)}</span>
                         </li>
                         <li className="list-group-item font-size-sm text-center text-gray-500">
-                            Shipping cost calculated at Checkout *
+                            {t('Shipping cost calculated at Checkout')} *
                         </li>
                     </ul>
                 </div>
             </div>
             {/* Button */}
-            <Link className="btn btn-block btn-dark mb-2" to="/checkout">Proceed to Checkout</Link>
+            <Link className="btn btn-block btn-dark mb-2" to="/checkout">{t('Proceed to Checkout')}</Link>
             {/* Link */}
             <Link className="btn btn-link btn-sm px-0 text-body" to="/shop">
-                <i className="fe fe-arrow-left mr-2" /> Continue Shopping
+                <i className="fe fe-arrow-left mr-2" /> {t('Continue Shopping')}
             </Link>
         </div>
 

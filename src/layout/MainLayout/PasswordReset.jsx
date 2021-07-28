@@ -1,4 +1,4 @@
-import useTranslate from '../../core/useTranslate'
+import { useTranslate } from '../../core/useTranslate'
 
 export const PasswordReset = () => {
     let { t } = useTranslate()

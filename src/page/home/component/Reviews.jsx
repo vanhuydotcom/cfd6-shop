@@ -1,7 +1,9 @@
 import { useEffect } from "react"
 import { useRef } from "react"
+import { useTranslate } from "../../../core/useTranslate"
 let $ = window.$
 export default function Reviews() {
+    let { t } = useTranslate()
     let ref = useRef()
     useEffect(() => {
         $(ref.current).flickity()
@@ -15,10 +17,10 @@ export default function Reviews() {
                         <div className="col-12 col-md-10 col-lg-8 col-xl-6 text-center">
                             {/* Preheading */}
                             <h6 className="heading-xxs mb-3 text-gray-400">
-                                What buyers say
+                                {t('What buyers say')}
                             </h6>
                             {/* Heading */}
-                            <h2 className="mb-10">Latest buyers Reviews</h2>
+                            <h2 className="mb-10">{t('Latest buyers Reviews')}</h2>
                         </div>
                     </div>
                     <div className="row">
